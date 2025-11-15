@@ -1,0 +1,152 @@
+/* 1. The main section container */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* <-- FIX 1: This vertically centers the content */
+  padding: var(--space-4); /* Adds breathing room on small screens */
+  background: var(--gradient-subtle); /* A subtle bg from your design */
+  box-shadow: inset 0 0 10rem 3rem hsl(220, 20%, 4%);
+  position: relative;
+}
+
+/* 2. The main content block */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+}
+
+/* 3. The "Available" badge */
+.hero-badge {
+  /* Layout: */
+  display: inline-flex; /* Makes it just wrap the content */
+  align-items: center;  /* Vertically centers the icon and text */
+  gap: var(--space-2);  /* Space between icon and text */
+  
+  /* Shape: */
+  padding: var(--space-2) var(--space-4);
+  border-radius: 9999px; /* This makes the "pill" shape */
+
+  /* "Glassy" Colors: */
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  color: var(--primary);
+  
+  /* Here is the HSL trick for opacity: */
+  background-color: hsl(190 95% 55% / 0.1); /* 10% opacity primary */
+  border: 1px solid hsl(190 95% 55% / 0.2); /* 20% opacity primary */
+
+  /* This adds the "frosted glass" effect */
+  backdrop-filter: blur(4px);
+}
+
+/* We also need to size the icon */
+.hero-badge-icon {
+  width: var(--space-4); /* 1rem or 16px */
+  height: var(--space-4);
+  /* The color is inherited from .hero-badge */
+}
+
+/* 4. The main title */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.02em; /* <-- ADD THIS (from your last request) */
+  margin-top: var(--space-5); /* <-- ADD THIS (space from badge) */
+}
+.hero-title span {
+  display: block;
+}
+
+/* 5. The text color classes */
+.text-primary {
+  color: var(--primary);
+}
+
+.text-secondary {
+  /* FIX 3: The style for your new class! */
+  color: var(--foreground); /* The default (white) text color */
+}
+
+/* 6. The subtitle */
+.hero-subtitle {
+  font-size: var(--font-size-body);
+  color: var(--muted-foreground);
+  /* Constrains the width so it wraps nicely on big screens */
+  max-width: 360px;
+  line-height: 1.5;
+  margin-top: var(--space-4);
+}
+
+/* 7. The button group */
+.hero-cta-group {
+  display: flex;
+  flex-direction: row; /* Makes them in-line */
+  gap: var(--space-4); /* Keeps the space between them */
+margin-top: var(--space-8);
+}
+
+/* 8. The social media links */
+.hero-socials {
+  display: flex;
+  gap: var(--space-6);
+  margin-top: var(--space-7); /* Add some space above the socials */
+}
+
+.hero-socials a {
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+
+}
+
+.hero-socials a:hover {
+  color: var(--primary);
+}
+/* This rule styles the icons *inside* the social links */
+.hero-socials a svg {
+  /* We can use our spacing scale for the size! */
+  width: var(--space-5);  /* 1.25rem or 20px */
+  height: var(--space-5);
+  pointer-events: none;
+  
+
+}
+
+
+/* * --------------------------------
+ * Desktop Hero Layout
+ * --------------------------------
+*/
+@media (min-width: 768px) {
+  
+  /* We just update the font sizes for a more
+     dramatic effect on large screens. */
+
+  .hero-title {
+    /* HERE IS THE CHANGE:
+       We are using the new variable you just added.
+    */
+    font-size: var(--font-size-h1-desktop);
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-size-body-desktop);
+    /* Make the text wrap a bit wider */
+    max-width: 700px; 
+  }
+
+  /* We can also increase the gap between elements */
+  .hero-content {
+
+  }
+
+  .hero-socials {
+    margin-top: var(--space-6); /* Add more space */
+  }
+}

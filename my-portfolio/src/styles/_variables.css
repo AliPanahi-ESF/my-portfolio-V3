@@ -1,0 +1,68 @@
+:root {
+  /* Colors */
+  /* HSL format (hue, saturation, lightness) is excellent */
+  --background: hsl(220, 20%, 8%);
+  --foreground: hsl(210, 40%, 98%);
+  --card: hsl(220, 18%, 12%);
+  --card-foreground: hsl(210, 40%, 98%);
+  
+  --primary: hsl(190, 95%, 55%);
+  --primary-foreground: hsl(220, 20%, 8%);
+
+  --secondary: hsl(220, 15%, 18%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+
+  --muted: hsl(220, 15%, 15%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  
+  --accent: hsl(190, 95%, 55%);
+  --accent-foreground: hsl(220, 20%, 8%);
+
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+
+  --border: hsl(220, 15%, 20%);
+  --input: hsl(220, 15%, 18%);
+  --ring: hsl(190, 95%, 55%);
+
+  /* Border Radius */
+  --radius: 0.75rem; /* 12px */
+--space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.75rem;  /* 28px */
+  --space-7: 2.5rem;   /* 40px */
+  --space-8: 3.75rem;  /* 60px */
+  --space-9: 6.25rem;  /* 100px */
+  --space-10: 10rem;   /* 160px */
+  --space-11: 15rem;   /* 240px */
+  
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  
+  --font-size-h1: 3.052rem;
+  --font-size-h2: 2.441rem;
+  --font-size-h3: 1.953rem;
+  --font-size-subheading: 1.563rem;
+  --font-size-body: 1rem; /* 16px */
+  --font-size-small: 0.8rem; /* 12.8px */
+
+  --font-size-h1-desktop: 7rem;   /* 112px, for your H1 */
+  --font-size-h2-desktop: 3.75rem; /* 60px */
+  --font-size-h3-desktop: 3rem;    /* 48px */
+  --font-size-subheading-desktop: 1.875rem; /* 30px */
+  --font-size-body-desktop: 1.125rem; /* 18px */
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(190, 95%, 55%), hsl(200, 90%, 50%));
+  --gradient-subtle: linear-gradient(180deg, hsl(220, 20%, 8%), hsl(220, 18%, 10%));
+  --gradient-card: linear-gradient(135deg, hsl(220, 18%, 12%), hsl(220, 16%, 14%));
+  
+  /* Shadows */
+  --shadow-glow: 0 0 40px hsl(190, 95%, 55% / 0.15);
+  --shadow-card: 0 10px 30px -10px hsl(220, 20%, 4% / 0.5);
+  
+  /* Transitions */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

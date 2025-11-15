@@ -1,0 +1,82 @@
+@import './_reset.css';
+@import './_variables.css';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display); 
+}
+
+.button-primary {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+.button-primary:hover {
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* This is the "outline" button */
+.button-secondary {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+.button-secondary:hover {
+  background: var(--secondary);
+  border-color: var(--primary);
+}
+.button-primary,
+.button-secondary {
+  /* These new lines will center the text and icon */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.button-icon {
+  width: var(--space-4); /* 1rem or 16px */
+  height: var(--space-4);
+  /* This is the magic! */
+  transition: var(--transition-smooth);
+}
+.button-primary:hover .button-icon {
+  transform: translateX(var(--space-1)); /* Moves 4px to the right */
+}
+.connect-dot {
+  width: var(--space-2); /* 8px */
+  height: var(--space-2);
+  background-color: var(--primary);
+  border-radius: 50%;
+  
+  /* We can add the pulse from your inspiration */
+  animation: pulse 2s infinite ease-in-out;
+}
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsl(190 95% 55% / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px hsl(190 95% 55% / 0.1);
+  }
+}
