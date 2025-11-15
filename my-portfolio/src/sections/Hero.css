@@ -19,36 +19,7 @@
 
 }
 
-/* 3. The "Available" badge */
-.hero-badge {
-  /* Layout: */
-  display: inline-flex; /* Makes it just wrap the content */
-  align-items: center;  /* Vertically centers the icon and text */
-  gap: var(--space-2);  /* Space between icon and text */
-  
-  /* Shape: */
-  padding: var(--space-2) var(--space-4);
-  border-radius: 9999px; /* This makes the "pill" shape */
 
-  /* "Glassy" Colors: */
-  font-size: var(--font-size-small);
-  font-weight: 500;
-  color: var(--primary);
-  
-  /* Here is the HSL trick for opacity: */
-  background-color: hsl(190 95% 55% / 0.1); /* 10% opacity primary */
-  border: 1px solid hsl(190 95% 55% / 0.2); /* 20% opacity primary */
-
-  /* This adds the "frosted glass" effect */
-  backdrop-filter: blur(4px);
-}
-
-/* We also need to size the icon */
-.hero-badge-icon {
-  width: var(--space-4); /* 1rem or 16px */
-  height: var(--space-4);
-  /* The color is inherited from .hero-badge */
-}
 
 /* 4. The main title */
 .hero-title {

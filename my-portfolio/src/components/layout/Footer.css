@@ -1,0 +1,145 @@
+/* --- 
+  Footer.css
+  (Combined "CTA Box" + "Minimal" Design)
+--- */
+
+.footer-section {
+  background: linear-gradient(
+    to bottom,
+    var(--background),
+    hsl(220, 20%, 6%)
+  );
+  padding: var(--space-6);
+  padding-top: var(--space-9); 
+  overflow: hidden;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+/* 1. The CTA Box */
+.footer-cta-box {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-7);
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  
+  /* --- THIS IS THE "30% SMALLER" FIX --- */
+  /* We set a max-width of 70% and center it */
+  max-width: 70%;
+  margin-inline: auto; /* This centers the box */
+  /* ------------------------------------- */
+
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              background 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.footer-cta-box:hover {
+  transform: translateY(-8px); 
+  background: linear-gradient(to top left, 
+    var(--card), 
+    hsl(190, 95%, 20%)
+  );
+}
+
+.footer-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.footer-body {
+  color: var(--muted-foreground);
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+.footer-cta-box .button-primary {
+  width: 100%;
+}
+
+/* 2. The Minimal Footer Area (New) */
+.footer-minimal {
+  /* This is the divider line */
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+}
+
+/* 3. The Top Row (Links + Socials) */
+.footer-top {
+  display: flex;
+  flex-direction: column; /* Stack on mobile */
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+  gap: var(--space-5);
+}
+
+.footer-links a {
+  font-size: var(--font-size-small);
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-socials {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.footer-socials a {
+  color: var(--muted-foreground);
+  transition: var(--transition-smooth);
+}
+.footer-socials a:hover {
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+.footer-socials svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 4. The Bottom Row (Copyright) */
+.footer-bottom {
+  text-align: center;
+  margin-top: var(--space-7);
+  padding-top: var(--space-7);
+  color: var(--muted-foreground);
+  font-size: var(--font-size-small);
+}
+
+
+/* * --------------------------------
+ * Desktop Layout
+ * --------------------------------
+*/
+@media (min-width: 768px) {
+  /* CTA box button */
+  .footer-cta-box .button-primary {
+    width: auto;
+  }
+
+  /* Make minimal footer top row horizontal */
+  .footer-top {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

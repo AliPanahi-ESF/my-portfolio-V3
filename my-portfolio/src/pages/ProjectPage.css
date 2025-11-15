@@ -1,0 +1,275 @@
+/* --- 
+  ProjectPage.css
+  (Re-skinned to our Style Guide)
+--- */
+
+/* --- Layout Containers --- */
+.project-container {
+  max-width: 1024px; /* <-- This is the old value */
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+.project-container-narrow {
+  max-width: 800px; /* <-- This is the old value */
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+.project-not-found {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+}
+
+/* --- Hero Section --- */
+.project-hero {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-7);
+}
+.button-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--muted-foreground);
+  text-decoration: none;
+  margin-bottom: var(--space-6);
+  transition: var(--transition-smooth);
+}
+.button-back:hover {
+  color: var(--primary);
+}
+.project-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h1-desktop);
+  font-weight: 700;
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+.project-hero-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* --- Executive Summary --- */
+.project-summary {
+  padding-block: var(--space-8);
+  /* Re-skin: bg-primary/5 */
+  background-color: hsl(190 95% 55% / 0.05);
+}
+.project-summary-card {
+  background-color: var(--background);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-7);
+}
+.project-summary-card > h2 {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  margin-bottom: var(--space-6);
+}
+.summary-item {
+  margin-bottom: var(--space-6);
+}
+.summary-item > h3 {
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+.summary-item > p {
+  font-size: var(--font-size-body-desktop);
+  line-height: 1.6;
+}
+.summary-item.outcome {
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+.summary-item.outcome p {
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+}
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+/* Re-skin: Badge variant="secondary" */
+.skill-badge {
+  display: inline-block;
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  font-size: var(--font-size-small);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius);
+}
+
+/* --- Main Narrative --- */
+.project-narrative {
+  padding-block: var(--space-9);
+}
+.narrative-section {
+  margin-bottom: var(--space-9);
+}
+.narrative-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  margin-bottom: var(--space-6);
+}
+.narrative-body {
+  font-size: var(--font-size-body-desktop);
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+.narrative-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+.narrative-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+.narrative-list li span {
+  color: var(--primary);
+  margin-top: 4px;
+}
+
+/* Process Steps */
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+.process-step {
+  border-left: 2px solid var(--primary);
+  padding-left: var(--space-5);
+}
+.process-step > h3 {
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+.insight-box {
+  background-color: hsl(190 95% 55% / 0.05);
+  border-left: 4px solid var(--primary);
+  padding: var(--space-4);
+  border-radius: var(--radius);
+  margin-block: var(--space-4);
+}
+.insight-box p:first-child {
+  font-weight: 700;
+}
+.insight-box p:last-child {
+  color: var(--muted-foreground);
+}
+
+/* Solution */
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-block: var(--space-6);
+}
+.feature-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+}
+.feature-card h3 {
+  font-size: var(--font-size-body-desktop);
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+.feature-card p {
+  color: var(--muted-foreground);
+}
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+.solution-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* Outcome */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+.metric-card {
+  background-color: hsl(190 95% 55% / 0.05);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  text-align: center;
+}
+.metric-value {
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: var(--space-2);
+}
+.metric-label {
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+.metric-desc {
+  font-size: var(--font-size-small);
+  color: var(--muted-foreground);
+}
+.lessons-box {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-7);
+}
+.lessons-box > h3 {
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+  margin-bottom: var(--space-6);
+}
+.lessons-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.lesson-item h4 {
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+.lesson-item p {
+  color: var(--muted-foreground);
+}
+
+/* --- Desktop Layout --- */
+@media (min-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .image-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .metrics-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

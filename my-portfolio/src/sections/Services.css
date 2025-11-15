@@ -1,0 +1,202 @@
+/* --- 
+  Services.css
+  (Full Component, Mobile-First)
+--- */
+
+.services-section {
+  padding-block: var(--space-9); 
+  padding-inline: var(--space-6);
+  position: relative;
+  overflow: hidden;
+  background-color: var(--background);
+}
+
+/* 2. Container */
+.services-container {
+  position: relative;
+  z-index: 10;
+ max-width: 1024px;
+  margin-inline: auto;
+}
+
+/* 3. Header */
+.services-header {
+  text-align: center; margin-bottom: var(--space-8);
+  display: flex; flex-direction: column; align-items: center;
+}
+.services-title {
+  font-family: var(--font-display); font-size: var(--font-size-h2);
+  font-weight: 700; margin-top: var(--space-4); line-height: 1.2;
+}
+.text-gradient {
+  background: var(--gradient-primary); -webkit-background-clip: text;
+  background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;
+}
+.services-subtitle {
+  color: var(--muted-foreground); font-size: var(--font-size-body);
+  line-height: 1.6; margin-top: var(--space-4); max-width: 600px; margin-inline: auto;
+}
+
+/* 4. The Services Grid */
+.services-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+/* 5. The Service Card */
+.service-card {
+  position: relative;
+  background-color: var(--card); /* Base color */
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              background 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.service-card:hover {
+  transform: translateY(-8px); 
+  background: linear-gradient(to top left, 
+    var(--card), 
+    hsl(190, 95%, 20%)
+  );
+}
+
+/* 7. Card Content */
+.service-card-content {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-6);
+}
+.service-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+.service-card-icon-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  background-color: var(--primary-foreground);
+  border: 1px solid var(--border);
+  transition: transform 2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.service-card-icon-bg:hover {
+  transform: rotate(360deg);
+}
+.service-card-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--primary);
+}
+.service-card-category {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+}
+
+/* 8. Service Item List */
+.service-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+.service-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.service-item:hover {
+  transform: translateX(8px);
+}
+.service-item-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.service-item-name {
+  font-weight: 500;
+  color: var(--foreground);
+  transition: color 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.service-item:hover .service-item-name {
+  color: var(--primary);
+}
+.service-item-description {
+  font-size: var(--font-size-small);
+  color: var(--muted-foreground);
+  margin-top: var(--space-1);
+}
+
+/* 9. Animated Underline */
+.service-item-underline {
+  position: absolute;
+  bottom: -4px;
+  left: var(--space-6);
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, 
+    hsl(190 95% 55% / 0.5),
+    transparent
+  );
+  transform: scaleX(0); /* Hidden by default */
+  transform-origin: left;
+}
+
+/* 10. Footer */
+.services-footer {
+  text-align: center;
+  margin-top: var(--space-8);
+  color: var(--muted-foreground);
+}
+.services-contact-link {
+  color: var(--primary);
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: var(--transition-smooth);
+}
+.services-contact-link:hover {
+  gap: var(--space-3);
+  transform: scale(1.05);
+}
+.services-contact-link-arrow {
+  display: inline-block;
+}
+
+/* * --------------------------------
+ * Desktop Layout
+ * --------------------------------
+*/
+@media (min-width: 768px) {
+  .services-header {
+    margin-bottom: var(--space-9);
+  }
+  .services-title {
+    font-size: var(--font-size-h2-desktop); 
+  }
+  .services-subtitle {
+    font-size: var(--font-size-body-desktop);
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: var(--space-7);
+    max-width: none;
+
+    /* --- THIS IS THE FIX --- */
+    /* This forces all cards to align to the top */
+    align-items: start;
+  }
+}

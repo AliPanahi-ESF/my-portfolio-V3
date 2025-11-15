@@ -1,0 +1,31 @@
+/* --- 
+  Projects.css
+  (This styles the container that *holds* the cards)
+--- */
+
+.projects-section {
+  /* Adds a lot of space above/below the whole section */
+  padding-block: var(--space-9); /* 6.25rem or 100px */
+  
+  /* This gives the section a background, separating it
+     from the hero and whatever comes next */
+  background-color: var(--background);
+}
+
+.project-card-list {
+  /* This is the "frame" you are missing.
+     It adds space on the left and right of the cards. */
+  padding-inline: var(--space-6); /* 1.75rem or 28px */
+
+  /* This stacks the cards vertically */
+  display: flex;
+  flex-direction: column;
+
+  /* This adds a 60px gap BETWEEN your two cards */
+  gap: var(--space-8); /* 3.75rem or 60px */
+
+  /* This centers the cards and stops them from
+     getting too wide on tablets or small desktops */
+  max-width: 900px;
+  margin-inline: auto; /* This is the CSS trick for horizontal centering */
+}

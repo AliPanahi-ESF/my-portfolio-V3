@@ -72,11 +72,26 @@ h1, h2, h3, h4, h5, h6 {
   /* We can add the pulse from your inspiration */
   animation: pulse 2s infinite ease-in-out;
 }
-@keyframes pulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 hsl(190 95% 55% / 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 6px hsl(190 95% 55% / 0.1);
-  }
+
+
+
+
+/* This is our new, reusable glass badge */
+.glass-badge {
+  display: inline-flex; 
+  align-items: center;  
+  gap: var(--space-2);  
+  padding: var(--space-2) var(--space-4);
+  border-radius: 9999px;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  color: var(--primary);
+  background-color: hsl(190 95% 55% / 0.1); 
+  border: 1px solid hsl(190 95% 55% / 0.2); 
+  backdrop-filter: blur(4px);
+}
+
+.glass-badge-icon {
+  width: var(--space-4); 
+  height: var(--space-4);
 }

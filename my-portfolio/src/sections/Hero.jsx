@@ -1,7 +1,5 @@
 import { useEffect, useRef } from 'react'; // 1. Import hooks
 import { Linkedin, Github, Figma, Sparkles, ArrowRight } from 'lucide-react'; 
-
-// 2. Import GSAP and the SplitText plugin
 import gsap from 'gsap-trial';
 import { SplitText } from 'gsap-trial/SplitText';
 
@@ -25,7 +23,7 @@ function Hero() {
       const heroTitleChars = heroTitle.chars; // This is an array of all the characters
 
       // 8. Set the initial state (all invisible)
-      gsap.set('.hero-badge', { opacity: 0, y: -20 });
+      gsap.set('.glass-badge', { opacity: 0, y: -20 });
       gsap.set(heroTitleChars, { opacity: 0, y: 20 }); // Set chars invisible
       gsap.set('.hero-subtitle', { opacity: 0, y: 20 });
       gsap.set('.hero-cta-group a', { opacity: 0, y: 20 });
@@ -35,7 +33,7 @@ function Hero() {
       const tl = gsap.timeline({ delay: 0.5 }); // Start after 0.5s
 
       // Step 1: Animate the badge
-      tl.to('.hero-badge', {
+      tl.to('.glass-badge', {
         opacity: 1,
         y: 0,
         duration: 0.6,
@@ -97,8 +95,8 @@ function Hero() {
     <section id="hero" className="hero-section" ref={heroRef}>
       <div className="hero-content">
         
-        <div className="hero-badge">
-          <Sparkles className="hero-badge-icon" />
+        <div className="glass-badge">
+          <Sparkles className="glass-badge-icon" />
           <span>Available for new projects</span>
         </div>
 
