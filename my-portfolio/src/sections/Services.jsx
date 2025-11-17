@@ -4,8 +4,8 @@ import { services } from '../data/services.js';
 import { 
   Palette, Code, Sparkles, Layout, Smartphone, Bot, Eye, Layers 
 } from 'lucide-react';
-import gsap from 'gsap-trial';
-import { ScrollTrigger } from 'gsap-trial/ScrollTrigger';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 

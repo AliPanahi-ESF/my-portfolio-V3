@@ -3,8 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { caseStudies } from '../data/caseStudies.js';
 import './ProjectPage.css';
-import gsap from 'gsap-trial';
-import { ScrollTrigger } from 'gsap-trial/ScrollTrigger';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,10 +84,10 @@ useEffect(() => {
       {/* Hero Section */}
       <section className="project-hero">
         <div className="project-container">
-          <Link to="/" className="button-back">
-            <ArrowLeft size={16} />
-            Back to projects
-          </Link>
+<Link to="/" className="button-secondary">
+  <ArrowLeft size={16} />
+  Back to projects
+</Link>
 
           <div className="glass-badge">{study.category}</div>
           <h1 className="project-title">{study.title}</h1>

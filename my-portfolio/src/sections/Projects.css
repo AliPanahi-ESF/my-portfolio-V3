@@ -1,31 +1,64 @@
 /* --- 
   Projects.css
-  (This styles the container that *holds* the cards)
+  (UPDATED with new Header)
 --- */
 
 .projects-section {
-  /* Adds a lot of space above/below the whole section */
-  padding-block: var(--space-9); /* 6.25rem or 100px */
-  
-  /* This gives the section a background, separating it
-     from the hero and whatever comes next */
-  background-color: var(--background);
+  padding-bottom: var(--space-9);
+  position: relative;
+  /* We add min-height here to prevent the header from
+     being cut off by the sticky-stack animation */
+  min-height: 100vh;
 }
 
-.project-card-list {
-  /* This is the "frame" you are missing.
-     It adds space on the left and right of the cards. */
-  padding-inline: var(--space-6); /* 1.75rem or 28px */
-
-  /* This stacks the cards vertically */
+.projects-container {
+  position: relative;
+  height: 100vh; 
+  padding: var(--space-9);
   display: flex;
   flex-direction: column;
+}
 
-  /* This adds a 60px gap BETWEEN your two cards */
-  gap: var(--space-8); /* 3.75rem or 60px */
+/* --- THIS IS THE UPDATED HEADER --- */
+.projects-header {
+  padding-block: var(--space-3); /* Give it some vertical padding */
+  text-align: center;
+  
+  /* This centers the badge */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  /* This is new (re-skins from .traits-header) */
+  margin-bottom: var(--space-8);
+}
 
-  /* This centers the cards and stops them from
-     getting too wide on tablets or small desktops */
+.projects-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h2-desktop);
+  font-weight: 700;
+  margin-top: var(--space-3); /* Space from the badge */
+}
+
+/* This is the new subtitle style */
+.projects-subtitle {
+  color: var(--muted-foreground);
+  font-size: var(--font-size-body-desktop);
+  max-width: 600px;
+  margin-inline: auto;
+  margin-top: var(--space-2);
+}
+/* ---------------------------------- */
+
+
+/* This is the "stack" of cards */
+.project-card-stack {
+  position: relative;
+  flex-grow: 1; /* Makes it fill the available space */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   max-width: 900px;
-  margin-inline: auto; /* This is the CSS trick for horizontal centering */
+  width: 100%;
+  margin-inline: auto;
 }

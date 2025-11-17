@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'; // 1. Import hooks
 import { Linkedin, Github, Figma, Sparkles, ArrowRight } from 'lucide-react'; 
-import gsap from 'gsap-trial';
-import { SplitText } from 'gsap-trial/SplitText';
+import gsap from 'gsap';
+import { SplitText } from 'gsap/SplitText';
 
 import './Hero.css';
 
@@ -118,20 +118,20 @@ function Hero() {
             <span>Explore My Work</span>
             <ArrowRight className="button-icon" />
           </a>
-          <a href="#contact" className="button-secondary">
+          <a href="https://www.linkedin.com/in/alipanahi090/" className="button-secondary" target="_blank">
             <span>Let's Connect</span>
             <div className="connect-dot"></div>
           </a>
         </div>
 
         <div className="hero-socials">
-          <a href="#" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/alipanahi090/" aria-label="LinkedIn" target="_blank">
             <Linkedin />
           </a>
-          <a href="#" aria-label="GitHub">
+          <a href="https://github.com/AliPanahi-ESF" aria-label="GitHub" target="_blank">
             <Github />
           </a>
-          <a href="#" aria-label="Figma">
+          <a href="#" aria-label="Figma" target="_blank">
             <Figma />
           </a>
         </div>

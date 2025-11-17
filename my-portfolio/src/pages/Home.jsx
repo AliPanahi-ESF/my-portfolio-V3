@@ -3,7 +3,7 @@ import Hero from '../sections/Hero';
 import Projects from '../sections/Projects';
 import Services from '../sections/Services';
 import About from '../sections/About';
-// We don't import TraitsCarousel, it's already inside About
+import Traits from '../sections/Traits';
 
 function Home() {
   return (

@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from 'react'; // GSAP: Import useEffect and useRef
-import gsap from 'gsap'; // GSAP: Import gsap
+import { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // 1. Import ScrollTrigger
 import './Navbar.css';
 
 // --- Icon components (no change) ---
@@ -39,77 +40,76 @@ const IconX = () => (
 );
 // --- End Icon components ---
 
+// 2. Register the plugin
+gsap.registerPlugin(ScrollTrigger);
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navRef = useRef(null); // GSAP: Create a ref for the whole <nav> element
+  const navRef = useRef(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // GSAP: This useEffect will run once when the component mounts
   useEffect(() => {
-    // This is a "GSAP Context" - it's the modern, safe way to 
-    // run GSAP animations in React and clean them up automatically.
     const ctx = gsap.context(() => {
       
-      // 1. Set the initial state of the elements
-      // We set them to be invisible and slightly up
+      // --- This is your existing intro animation (it's perfect) ---
+      // 1. Set the initial state
       gsap.set('.navbar-logo a', { opacity: 0, y: -20 });
       gsap.set('.desktop-menu-links li', { opacity: 0, y: -20 });
       gsap.set('.desktop-menu .button-resume', { opacity: 0, y: -20 });
 
       // 2. Create our timeline
-      const tl = gsap.timeline({
-        // Add a small delay so we can see it
-        delay: 0.5 
-      });
+      const tl = gsap.timeline({ delay: 0.5 });
 
       // 3. Add animations to the timeline
-      // We animate "from" our invisible state "to" the visible one
-      
-      // Step 1: Animate the logo
       tl.to('.navbar-logo a', {
         opacity: 1,
         y: 0,
         duration: 0.5,
         ease: 'power2.out'
       });
-
-      // Step 2: Animate the links
-      // The "stagger" property is GSAP magic. 
-      // It animates each 'li' one by one with a 0.1s delay.
       tl.to('.desktop-menu-links li', {
         opacity: 1,
         y: 0,
         duration: 0.4,
         ease: 'power2.out',
         stagger: 0.1
-      }, 
-      "-=0.2" // This makes the links start 0.2s *before* the logo finishes
-      ); 
-
-      // Step 3: Animate the button
+      }, "-=0.2"); 
       tl.to('.desktop-menu .button-resume', {
         opacity: 1,
         y: 0,
         duration: 0.5,
         ease: 'power2.out'
-      }, 
-      "-=0.3" // This starts the button animation slightly before the links finish
-      );
+      }, "-=0.3");
+      // --- End of intro animation ---
 
-    }, navRef); // <-- We scope this GSAP context to our <nav> element
 
-    // GSAP: Cleanup function
+      // 4. THIS IS THE NEW SCROLLTRIGGER LOGIC
+      ScrollTrigger.create({
+        start: "top -10px", // Triggers 10px after scrolling past the top
+        
+        // This tells GSAP to add/remove the 'is-scrolled' class
+        // from our <nav> element (the navRef)
+        toggleClass: {
+          className: 'is-scrolled',
+          targets: navRef.current
+        },
+        // markers: true // Uncomment this to debug
+      });
+
+    }, navRef); // <-- We scope this to the <nav>
+
     return () => ctx.revert(); 
     
-  }, []); // <-- The empty array means this runs only once on mount
+  }, []); // <-- This still only runs once
 
   return (
-    // GSAP: We attach our ref to the <nav>
-    <nav className={`navbar ${isMenuOpen ? 'nav-open' : ''}`} ref={navRef}>
+    <nav 
+      className={`navbar ${isMenuOpen ? 'nav-open' : ''}`} 
+      ref={navRef}
+    >
       
       <div className="navbar-top-bar">
         
@@ -127,7 +127,7 @@ function Navbar() {
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
             <li>
-              <a href="/resume.pdf" className="button-resume">
+              <a href="https://drive.google.com/file/d/1ruXN034hbuH3677BZAuj8ReMevv27pgh/view?usp=sharing" className="button-resume" target="_blank">
                 View Resume
               </a>
             </li>
@@ -142,7 +142,7 @@ function Navbar() {
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="/resume.pdf" className="button-resume">
+        <a href="https://drive.google.com/file/d/1ruXN034hbuH3677BZAuj8ReMevv27pgh/view?usp=sharing" className="button-resume" target="_blank">
           View Resume
         </a>
       </div>

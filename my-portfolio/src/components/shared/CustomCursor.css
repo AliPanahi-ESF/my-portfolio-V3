@@ -10,8 +10,8 @@ border-radius: 50%;
 }
 .cursor-dot{
 z-index: 9999; 
-  height: 25px;
-  width: 25px;
+  height: 10px;
+  width: 10px;
   background-color: var(--primary);
   mix-blend-mode: difference;
 }
@@ -21,14 +21,14 @@ z-index: 9998;
   width: 30px;
   border: 2px solid var(--primary);
   /* We add a subtle fade-out effect for the trail */
-  opacity: 0.7;
+  opacity: 0.5;
 }
 .cursor-glow{
 z-index: 9997; 
-  height: 40px;
-  width: 40px;
+  height: 150px;
+  width: 150px;
   background-color: var(--primary);
-  filter: blur(20px);
+  filter: blur(50px);
   opacity: 0.1;
 }
 

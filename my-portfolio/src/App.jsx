@@ -4,10 +4,9 @@ import { Routes, Route } from 'react-router-dom'; // 1. Import Routes and Route
 import CustomCursor from './components/shared/CustomCursor';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-
-// 3. Import your new PAGE components
 import Home from './pages/Home.jsx'; // We'll create this in the next step
 import ProjectPage from './pages/ProjectPage.jsx'; // We'll create this later
+
 
 function App() {
   return (

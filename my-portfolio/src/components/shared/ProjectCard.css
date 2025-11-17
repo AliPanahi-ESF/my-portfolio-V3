@@ -1,29 +1,35 @@
 /* --- 
   ProjectCard.css
-  (Mobile-First, "Whole Card is Button" Layout)
+  (Your Working Layout + New Hover Effects)
 --- */
 
 /* 1. The Card Container */
-
 .project-card {
   background-color: var(--card);
   border-radius: var(--radius);
-  /* overflow: hidden;  <-- We can probably remove this */
   border: 1px solid var(--border);
   box-shadow: var(--shadow-card);
-  
-  /* THIS IS THE FIX:
-     Add padding to the *entire card* */
   padding: var(--space-6);
+  
+  /* --- ADDED THIS --- */
+  /* This makes the new hover effects smooth and slow */
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              background 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
 }
 
-/* This is the "whole card is a button" cue */
+/* 2. "same hover effect as service cards" */
 .project-card:hover {
-  transform: translateY(-6px); /* Lifts the card up */
-  box-shadow: var(--shadow-glow); /* Uses your glow variable */
+  transform: translateY(-8px); /* Lifts the card */
+  box-shadow: var(--shadow-glow);
+  
+  /* This is the gradient from your service cards */
+  background: linear-gradient(to top left, 
+    var(--card), 
+    hsl(190, 95%, 20%)
+  );
 }
-
-
 
 /* 4. The Title */
 .project-card-title {
@@ -31,12 +37,11 @@
   font-size: var(--font-size-h2);
   font-weight: 700;
   color: var(--foreground);
-  /* We add the margin-top here, since the header is gone */
   margin-top: var(--space-4); 
 }
 
 /* 5. All .project-view-button and .project-card-header
-      rules have been DELETED. */
+   rules have been DELETED. */
 
 /* 6. The Description */
 .project-card-description {
@@ -68,15 +73,27 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
+  
+  /* --- ADDED THIS --- */
+  /* This makes the "grow" animation smooth */
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
 .stat-value.positive { color: var(--primary); }
 .stat-value.negative { color: var(--destructive); }
+
+/* --- ADDED THIS --- */
+/* 2. "numbers it gets a bit bigger and glower" */
+.stat-value:hover {
+  transform: scale(1.1);
+  /* We use the --primary color for the glow */
+  text-shadow: 0 0 12px var(--primary);
+}
 
 /* 8. The Image Container */
 .project-card-image {
   aspect-ratio: 16 / 9;
   overflow: hidden;
-border-radius: var(--radius);
+  border-radius: var(--radius);
 }
 
 /* 9. The Image Itself */

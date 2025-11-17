@@ -1,13 +1,18 @@
 /* --- 
-  TraitsCarousel.css
-  (Styles *both* the carousel and the card)
+  Traits.css
+  (The "Sticky Stack" Layout)
 --- */
 
-.traits-carousel-component {
-  width: 100%;
+.traits-section {
+  padding-block: var(--space-9); 
+  position: relative;
+  overflow: hidden;
+  background-color: var(--background);
+  /* This is crucial for the "pin" to work */
+  min-height: 100vh;
 }
 
-/* Background Orbs */
+/* Background Orbs (Unchanged) */
 .traits-bg-orb-1, .traits-bg-orb-2 {
   position: absolute; border-radius: 50%;
   pointer-events: none; z-index: 1;
@@ -24,19 +29,64 @@
   bottom: 10%; right: 10%;
 }
 
-/* Card Stack */
-.traits-stack-wrapper {
+/* Container */
+.traits-container {
   position: relative;
-  max-w: 500px;
-  height: 420px;
+  z-index: 10;
+  max-width: 1024px; /* Matches our other sections */
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header (Unchanged) */
+.traits-header {
+  text-align: center;
+  margin-bottom: var(--space-4);
+  padding-top: var(--space-7); /* Give it some space */
+}
+.traits-title-main {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h2-desktop);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+  background: linear-gradient(to right, var(--foreground), hsl(210 40% 98% / 0.7));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.traits-subtitle {
+  color: var(--muted-foreground);
+  font-size: var(--font-size-body-desktop);
+  max-width: 600px;
   margin-inline: auto;
 }
+
+/* --- THIS IS THE STACK LOGIC --- */
+
+.traits-stack-wrapper {
+  position: relative;
+  max-width: 500px; /* The smaller size you wanted */
+  height: 420px;
+  margin-inline: auto;
+  flex-grow: 1; /* This pushes the header up */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .traits-carousel {
   width: 100%;
   height: 100%;
   position: relative;
-  overflow: hidden; 
 }
+
+/* THIS IS THE FIX:
+   All cards are "absolute" and stacked 
+   on top of each other inside the carousel */
 .trait-slide {
   width: 100%;
   height: 100%;
@@ -45,7 +95,7 @@
   left: 0;
 }
 
-/* Card Styles */
+/* Card Styles (Unchanged) */
 .trait-card {
   width: 100%; height: 100%;
   background-color: var(--card);
@@ -68,6 +118,8 @@
   justify-content: center; align-items: center;
   border-radius: 16px; 
 }
+
+/* Card Content (Unchanged) */
 .trait-card-content {
   position: relative; z-index: 10; text-align: center;
 }
@@ -95,42 +147,4 @@
   line-height: 1.6;
 }
 
-/* Button Styles */
-.traits-nav-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-inline: 0; 
-  pointer-events: none; 
-}
-
-.trait-nav-button {
-  width: 56px;
-  height: 56px;
-  border-radius: 50% !important; 
-  padding: 0; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: auto; 
-  transform: translateX(0); /* Base state for GSAP */
-}
-.trait-nav-button svg {
-  width: 24px;
-  height: 24px;
-}
-.trait-nav-button:active {
-  transform: scale(0.9);
-}
-
-.trait-nav-button-prev {
-  transform: translateX(-80px); /* Move left */
-}
-.trait-nav-button-next {
-  transform: translateX(80px); /* Move right */
-}
+/* ALL BUTTONS AND DOTS ARE GONE */

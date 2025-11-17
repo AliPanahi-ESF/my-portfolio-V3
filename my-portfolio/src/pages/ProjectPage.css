@@ -28,23 +28,18 @@
   padding-top: var(--space-9);
   padding-bottom: var(--space-7);
 }
-.button-back {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--muted-foreground);
-  text-decoration: none;
-  margin-bottom: var(--space-6);
-  transition: var(--transition-smooth);
-}
-.button-back:hover {
-  color: var(--primary);
+
+.project-hero .glass-badge {
+  display: block;
+  width: fit-content; /* Makes it shrink-to-fit */
+  margin-top: var(--space-6); /* Space from button */
+  margin-bottom: var(--space-4); /* Space to title */
 }
 .project-title {
-  font-family: var(--font-display);
-  font-size: var(--font-size-h1-desktop);
+font-family: var(--font-display);
+  font-size: var(--font-size-h1); /* <-- FIX (was h1-desktop) */
   font-weight: 700;
-  margin-top: var(--space-4);
+  margin-top: 0; /* No margin-top needed now */
   margin-bottom: var(--space-6);
 }
 .project-hero-image {
@@ -263,6 +258,9 @@
 
 /* --- Desktop Layout --- */
 @media (min-width: 768px) {
+  .project-title {
+    font-size: var(--font-size-h2-desktop); /* Use the smaller desktop size */
+  }
   .features-grid {
     grid-template-columns: 1fr 1fr;
   }
