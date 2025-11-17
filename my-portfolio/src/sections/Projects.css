@@ -30,12 +30,12 @@
   align-items: center;
   
   /* This is new (re-skins from .traits-header) */
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-7);
 }
 
 .projects-title {
   font-family: var(--font-display);
-  font-size: var(--font-size-h2-desktop);
+  font-size: var(--font-size-h3-desktop);
   font-weight: 700;
   margin-top: var(--space-3); /* Space from the badge */
 }
