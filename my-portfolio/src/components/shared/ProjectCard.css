@@ -34,8 +34,8 @@
 /* 4. The Title */
 .project-card-title {
   font-family: var(--font-display);
-  font-size: var(--font-size-h2);
-  font-weight: 700;
+  font-size: var(--font-size-h3);
+  font-weight: 500;
   color: var(--foreground);
   margin-top: var(--space-4); 
 }
