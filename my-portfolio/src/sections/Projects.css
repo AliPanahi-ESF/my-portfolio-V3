@@ -4,11 +4,11 @@
 --- */
 
 .projects-section {
-  padding-bottom: var(--space-9);
-  position: relative;
-  /* We add min-height here to prevent the header from
-     being cut off by the sticky-stack animation */
+padding-bottom: var(--space-9);
   min-height: 100vh;
+  
+  position: relative;
+  z-index: 10;
 }
 
 .projects-container {
