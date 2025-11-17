@@ -2,6 +2,8 @@
 
 // We'll use the same images from our projects.js for consistency
 import projectImage1 from '../assets/images/asml.jpg';
+import ASMLaffinityImage2 from '../assets/images/ASMlaffinityMap.png'
+import layoutDesign from '../assets/images/layoutDesign.png'
 // import projectImage2 from '../assets/images/project-2.jpg';
 
 export const caseStudies = {
@@ -75,7 +77,7 @@ export const caseStudies = {
         { title: "Fluid Layout Management", description: "A 'Flip Phone' concept using Material Design principles where modules intelligently reflow when one is expanded, scaling to large monitors." },
         { title: "'Drag-and-Drop' Design System", description: "A tokenized and componentized Figma system allowing engineers to mock up new, compliant tools in minutes by reusing pre-approved modules." }
       ],
-      images: [ projectImage1, projectImage1 ] // Placeholder image variable
+      images: [ projectImage1, ASMLaffinityImage2,layoutDesign ] // Placeholder image variable
     },
     
     outcome: {
