@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-
+import React, { Suspense } from 'react';
 // 1. Import your new hook
 import { useMediaQuery } from './hooks/useMediaQuery';
 
@@ -13,22 +13,19 @@ import Home from './pages/Home.jsx';
 import ProjectPage from './pages/ProjectPage.jsx';
 
 function App() {
-  // 2. Use the hook. We'll define "desktop" as anything 768px or wider.
-  const isDesktop = useMediaQuery('(min-width: 768px)');
-
   return (
     <>
-      {/* 3. This is the magic!
-          We only render the CustomCursor IF isDesktop is true. */}
-      {isDesktop && <CustomCursor />}
-      
+      <CustomCursor />
       <Navbar />
-      
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/project/:slug" element={<ProjectPage />} />
-      </Routes>
-      
+
+      {/* 2. Wrap your <Routes> in <Suspense> */}
+      <Suspense fallback={<div>Loading...</div>}> 
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/project/:slug" element={<ProjectPage />} />
+        </Routes>
+      </Suspense>
+
       <Footer />
     </>
   );

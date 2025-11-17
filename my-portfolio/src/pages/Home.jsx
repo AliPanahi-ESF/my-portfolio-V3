@@ -1,9 +1,14 @@
 // 1. Import all your sections
-import Hero from '../sections/Hero';
-import Projects from '../sections/Projects';
-import Services from '../sections/Services';
-import About from '../sections/About';
-import Traits from '../sections/Traits';
+import React, { Suspense } from 'react'; // 1. Import Suspense
+
+// 2. We keep the Hero import (it's "above the fold")
+import Hero from '../sections/Hero.jsx';
+
+// 3. We "lazy" load everything else
+const Projects = React.lazy(() => import('../sections/Projects.jsx'));
+const Services = React.lazy(() => import('../sections/Services.jsx'));
+const About = React.lazy(() => import('../sections/About.jsx'));
+const Traits = React.lazy(() => import('../sections/Traits.jsx'));
 
 function Home() {
   return (

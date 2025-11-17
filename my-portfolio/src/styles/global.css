@@ -1,7 +1,5 @@
 @import './_reset.css';
 @import './_variables.css';
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Space+Grotesk:wght@400;500;700&display=swap');
-
 
 body {
   font-family: 'Space Grotesk', sans-serif;
