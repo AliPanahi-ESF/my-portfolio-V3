@@ -5,17 +5,48 @@
   align-items: center;
   justify-content: center; /* <-- FIX 1: This vertically centers the content */
   padding: var(--space-4); /* Adds breathing room on small screens */
-  background: var(--gradient-subtle); /* A subtle bg from your design */
+
   box-shadow: inset 0 0 10rem 3rem hsl(220, 20%, 4%);
   position: relative;
 }
 
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* This creates the subtle grid */
+  background-image: 
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px; /* The size of your grid squares */
+  
+  /* This creates the "dots" */
+  /* We'll use your primary color for them */
+  /*
+  background-image:
+    radial-gradient(circle at 10% 20%, var(--primary) 2px, transparent 0),
+    radial-gradient(circle at 80% 30%, var(--primary) 2px, transparent 0),
+    radial-gradient(circle at 70% 80%, var(--primary) 2px, transparent 0),
+    radial-gradient(circle at 30% 70%, var(--primary) 2px, transparent 0);
+  */
+  
+  /* This makes the grid/dots very subtle */
+  opacity: 0.1;
+  
+  /* Put it behind the content */
+  z-index: -1; 
+}
 /* 2. The main content block */
 .hero-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  position: relative
 
 }
 
