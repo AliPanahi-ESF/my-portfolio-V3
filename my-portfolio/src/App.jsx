@@ -1,26 +1,31 @@
-import { Routes, Route } from 'react-router-dom'; // 1. Import Routes and Route
+import { Routes, Route } from 'react-router-dom';
 
-// 2. Import your LAYOUT components
+// 1. Import your new hook
+import { useMediaQuery } from './hooks/useMediaQuery';
+
+// Import layout components
 import CustomCursor from './components/shared/CustomCursor';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import Home from './pages/Home.jsx'; // We'll create this in the next step
-import ProjectPage from './pages/ProjectPage.jsx'; // We'll create this later
 
+// Import pages
+import Home from './pages/Home.jsx';
+import ProjectPage from './pages/ProjectPage.jsx';
 
 function App() {
+  // 2. Use the hook. We'll define "desktop" as anything 768px or wider.
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+
   return (
     <>
-      <CustomCursor />
+      {/* 3. This is the magic!
+          We only render the CustomCursor IF isDesktop is true. */}
+      {isDesktop && <CustomCursor />}
+      
       <Navbar />
       
-      {/* 4. This is the "window" for your pages */}
       <Routes>
-        {/* Route 1: The Home Page */}
         <Route path="/" element={<Home />} />
-        
-        {/* Route 2: The Project Page */}
-        {/* The ":slug" is a URL parameter, just like in your reference code */}
         <Route path="/project/:slug" element={<ProjectPage />} />
       </Routes>
       

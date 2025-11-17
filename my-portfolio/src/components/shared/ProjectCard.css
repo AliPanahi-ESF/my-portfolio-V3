@@ -101,7 +101,7 @@
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: sca;
+  object-fit: cover;
 }
 
 .project-card-link {
