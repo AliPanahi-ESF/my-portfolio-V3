@@ -1,0 +1,71 @@
+.fibonacci-container {
+  position: absolute;
+  top: 50%;
+  left: 15%; 
+  width: 350px;
+  height: 220px;
+  z-index: -1;
+  pointer-events: none;
+
+  /* FAKE 3D TRANSFORM */
+  transform: translate(0, -50%) perspective(1000px) rotateY(25deg) rotateX(5deg) rotateZ(-5deg);
+
+  /* CRITICAL: Lower base opacity to be barely visible */
+  opacity: 0.15; 
+  
+  /* Very subtle shadow for depth */
+  filter: drop-shadow(-10px 10px 4px rgba(6, 182, 212, 0.05));
+}
+
+.fibonacci-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* The Squares */
+.fibo-rect {
+  fill: transparent;
+  stroke: var(--primary);
+  stroke-width: 0.5px; /* Thinner lines */
+  stroke-dasharray: 400; 
+  opacity: 0; /* GSAP handles visibility */
+}
+
+/* The Spiral Curve */
+.fibo-curve {
+  stroke: var(--primary);
+  stroke-width: 1.5px; 
+  stroke-linecap: round;
+  stroke-dasharray: 600; 
+  opacity: 0;
+  /* Removed the intense drop-shadow so it's not too bright */
+}
+
+/* The Numbers */
+.fibo-label {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  fill: var(--primary);
+  opacity: 0;
+}
+
+/* Caption */
+.fibo-caption {
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--primary);
+  opacity: 0.3; /* Very transparent text */
+  letter-spacing: 3px;
+  width: 100%;
+  text-align: center;
+  transform: rotateY(-10deg); 
+}
+
+/* Mobile Hide */
+@media (max-width: 768px) {
+  .fibonacci-container { display: none; }
+}

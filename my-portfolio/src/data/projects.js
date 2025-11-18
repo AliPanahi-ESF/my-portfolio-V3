@@ -1,5 +1,5 @@
 import projectImage1 from '../assets/images/asml.jpg';
-// import projectImage2 from '../assets/images/project-2.jpg'; // Make sure you have your images
+import edoradoImage from '../assets/images/Project Brief.jpg';
 
 export const projects = [
   {
@@ -21,11 +21,18 @@ id: 'asml-design-system', // <-- This ID MUST match your new case study key
     ],
     // --- END OF UPDATE ---
 
-    testimonial: {
-      name: 'Dr. Sarah Mitchell',
-      role: 'HealthTech Director',
-      avatar: 'https://i.pravatar.cc/150?img=1',
-    },
+    
+  },{
+    // --- PROJECT 2: EDORADO ---
+    id: 'edorado', // Matches caseStudies.js key
+    badge: 'Marine Tech',
+    title: 'Electric Boat User Interface',
+    image: edoradoImage,
+    description: 'A high-contrast, touch-friendly interface designed for safety and clarity on the open water.',
+    stats: [
+      { label: 'Battery Efficiency', value: '30%', direction: 'up' },
+      { label: 'User Errors', value: '15%', direction: 'down' },
+    ],
   },
 
 ];

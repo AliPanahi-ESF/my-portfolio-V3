@@ -94,51 +94,136 @@ h1, h2, h3, h4, h5, h6 {
   height: var(--space-4);
 }
 
-/* ... (your existing @import and body/h1 styles) ... */
 
-
-/* ---
-  NEW BACKGROUND BLOBS
---- */
-.blob-container {
+/* --- 1. THE CONTAINER & GRID --- */
+/* 1. THE CONTAINER */
+.background-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  z-index: -1; /* This is the magic! Puts it *behind* everything */
+  height: 100vh;
+  z-index: -1;
   overflow: hidden;
-  pointer-events: none; /* Can't be clicked */
+  background-color: var(--background);
+  perspective: 1000px; /* Needed for the 3D shapes */
 }
 
-.blob {
+/* 2. THE GRID (Restored Visibility) */
+.background-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Brighter grid lines like before */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+  pointer-events: none;
+}
+
+/* 3. THE PARTICLES (Restored Glow & Colors) */
+.particle {
   position: absolute;
   border-radius: 50%;
-  
-  /* This creates the "blob" look */
-  filter: blur(120px); 
-  
-  /* This is the 10% opacity from our inspiration */
-  opacity: 0.1; 
-  
-  will-change: transform; /* Performance optimization */
+  /* Back to your bright Cyan */
+  background: var(--primary); 
+  opacity: 0; /* GSAP handles fading */
+  /* Restored the Glow Effect */
+  box-shadow: 0 0 10px var(--primary); 
 }
 
-/* Blob 1 (The Primary Color) */
-.blob-1 {
-  width: 600px;
-  height: 600px;
-  background-color: var(--primary);
-  top: 10%;
-  left: -20%;
+.particle.secondary {
+  /* Back to the bright Blue */
+  background: hsl(200, 90%, 50%);
+  box-shadow: 0 0 10px hsl(200, 90%, 50%);
 }
 
-/* Blob 2 (A different color, maybe accent?) */
-.blob-2 {
-  width: 500px;
-  height: 500px;
-  /* You can change this to var(--accent) or any color */
-  background-color: var(--primary); 
-  bottom: 10%;
-  right: -20%;
+.geometric-shape {
+  position: absolute;
+  top: 50%;
+  left: 85%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  /* Slower, infinite spin */
+  animation: floatAndSpin 30s linear infinite; 
+  
+  /* CRITICAL FIX: High opacity for clear lines, minimal glow */
+  opacity: 0.8; 
+  filter: drop-shadow(0 0 8px hsla(190, 95%, 55%, 0.4)); 
+}
+
+@keyframes floatAndSpin {
+  0% { transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg); }
+  100% { transform: translate(-50%, -50%) rotateX(360deg) rotateY(360deg); }
+}
+
+/* The Faces - Pure Wireframe Style */
+.octahedron-face {
+  position: absolute;
+  left: -100px;
+  bottom: 0;
+  width: 200px;
+  height: 173px;
+  
+  /* CRITICAL FIX: Matches your "Wireframe" image */
+  /* 1. Very faint fill (almost transparent) */
+  background: hsla(190, 95%, 55%, 0.03);
+  
+  /* 2. Crisp, solid borders (The Lines) */
+  border-left: 1px solid var(--primary); 
+  border-right: 1px solid var(--primary);
+  border-bottom: 1px solid var(--primary);
+  
+  /* 3. Polygon clip */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform-origin: 50% 100%;
+  
+  /* Ensure backface is visible for the "cage" look */
+  backface-visibility: visible; 
+}
+
+/* Remove the scanner class styles if they exist */
+.geometric-shape-scanner {
+  display: none;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .geometric-shape {
+    opacity: 0.3;
+    left: 50%;
+    scale: 0.6;
+  }}
+/* The Animation Keyframes */
+@keyframes spinMesh {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); } /* Breathing effect */
+  100% { transform: rotate(360deg) scale(1); }
+}
+/* 1. Hide scrollbar for Chrome, Safari, and Opera */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+/* 2. Hide scrollbar for Firefox, IE, and Edge */
+html, body {
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+@media (pointer: fine) {
+  body, 
+  a, 
+  button, 
+  input, 
+  textarea, 
+  [role="button"] {
+    cursor: none !important; /* Force hide the system cursor */
+  }
 }

@@ -1,93 +1,68 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Traits.css';
 import { traits } from '../data/traits.js';
-import { 
-  Sparkles, Code, Dumbbell, Heart, Rocket 
-} from 'lucide-react';
-import Tilt from 'react-parallax-tilt';
+import { Sparkles, Code, Dumbbell, Heart, Rocket } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Icon map
-const iconMap = {
-  Sparkles,
-  Code,
-  Dumbbell,
-  Heart,
-  Rocket
-};
+const iconMap = { Sparkles, Code, Dumbbell, Heart, Rocket };
 
 function Traits() {
   const sectionRef = useRef(null);
   const cardsRef = useRef(null);
-  
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   useEffect(() => {
     const cards = gsap.utils.toArray(cardsRef.current.children);
     
+    // Distance: 250px per card.
+    const scrollDistance = (cards.length) * 250; 
+
     const ctx = gsap.context(() => {
-      // --- HEADER ANIMATION ---
-      gsap.from('.traits-header', {
-        opacity: 0, y: 20, duration: 0.6,
-        scrollTrigger: { 
-          trigger: '.traits-header', 
-          start: 'top 85%', 
-          once: true 
-        }
-      });
       
-      // --- STICKY STACK ANIMATION ---
+      // Header Reveal
+      gsap.from('.traits-header', {
+        opacity: 0, y: 30, duration: 0.8, ease: "power3.out",
+        scrollTrigger: { trigger: '.traits-header', start: 'top 85%', once: true }
+      });
+
+      // Initial Setup
+      gsap.set(cards.slice(1), { 
+        z: -100, scale: 0.85, yPercent: 15, opacity: 0,
+        filter: "blur(10px)", transformOrigin: "50% 100%" 
+      });
+
+      // --- THE TIMELINE ---
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          pin: true,   // Pins the entire section
-          scrub: 1,    // Links animation to scrollbar
-          start: 'top top',
-          // Each card gets 500px of "scroll room"
-          end: () => `+=${cards.length * 500}`,
-          // markers: true, // Uncomment to debug
+          pin: true,
+          scrub: 0.5,
+          start: 'top top', 
+          end: `+=${scrollDistance}`, 
+          
+          // FIX 2: Add anticipatePin to prevent the jump on pin/unpin
+          anticipatePin: 1,
+          invalidateOnRefresh: true 
         }
       });
 
-      // We set all cards (except the first one) to be invisible
-      // and stacked underneath
-      gsap.set(cards.slice(1), { 
-        yPercent: 10, 
-        opacity: 0, 
-        scale: 0.9 
-      });
-
-      // Now, we loop through and animate them
+      // Loop
       cards.forEach((card, index) => {
-        // Don't animate the *last* card out
         if (index === cards.length - 1) return;
+        const nextCard = cards[index + 1];
 
-        // Animate the CURRENT card (index) OUT
-        tl.to(card, {
-          yPercent: -10,
-          opacity: 0,
-          scale: 0.9,
-          duration: 0.5,
-          ease: 'power2.out',
-        }, 
-        // Stagger the start time
-        `+=${index === 0 ? 0 : 0.5}`
-        );
-        
-        // Animate the NEXT card (index + 1) IN
-        tl.fromTo(cards[index + 1], 
-          { yPercent: 10, opacity: 0, scale: 0.9 },
-          { 
-            yPercent: 0, 
-            opacity: 1, 
-            scale: 1,
-            duration: 0.5,
-            ease: 'power2.out',
-          },
-          // Overlap with the "out" animation
-          "<"
-        );
+        tl
+        .to(card, {
+          yPercent: -120, rotationX: 10, scale: 0.95, opacity: 0, autoAlpha: 0,
+          duration: 1, ease: "power2.in",
+        })
+        .to(nextCard, {
+          z: 0, yPercent: 0, scale: 1, opacity: 1, autoAlpha: 1, filter: "blur(0px)",
+          duration: 1, ease: "power2.out"
+        }, "<+=0.15");
       });
 
     }, sectionRef);
@@ -95,64 +70,54 @@ function Traits() {
     return () => ctx.revert();
   }, []);
 
+  // Hover Animation
+  useEffect(() => {
+    if (hoveredIndex === null) return;
+    gsap.to(`.trait-icon-wrapper[data-index="${hoveredIndex}"]`, { scale: 1.15, y: -5, duration: 0.4, ease: 'back.out(2)' });
+    gsap.to(`.trait-card-icon[data-index="${hoveredIndex}"]`, { rotate: 15, duration: 0.4, ease: 'back.out(2)' });
+    return () => {
+      gsap.to(`.trait-icon-wrapper[data-index="${hoveredIndex}"]`, { scale: 1, y: 0, duration: 0.3, ease: 'power2.out' });
+      gsap.to(`.trait-card-icon[data-index="${hoveredIndex}"]`, { rotate: 0, duration: 0.3, ease: 'power2.out' });
+    };
+  }, [hoveredIndex]);
+
   return (
     <section id="traits" className="traits-section" ref={sectionRef}>
-      {/* Background orbs */}
       <div className="traits-bg-orb-1"></div>
       <div className="traits-bg-orb-2"></div>
 
       <div className="traits-container">
-        {/* Section header */}
         <div className="traits-header">
-          <h2 className="traits-title-main">
-            My Traits
-          </h2>
-          <p className="traits-subtitle">
-            Scroll to explore what makes me tick
-          </p>
+          <h2 className="traits-title-main">My Traits</h2>
+          <p className="traits-subtitle">Scroll to explore what makes me tick</p>
         </div>
 
-        {/* Card stack container */}
         <div className="traits-stack-wrapper">
           <div className="traits-carousel" ref={cardsRef}>
-            
-            {/* We map all traits into cards */}
             {traits.map((trait, index) => {
               const IconComponent = iconMap[trait.icon];
               return (
-                <div key={index} className="trait-slide">
-                  <Tilt
-                    className="trait-card"
-                    tiltMaxAngleX={12}
-                    tiltMaxAngleY={12}
-                    glareEnable={true}
-                    glareMaxOpacity={0.1}
-                  >
-                    <div className="trait-card-inner">
-                      <div className="trait-card-content">
-                        <div className="trait-icon-wrapper">
-                          {IconComponent && <IconComponent />}
-                        </div>
-                        <h3 className="trait-title">
-                          {trait.title}
-                        </h3>
-                        <p className="trait-description">
-                          {trait.description}
-                        </p>
-                      </div>
+                <div 
+                  key={index} 
+                  className="trait-slide" 
+                  onMouseEnter={() => setHoveredIndex(index)} 
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <div className="trait-card">
+                    <div className="trait-icon-wrapper" data-index={index}>
+                      {IconComponent && <IconComponent className="trait-card-icon" data-index={index} />}
                     </div>
-                  </Tilt>
+                    <h3 className="trait-title">{trait.title}</h3>
+                    <p className="trait-description">{trait.description}</p>
+                  </div>
                 </div>
               );
             })}
-            
           </div>
         </div>
-        {/* We have removed all buttons and dots */}
       </div>
     </section>
   );
 }
-
 
 export default Traits;

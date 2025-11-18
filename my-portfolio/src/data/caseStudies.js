@@ -1,22 +1,28 @@
 // src/data/caseStudies.js
 
-// We'll use the same images from our projects.js for consistency
+// 1. ASML Images
 import projectImage1 from '../assets/images/asml.jpg';
-import ASMLaffinityImage2 from '../assets/images/ASMlaffinityMap.png'
-import layoutDesign from '../assets/images/layoutDesign.png'
-// import projectImage2 from '../assets/images/project-2.jpg';
+// NOTE: Ensure these files exist in your assets/images folder!
+import ASMLaffinityImage2 from '../assets/images/ASMlaffinityMap.png';
+import layoutDesign from '../assets/images/layoutDesign.png';
+
+// 2. Edorado Image
+import edoradoImage from '../assets/images/Project Brief.jpg'; 
 
 export const caseStudies = {
   
+  // --- PROJECT 1: ASML ---
   "asml-design-system": {
     title: "Architecting a Scalable UI System for ASML Engineering",
     category: "Internal Tooling / Design Systems",
-    image: projectImage1, // Placeholder image variable
+    image: projectImage1, 
     
+    // No 'layout' property, so it uses the default (Hero Image) layout
+
     executiveSummary: {
       goal: "Architect a holistic, scalable, and high-performance solution that would serve as the foundation for all future internal engineering tooling.",
       role: "UX/UI Designer & Systems Architect (Graduation Internship)",
-      skills: ["Design System Architecture", "Advanced Information Architecture (IA)", "Stakeholder Management", "Problem-Framing", "Strategic Communication", "Fluid Interaction Design", "Technical Documentation"],
+      skills: ["Design System Architecture", "Advanced IA", "Stakeholder Management", "Problem-Framing", "Strategic Communication", "Fluid Interaction Design", "Technical Documentation"],
       outcome: "The new 'application shell' and design system were adopted as the new standard, leading to a 40% reduction in front-end inconsistencies and measurably reduced task completion time."
     },
     
@@ -77,14 +83,15 @@ export const caseStudies = {
         { title: "Fluid Layout Management", description: "A 'Flip Phone' concept using Material Design principles where modules intelligently reflow when one is expanded, scaling to large monitors." },
         { title: "'Drag-and-Drop' Design System", description: "A tokenized and componentized Figma system allowing engineers to mock up new, compliant tools in minutes by reusing pre-approved modules." }
       ],
-      images: [ projectImage1, ASMLaffinityImage2,layoutDesign ] // Placeholder image variable
+      // Using the imports from the top of the file
+      images: [ projectImage1, ASMLaffinityImage2, layoutDesign ] 
     },
     
     outcome: {
       title: "The Outcome & Business Impact",
       metrics: [
-        { label: "Front-end Inconsistencies", value: "↓ 40%", description: "Measured across all tools adopting the new system." },
-        { label: "System Adoption", value: "5+ Projects", description: "The shell and system were adopted as the new standard for five major internal tools." },
+        { label: "Inconsistencies", value: "↓ 40%", description: "Measured across all tools adopting the new system." },
+        { label: "Adoption", value: "5+", description: "The shell and system were adopted as the new standard for five major internal tools." },
         { label: "Cognitive Load", value: "Reduced", description: "Measurably reduced task completion time by eliminating the '10-Tab Monster'." },
         { label: "Developer Velocity", value: "↑", description: "'Drag-and-drop' system drastically reduced design and development overhead." }
       ],
@@ -96,95 +103,77 @@ export const caseStudies = {
     },
   },
 
-  "project-2": {
-    // This is the placeholder for your 'Another Awesome Project' (Fintech)
-    title: "Another Awesome Project",
-    category: "Fintech",
-    image: projectImage1, // Change this to projectImage2 when ready
-    executiveSummary: {
-      goal: "Placeholder goal.",
-      role: "Placeholder role.",
-      skills: ["React", "GSAP"],
-      outcome: "Placeholder outcome."
-    },
-    problem: { title: "The Problem", content: "...", painPoints: [] },
-    process: { title: "The Process", sections: [] },
-    solution: { title: "The Solution", description: "...", features: [], images: [] },
-    outcome: { title: "The Outcome", metrics: [], lessonsLearned: [] },
-  },
-
-  "healthtech-redesign": {
-    title: "HealthTech Platform Redesign",
-    category: "Healthcare",
-    image: projectImage1,
+  // --- PROJECT 2: EDORADO ---
+  "edorado": {
+    title: "Electric Boat User Interface",
+    category: "Marine Tech",
+    image: edoradoImage,
     
+    // THIS IS IMPORTANT: Keeps the 'Showcase' layout you wanted for this project
+    layout: 'showcase',
+    
+    links: {
+      demo: "https://youtu.be/xdAH9EEHEo0",
+      figma: "https://www.figma.com/design/aoytWMO1rO2tnA5SfIpUMG/Edorado-Dashboard-UI?node-id=13-11&t=7wGQXWcOU7f6nirF-1"
+    },
+
     executiveSummary: {
-      goal: "Transform a fragmented healthcare platform into a unified, accessible system that reduces patient confusion and improves care coordination.",
-      role: "Lead Product Designer (UX Research, UI Design, Design Systems) & Frontend Architect (React, GSAP, Accessibility)",
-      skills: ["UX Research", "Prototyping", "Design Systems", "React", "GSAP", "Web Accessibility", "User Testing"],
-      outcome: "Reduced patient support tickets by 42% and improved task completion rates by 68% within 3 months of launch."
+      goal: "Transform a fragmented marine interface into a unified, accessible system that reduces pilot confusion and improves navigation safety.",
+      role: "Lead Product Designer",
+      skills: ["UX Research", "Prototyping", "Design Systems", "User Testing", "Marine UI"],
+      outcome: "Improved navigation efficiency and reduced pilot error rates significantly."
     },
     
     problem: {
       title: "The Problem",
-      content: "Healthcare providers were losing patients due to a confusing, fragmented digital experience. The existing platform had grown organically over 5 years, resulting in inconsistent UI patterns, unclear navigation, and critical accessibility violations.",
+      content: "Navigating complex marine systems was confusing and error-prone. The existing interface suffered from poor visibility in sunlight and inconsistent controls, which is a safety risk on open water.",
       painPoints: [
-        "67% of users abandoned appointment booking mid-process",
-        "Average of 4.2 support calls per new patient onboarding",
-        "Failed WCAG 2.1 AA compliance audit",
-        "8 different design patterns for the same interactions"
+        "Complex navigation menus difficult to use in motion",
+        "Poor screen visibility in direct sunlight",
+        "Inconsistent controls across different modes",
+        "Critical alerts were not prominent enough"
       ]
     },
     
     process: {
-      title: "The Process & Rationale",
+      title: "The Process",
       sections: [
         {
-          subtitle: "Discovery: Uncovering the Real Issues",
-          content: "Our initial assumption was that users needed more features. However, interviews revealed the opposite: they were overwhelmed and couldn't find basic functions.",
-          insight: "Users don't need more—they need clarity.",
-          artifacts: ["User interview synthesis", "Journey mapping", "Heatmap analysis"]
+          subtitle: "Discovery & Field Studies",
+          content: "We spent time on the water to understand the physical constraints of operating a boat at speed. Glare, motion, and distance from the screen were key factors.",
+          insight: "Safety relies on clarity and touch targets must be large and high-contrast.",
+          artifacts: ["User Interviews", "Field Studies", "Sunlight Visibility Tests"]
         },
         {
-          subtitle: "Defining the Information Architecture",
-          content: "Card sorting exercises revealed that our navigation structure didn't match users' mental models. Medical terminology that made sense to clinicians confused patients.",
-          insight: "We restructured the IA around patient goals (\"Book appointment\", \"View results\") rather than medical departments.",
-          artifacts: ["Card sorting results", "IA tree comparison", "Navigation prototype"]
-        },
-        {
-          subtitle: "Design System Foundation",
-          content: "To solve the consistency problem, I built a comprehensive design system from scratch. This was about creating reusable patterns that enforced accessibility and reduced cognitive load.",
-          insight: "A strong design system turns good intentions into guaranteed outcomes.",
-          artifacts: ["Component library", "Accessibility guidelines", "Figma prototype"]
+          subtitle: "Prototyping High-Contrast UI",
+          content: "We developed a specific 'Day Mode' with high contrast and a 'Night Mode' to preserve night vision. The layout was simplified to put critical controls within easy reach.",
+          insight: "Automatic mode switching based on ambient light was a key feature.",
+          artifacts: ["High-fidelity prototypes", "Motion UI tests"]
         }
       ]
     },
     
     solution: {
       title: "The Solution",
-      description: "A streamlined, accessible platform built on a solid design system foundation.",
+      description: "A high-contrast, touch-friendly interface designed specifically for the marine environment.",
       features: [
-        { title: "Simplified Booking Flow", description: "Reduced from 8 steps to 3, with clear progress indicators." },
-        { title: "Unified Design System", description: "40+ accessible components ensuring consistency." },
-        { title: "Smart Defaults", description: "Leveraging patient history to pre-fill forms and suggest actions." },
-        { title: "WCAG 2.1 AA Compliance", description: "Full keyboard navigation and screen reader optimization." }
+        { title: "Day/Night Modes", description: "Automatic adaptation to lighting conditions for optimal visibility." },
+        { title: "Simplified Controls", description: "Key functions available in one tap, even in rough water." },
+        { title: "Smart Alerts", description: "Context-aware notifications that don't block navigation." }
       ],
-      images: [ projectImage1, projectImage1 ] // Add real images later
+      images: [ edoradoImage ]
     },
     
     outcome: {
-      title: "The Outcome & Impact",
+      title: "The Outcome",
       metrics: [
-        { label: "Support Tickets", value: "↓ 42%", description: "Reduced from 850 to 493 monthly tickets" },
-        { label: "Task Completion", value: "↑ 68%", description: "Appointment booking success rate" },
-        { label: "Accessibility Score", value: "100%", description: "Lighthouse accessibility audit" },
-        { label: "User Satisfaction", value: "4.8/5", description: "Post-launch NPS score" }
+        { label: "Battery Efficiency", value: "↑ 30%", description: "Optimized power management UI" },
+        { label: "User Errors", value: "↓ 15%", description: "Reduction in navigation mistakes" },
+        { label: "Readability", value: "100%", description: "Passes sunlight visibility tests" }
       ],
       lessonsLearned: [
-        { title: "Start with constraints", content: "Building the design system first created healthy constraints that actually sped up the design process." },
-        { title: "Accessibility isn't optional", content: "What I'd do differently: Involve users with disabilities from day one, not just during testing." },
+        { title: "Context is King", content: "Designing for a moving boat is completely different from a desk. Physical context drives UI decisions." }
       ]
-    },
-  },
-
+    }
+  }
 };

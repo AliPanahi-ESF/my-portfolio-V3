@@ -18,6 +18,7 @@ function Home() {
       <Projects />
       <Services />
       <About />
+      <Traits/>
     </main>
   );
 }

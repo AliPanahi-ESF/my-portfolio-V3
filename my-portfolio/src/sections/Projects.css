@@ -1,64 +1,110 @@
-/* --- 
-  Projects.css
-  (UPDATED with new Header)
---- */
+/* --- Projects.css --- */
 
 .projects-section {
-padding-bottom: var(--space-9);
-  min-height: 100vh;
-  
   position: relative;
+  /* Give space for the scroll to finish */
+  padding-bottom: var(--space-9);
   z-index: 10;
 }
 
+/* --- 1. SHARED / MOBILE LAYOUT --- */
 .projects-container {
-  position: relative;
-  height: 100vh; 
-  padding: var(--space-9);
+  width: 100%;
+  max-width: 1200px; /* Cap width */
+  margin: 0 auto;
+  padding: var(--space-5);
+  
+  /* Vertical Layout by default */
   display: flex;
   flex-direction: column;
+  align-items: center; /* Center everything horizontally */
+  gap: var(--space-8);
 }
 
-/* --- THIS IS THE UPDATED HEADER --- */
+/* Header Styling (Centered) */
 .projects-header {
-  padding-block: var(--space-3); /* Give it some vertical padding */
-  text-align: center;
-  
-  /* This centers the badge */
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  /* This is new (re-skins from .traits-header) */
-  margin-bottom: var(--space-7);
+  text-align: center;
+  gap: var(--space-4);
+  max-width: 600px;
+  position: relative;
+  z-index: 20; /* Keep title above cards if they float up */
 }
 
 .projects-title {
   font-family: var(--font-display);
-  font-size: var(--font-size-h3-desktop);
-  font-weight: 700;
-  margin-top: var(--space-3); /* Space from the badge */
+  font-size: var(--font-size-h1);
+  margin: 0;
 }
 
-/* This is the new subtitle style */
 .projects-subtitle {
   color: var(--muted-foreground);
-  font-size: var(--font-size-body-desktop);
-  max-width: 600px;
-  margin-inline: auto;
-  margin-top: var(--space-2);
+  font-size: var(--font-size-body);
 }
-/* ---------------------------------- */
 
-
-/* This is the "stack" of cards */
+/* Mobile Stack: Natural Flow */
 .project-card-stack {
-  position: relative;
-  flex-grow: 1; /* Makes it fill the available space */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 900px;
   width: 100%;
-  margin-inline: auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Wrapper exists but does nothing on mobile */
+.card-animation-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* --- 2. DESKTOP LAYOUT (min-width: 992px) --- */
+@media (min-width: 992px) {
+  
+  .projects-section {
+    height: auto; /* Allow ScrollTrigger to manage height */
+  }
+
+  .projects-container {
+    padding-top: var(--space-9);
+    gap: var(--space-9); /* More space between Title and Cards */
+  }
+
+  .projects-title {
+    font-size: var(--font-size-h1);
+  }
+
+  /* --- THE STAGE (Centered & Fixed Height) --- */
+  .project-card-stack {
+    position: relative;
+    display: block; /* Break flex flow */
+    height: 600px;  /* FIXED HEIGHT IS MANDATORY FOR STACKING */
+    max-width: 850px;
+    margin: 0 auto; /* Center the stack */
+  }
+
+  /* --- THE CARDS (Absolute Deck) --- */
+  .card-animation-wrapper {
+    position: absolute; /* Remove from flow to stack on top of each other */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Hidden by default to prevent glitching */
+    opacity: 0;
+    visibility: hidden;
+    
+    /* Center the card inside the wrapper if needed */
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Force first card to show */
+  .card-animation-wrapper:first-child {
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+  }
 }

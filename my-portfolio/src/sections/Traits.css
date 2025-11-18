@@ -1,150 +1,154 @@
-/* --- 
-  Traits.css
-  (The "Sticky Stack" Layout)
---- */
+/* --- Traits.css --- */
 
 .traits-section {
-  padding-block: var(--space-9); 
   position: relative;
-  overflow: hidden;
+  
+  /* FIX 1: Use Padding instead of Margin to prevent "Pin Jumping" */
+  padding-top: 15vh; 
+  /* Remove margin-top entirely */
+  margin-top: 0;
+
+  /* Ensure padding doesn't make it larger than 100vh */
+  height: 100vh; 
+  box-sizing: border-box; 
+  
+  width: 100%;
   background-color: var(--background);
-  /* This is crucial for the "pin" to work */
-  min-height: 100vh;
+  z-index: 10;
+  
+  /* Center the content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Background Orbs (Unchanged) */
+/* Background Orbs */
 .traits-bg-orb-1, .traits-bg-orb-2 {
   position: absolute; border-radius: 50%;
   pointer-events: none; z-index: 1;
   opacity: 0.05; filter: blur(100px);
 }
 .traits-bg-orb-1 {
-  width: 300px; height: 300px;
-  background-color: var(--primary-foreground);
+  width: 300px; height: 300px; background: var(--primary);
   top: 10%; left: 10%;
 }
 .traits-bg-orb-2 {
-  width: 400px; height: 400px;
-  background-color: var(--accent);
+  width: 400px; height: 400px; background: var(--accent);
   bottom: 10%; right: 10%;
 }
 
-/* Container */
 .traits-container {
   position: relative;
   z-index: 10;
-  max-width: 1024px; /* Matches our other sections */
-  margin-inline: auto;
+  width: 100%;
+  max-width: 1024px;
   padding-inline: var(--space-6);
-  height: 100vh;
+  
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
 }
 
-/* Header (Unchanged) */
+/* Header */
 .traits-header {
   text-align: center;
-  margin-bottom: var(--space-4);
-  padding-top: var(--space-7); /* Give it some space */
+  max-width: 600px;
+  flex-shrink: 0; 
 }
 .traits-title-main {
   font-family: var(--font-display);
-  font-size: var(--font-size-h2-desktop);
+  font-size: var(--font-size-h1);
   font-weight: 700;
   margin-bottom: var(--space-3);
   background: linear-gradient(to right, var(--foreground), hsl(210 40% 98% / 0.7));
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 .traits-subtitle {
   color: var(--muted-foreground);
-  font-size: var(--font-size-body-desktop);
-  max-width: 600px;
-  margin-inline: auto;
+  font-size: var(--font-size-body);
 }
 
-/* --- THIS IS THE STACK LOGIC --- */
-
+/* Stack Wrapper */
 .traits-stack-wrapper {
   position: relative;
-  max-width: 500px; /* The smaller size you wanted */
-  height: 420px;
-  margin-inline: auto;
-  flex-grow: 1; /* This pushes the header up */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  max-width: 450px; 
+  height: 450px;    
+  
+  perspective: 1000px; 
+  transform-style: preserve-3d;
 }
 
 .traits-carousel {
+  position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
+  transform-style: preserve-3d;
 }
 
-/* THIS IS THE FIX:
-   All cards are "absolute" and stacked 
-   on top of each other inside the carousel */
+/* Slides */
 .trait-slide {
-  width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden; 
+  will-change: transform, opacity, filter;
 }
 
-/* Card Styles (Unchanged) */
+.trait-slide:first-child {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+/* Card Styles */
 .trait-card {
-  width: 100%; height: 100%;
+  width: 100%; 
+  height: 100%;
   background-color: var(--card);
   padding: var(--space-7);
   border-radius: 24px; 
-  box-shadow: var(--shadow-card);
   border: 1px solid var(--border);
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
+  box-shadow: var(--shadow-card);
+  display: flex; 
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
   text-align: center;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.trait-card:hover {
-  border-color: var(--primary);
-  box-shadow: var(--shadow-glow);
-}
-.trait-card-inner {
-  position: relative; width: 100%; height: 100%;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  border-radius: 16px; 
-}
-
-/* Card Content (Unchanged) */
-.trait-card-content {
-  position: relative; z-index: 10; text-align: center;
 }
 .trait-icon-wrapper {
   margin-bottom: var(--space-6);
   color: var(--primary);
-  width: 80px; height: 80px;
+  width: 90px; height: 90px;
   display: inline-flex; align-items: center;
   justify-content: center; border-radius: 50%;
-  background: var(--primary-foreground);
+  background: hsl(190, 95%, 55%, 0.1);
   border: 1px solid var(--border);
+  transition: transform 0.3s ease; 
 }
-.trait-icon-wrapper svg { width: 40px; height: 40px; }
+.trait-card-icon { width: 40px; height: 40px; }
 .trait-title {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--font-size-h3);
   color: var(--foreground);
   margin-bottom: var(--space-4);
-  line-height: 1.2;
 }
 .trait-description {
-  font-size: var(--font-size-body-desktop);
+  font-size: var(--font-size-body);
   color: var(--muted-foreground);
   line-height: 1.6;
 }
 
-/* ALL BUTTONS AND DOTS ARE GONE */
+@media (min-width: 992px) {
+  .traits-title-main { font-size: var(--font-size-h2-desktop); }
+  .traits-subtitle { font-size: var(--font-size-body-desktop); }
+}

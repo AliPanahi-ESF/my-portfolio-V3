@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react'; // We need useState
+import { useEffect, useRef, useState } from 'react'; 
 import './About.css';
-import { MapPin, Coffee, Dumbbell, Sparkles } from 'lucide-react';
-
-
-// Import your profile photo
-import ProfilePhoto from '../assets/images/profile-photo.png'; // <-- (Change if your name is different)
+import { 
+  MapPin, Coffee, Dumbbell, Sparkles, 
+  Globe, Lightbulb, Heart // New icons for paragraphs
+} from 'lucide-react';
+import ProfilePhoto from '../assets/images/profile-photo.png'; 
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -13,101 +13,72 @@ gsap.registerPlugin(ScrollTrigger);
 
 function About() {
   const sectionRef = useRef(null);
-  const [isHovered, setIsHovered] = useState(false); // For the photo hover
+  const [isHovered, setIsHovered] = useState(false);
 
-  // This is your main ScrollTrigger animation timeline
+  // 1. MAIN ENTRANCE ANIMATION
   useEffect(() => {
     const ctx = gsap.context(() => {
       
-      // ... (floating orb/badge animations) ...
+      // Floating Orbs
       gsap.to('.about-orb-1', { y: -30, duration: 3, repeat: -1, yoyo: true, ease: 'easeInOut' });
       gsap.to('.about-orb-2', { y: 30, duration: 4, repeat: -1, yoyo: true, ease: 'easeInOut', delay: 1 });
       gsap.to('.about-badge-1', { y: -10, duration: 3, repeat: -1, yoyo: true, ease: 'easeInOut' });
       gsap.to('.about-badge-2', { y: 10, duration: 4, repeat: -1, yoyo: true, ease: 'easeInOut', delay: 1 });
 
-      // Create ONE master timeline for the scroll-in
+      // Master Entrance Timeline
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%', // This is the fix for the "disappearing text"
+          start: 'top 75%', 
           once: true
         }
       });
       
+      // Left Card
       tl.from('.about-visual-card', {
-        opacity: 0,
-        x: -50,
-        duration: 0.8,
-        ease: 'power3.out'
+        opacity: 0, x: -50, duration: 0.8, ease: 'power3.out'
       });
 
-      tl.from(['.glass-badge', '.about-title', '.about-bio p'], {
-        opacity: 0,
-        x: 50,
-        duration: 0.6,
-        stagger: 0.1, 
-        ease: 'power3.out'
+      // Right Text (Header + Paragraphs)
+      tl.from(['.about-text-header', '.bio-item'], {
+        opacity: 0, x: 50, duration: 0.8, stagger: 0.15, ease: 'power3.out'
       }, "-=0.6");
-      
-
 
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  // This is the hover animation logic
+  // 2. HOVER INTERACTION (Profile Reveal)
   useEffect(() => {
-    const tlIn = gsap.timeline({ paused: true });
-    const tlOut = gsap.timeline({ paused: true });
-
-    tlIn.to('.about-visual-content', { 
-           opacity: 0, 
-           duration: 0.3, 
-           ease: 'power2.in' 
-         })
-         .to('.about-profile-photo', { 
-           opacity: 1, 
-           duration: 0.4, 
-           ease: 'power2.out' 
-         });
-
-    tlOut.to('.about-profile-photo', { 
-           opacity: 0, 
-           duration: 0.3, 
-           ease: 'power2.in' 
-         })
-         .to('.about-visual-content', { 
-           opacity: 1, 
-           duration: 0.4, 
-           ease: 'power2.out' 
-         });
-
-    if (isHovered) {
-      tlOut.reverse();
-      tlIn.play();
-    } else {
-      tlIn.reverse();
-      tlOut.play();
-    }
+    const ctx = gsap.context(() => {
+      if (isHovered) {
+        gsap.to('.about-visual-content', { opacity: 0, duration: 0.3, ease: 'power2.in' });
+        gsap.to('.about-profile-photo', { opacity: 1, scale: 1.05, duration: 0.4, ease: 'power2.out' });
+      } else {
+        gsap.to('.about-profile-photo', { opacity: 0, scale: 1, duration: 0.3, ease: 'power2.in' });
+        gsap.to('.about-visual-content', { opacity: 1, duration: 0.4, ease: 'power2.out', delay: 0.1 });
+      }
+    }, sectionRef);
+    
+    return () => ctx.revert();
   }, [isHovered]);
 
   return (
     <section id="about" className="about-section" ref={sectionRef}>
-      {/* ... orbs ... */}
       <div className="about-orb-1"></div>
       <div className="about-orb-2"></div>
 
       <div className="about-container">
         <div className="about-grid">
           
-          {/* Left side - Visual */}
+          {/* LEFT SIDE (Unchanged) */}
           <div 
             className="about-visual-card"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onClick={() => setIsHovered(!isHovered)}
           >
-            {/* Badges stay on the outside */}
             <div className="about-badge about-badge-1">
               <MapPin className="w-4 h-4" />
               <span>NL</span>
@@ -117,17 +88,8 @@ function About() {
               <span>Self-taught</span>
             </div>
             
-            {/* THIS IS THE NEW INNER WRAPPER */}
             <div className="about-visual-card-inner">
-              
-              {/* Photo is now INSIDE the wrapper */}
-              <img 
-                src={ProfilePhoto} 
-                alt="A photo of Ali Panahi" 
-                className="about-profile-photo"
-              />
-
-              {/* Content is now INSIDE the wrapper */}
+              <img src={ProfilePhoto} alt="Ali Panahi" className="about-profile-photo" />
               <div className="about-visual-content">
                 <div className="about-hobby-line">
                   <Coffee className="w-5 h-5 text-primary" />
@@ -148,11 +110,10 @@ function About() {
                   <div className="about-orb-questionmark">?</div>
                 </div>
               </div>
-              
-            </div> {/* <-- End of new inner wrapper */}
+            </div>
           </div>
 
-          {/* Right side - Text */}
+          {/* RIGHT SIDE: Content */}
           <div className="about-text-content">
             <div className="about-text-header">
               <div className="glass-badge">
@@ -161,40 +122,54 @@ function About() {
               </div>
               <h2 className="about-title">
                 Who I am
-                <span className="about-subtitle">
-                  (and why that matters)
-                </span>
+                <span className="about-subtitle">(and why that matters)</span>
               </h2>
             </div>
 
-            {/* Bio paragraphs (THE FIX IS HERE) */}
+            {/* NEW BIO STRUCTURE WITH ICONS */}
             <div className="about-bio">
-              <p>
-                Based in the{" "}
-                <span className="text-highlight">Netherlands</span>. A Product Designer + Front-End Developer graduate.
-                 I work at the intersection of UX thinking and clean front-end execution,
+              
+              {/* Paragraph 1: Location / Background */}
+              <div className="bio-item">
+                <div className="bio-icon-wrapper">
+                  <Globe className="bio-icon" />
+                </div>
+                <p>
+                  Based in the <span className="text-highlight">Netherlands</span>. A Product Designer + Front-End Developer graduate.
+                  I work at the intersection of UX thinking and clean front-end execution,
                   building products that feel thoughtful, intentional, and actually usable. 
-                  Most of what I know comes from teaching myself (and ofcourse university), breaking things, fixing them again, 
-                  and staying endlessly curious about how systems behave.. <span className="text-primary italic">Self-taught, self-doubted, and self-corrected</span> — still here. Still building.
-              </p> {/* <-- WAS </pre> */}
-              <p>
-               My design philosophy is simple:{" "}
-                <span className="text-highlight">clarity</span> first. Good design isn’t just beautiful pixels; it’s when the user’s mind relaxes because everything makes sense.
-                 Whether I’m redesigning a flow, building a component system, or polishing the small interactions, my goal is always the same
-                reduce cognitive load,
-                <span className="text-primary font-medium">make the user breathe easier</span>.and let the product speak for itself.{" "}
-              </p> {/* <-- WAS </pre> */}
-              <p>
-                Outside my desk work, I keep my  
-                <span className="text-highlight italic"> creativity</span> and
-                <span className="text-highlight italic"> discipline</span> sharp through the things I enjoy like playing football, reading books.
-                I build with intention. I design with clarity. And I like creating things that feel good to use.{" "}
+                  Most of what I know comes from teaching myself (and of course university), breaking things, fixing them again, 
+                  and staying endlessly curious about how systems behave. <span className="text-primary italic">Self-taught, self-doubted, and self-corrected</span> — still here. Still building.
+                </p>
+              </div>
 
-              </p> {/* <-- WAS </pre> */}
+              {/* Paragraph 2: Philosophy */}
+              <div className="bio-item">
+                <div className="bio-icon-wrapper">
+                  <Lightbulb className="bio-icon" />
+                </div>
+                <p>
+                  My design philosophy is simple: <span className="text-highlight">clarity</span> first. Good design isn’t just beautiful pixels; it’s when the user’s mind relaxes because everything makes sense.
+                  Whether I’m redesigning a flow, building a component system, or polishing the small interactions, my goal is always the same:
+                  reduce cognitive load, <span className="text-primary font-medium">make the user breathe easier</span>, and let the product speak for itself.
+                </p>
+              </div>
+
+              {/* Paragraph 3: Personal */}
+              <div className="bio-item">
+                <div className="bio-icon-wrapper">
+                  <Heart className="bio-icon" />
+                </div>
+                <p>
+                  Outside my desk work, I keep my <span className="text-highlight italic">creativity</span> and
+                  <span className="text-highlight italic"> discipline</span> sharp through the things I enjoy like playing football and reading books.
+                  I build with intention. I design with clarity. And I like creating things that feel good to use.
+                </p>
+              </div>
+
             </div>
-
-
           </div>
+
         </div>
       </div>
     </section>

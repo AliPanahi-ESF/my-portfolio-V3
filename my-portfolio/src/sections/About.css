@@ -1,234 +1,478 @@
-/* --- 
+ /* ---
+
   About.css
+
   (With Interactive Photo Reveal)
+
 --- */
 
+
 .about-section {
-  padding-block: var(--space-9); 
+
+  padding-block: var(--space-9);
+
   padding-inline: var(--space-6);
+
   position: relative;
+
   overflow: hidden;
+
   background-color: var(--background);
+
 }
+
 
 /* 1. Animated Background Orbs */
+
 .about-orb-1, .about-orb-2 {
+
   position: absolute;
+
   border-radius: 50%;
+
   filter: blur(120px);
+
   z-index: 1;
+
 }
+
 .about-orb-1 {
+
   width: 300px;
+
   height: 300px;
+
   background-color: var(--primary-foreground);
+
   opacity: 0.05;
+
   top: 10%;
+
   left: 5%;
+
 }
+
 .about-orb-2 {
+
   width: 400px;
+
   height: 400px;
+
   background-color: var(--accent);
+
   opacity: 0.03;
+
   bottom: 10%;
+
   right: 5%;
+
 }
+
 
 /* 2. Main Containers */
+
 .about-container {
+
   position: relative;
+
   z-index: 10;
+
   max-w: 1024px; /* The narrower width you wanted */
+
   margin-inline: auto;
+
 }
+
 .about-grid {
+
   /* On mobile, this is a 1-column stack */
+
   display: flex;
+
   flex-direction: column;
+
   gap: var(--space-8);
+
 }
+
 
 /* 3. Left Column: Visual Card */
+
 .about-visual-card {
+
   position: relative;
+
   /* We keep the border, background, and filter on the main card */
-  border-radius: 24px; 
+
+  border-radius: 24px;
+
   border: 1px solid var(--border);
+
   background: var(--gradient-card);
+
   backdrop-filter: blur(4px);
+
   /* Padding and Overflow are GONE */
+
 }
+
 .about-visual-card-inner {
+
   position: relative; /* For the photo to be positioned */
 
+
   /* We move the padding here */
+
   padding: var(--space-7);
 
+
   /* We move the overflow here */
-  overflow: hidden; 
+
+  overflow: hidden;
+
 
   /* This is important! */
-  border-radius: 24px; 
+
+  border-radius: 24px;
+
 }
+
 
 /* 3b. NEW: The Profile Photo */
+
 .about-profile-photo {
+
   position: absolute;
+
   top: 0;
+
   left: 0;
+
   width: 100%;
+
   height: 100%;
+
   object-fit: cover;
+
   opacity: 0; /* Start invisible */
+
   z-index: 2; /* Sits behind the hobbies */
+
 }
+
 
 /* 3c. Update the "hobbies/?" content */
+
 .about-visual-content {
+
   display: flex;
+
   flex-direction: column;
+
   gap: var(--space-6);
+
   /* This ensures it starts on top of the photo */
+
   position: relative;
+
   z-index: 3;
+
   opacity: 1; /* Make sure it starts visible */
+
 }
+
 
 .about-badge {
+
   position: absolute;
+
   display: inline-flex;
+
   align-items: center;
+
   gap: var(--space-2);
+
   padding: var(--space-3) var(--space-5);
+
   border-radius: 999px;
+
   background-color: var(--card);
+
   border: 1px solid var(--primary);
+
   box-shadow: var(--shadow-glow);
+
   color: var(--primary);
+
   font-size: var(--font-size-small);
+
   font-weight: 500;
-}
-.about-badge-1 {
-  top: -16px;
-  right: -16px;
-  z-index: 4; /* Make sure badges are on top */
-}
-.about-badge-2 {
-  bottom: -16px;
-  left: -16px;
-  z-index: 4; /* Make sure badges are on top */
-}
-.about-hobby-line {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  color: var(--muted-foreground);
-  font-size: var(--font-size-small);
-}
-.about-hobby-line .dot {
-  color: var(--border);
-}
-.about-orb-center {
-  position: relative;
-  height: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.about-orb-center-1, .about-orb-center-2 {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(30px);
-}
-.about-orb-center-1 {
-  width: 160px;
-  height: 160px;
-  background: var(--primary);
-  opacity: 0.2;
-}
-.about-orb-center-2 {
-  width: 130px;
-  height: 130px;
-  background: var(--accent);
-  opacity: 0.3;
-  animation: pulse 4s infinite ease-in-out; 
-}
-.about-orb-questionmark {
-  position: relative;
-  font-family: var(--font-display);
-  font-size: 8rem;
-  font-weight: 700;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-fill-color: transparent;
+
 }
 
-/* 4. Right Column: Text Content */
-.about-text-content {
+.about-badge-1 {
+
+  top: -16px;
+
+  right: -16px;
+
+  z-index: 4; /* Make sure badges are on top */
+
+}
+
+.about-badge-2 {
+
+  bottom: -16px;
+
+  left: -16px;
+
+  z-index: 4; /* Make sure badges are on top */
+
+}
+
+.about-hobby-line {
+
   display: flex;
-  flex-direction: column;
-  gap: var(--space-7);
-}
-.about-text-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  align-items: flex-start; /* Stops the badge from stretching */
-}
-.about-title {
-  font-family: var(--font-display);
-  font-size: var(--font-size-h2);
-  font-weight: 700;
-  line-height: 1.1;
-}
-.about-subtitle {
-  display: block;
+
+  align-items: center;
+
+  gap: var(--space-3);
+
   color: var(--muted-foreground);
-  font-family: var(--font-body); /* Use body font */
-  font-weight: 400; /* Regular weight */
-  margin-top: var(--space-2);
+
+  font-size: var(--font-size-small);
+
 }
+
+.about-hobby-line .dot {
+
+  color: var(--border);
+
+}
+
+.about-orb-center {
+
+  position: relative;
+
+  height: 250px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+}
+
+.about-orb-center-1, .about-orb-center-2 {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(30px);
+
+}
+
+.about-orb-center-1 {
+
+  width: 160px;
+
+  height: 160px;
+
+  background: var(--primary);
+
+  opacity: 0.2;
+
+}
+
+.about-orb-center-2 {
+
+  width: 130px;
+
+  height: 130px;
+
+  background: var(--accent);
+
+  opacity: 0.3;
+
+  animation: pulse 4s infinite ease-in-out;
+
+}
+
+.about-orb-questionmark {
+
+  position: relative;
+
+  font-family: var(--font-display);
+
+  font-size: 8rem;
+
+  font-weight: 700;
+
+  background: var(--gradient-primary);
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  text-fill-color: transparent;
+
+}
+
+
+/* 4. Right Column: Text Content */
+
+.about-text-content {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--space-7);
+
+}
+
+.about-text-header {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--space-4);
+
+  align-items: flex-start; /* Stops the badge from stretching */
+
+}
+
+.about-title {
+
+  font-family: var(--font-display);
+
+  font-size: var(--font-size-h2);
+
+  font-weight: 700;
+
+  line-height: 1.1;
+
+}
+
+.about-subtitle {
+
+  display: block;
+
+  color: var(--muted-foreground);
+
+  font-family: var(--font-body); /* Use body font */
+
+  font-weight: 400; /* Regular weight */
+
+  margin-top: var(--space-2);
+
+}
+
 .about-bio {
   display: flex;
   flex-direction: column;
+  gap: var(--space-6); /* More space between items */
+}
+
+.bio-item {
+  display: flex;
+  align-items: flex-start; /* Align icon to top of text */
   gap: var(--space-5);
+  
+  /* Interactive styling */
+  padding: var(--space-4);
+  border-radius: var(--radius);
+  border: 1px solid transparent; /* Invisible border initially */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover Effect on Paragraphs */
+.bio-item:hover {
+  background-color: hsla(220, 20%, 12%, 0.4); /* Subtle highlight */
+  border-color: var(--border);
+}
+
+.bio-icon-wrapper {
+  flex-shrink: 0; /* Don't squash the icon */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: hsla(190, 95%, 55%, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  border: 1px solid hsla(190, 95%, 55%, 0.2);
+  
+  /* Icon Animation */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bio-item:hover .bio-icon-wrapper {
+  transform: scale(1.1) rotate(10deg);
+  background-color: var(--primary);
+  color: var(--background); /* Invert colors on hover */
+}
+
+.bio-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.bio-item p {
   font-size: var(--font-size-body);
   color: var(--muted-foreground);
   line-height: 1.7;
+  margin: 0; /* Reset default margins */
 }
-.about-bio p {
-  padding-left: var(--space-5);
-  border-left: 2px solid hsl(190 95% 55% / 0.3); /* border-primary/30 */
-}
-.text-highlight {
-  color: var(--foreground);
-  font-weight: 500;
-}
+
 
 
 /* * --------------------------------
+
  * Desktop Layout
+
  * --------------------------------
+
 */
+
 @media (min-width: 992px) {
+
   .about-grid {
+
     display: grid;
+
     grid-template-columns: 1fr 1fr;
+
     gap: var(--space-9);
+
     align-items: center;
+
   }
+
 
   .about-title {
+
     font-size: var(--font-size-h2-desktop);
-  }
-  
-  .about-bio {
-    font-size: var(--font-size-body-desktop);
+
   }
 
+ 
+
+  .about-bio {
+
+    font-size: var(--font-size-body-desktop);
+
+  }
+
+
   /* We remove the h3-desktop rule for the subtitle */
-}
+
+} 

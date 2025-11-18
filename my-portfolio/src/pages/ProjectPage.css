@@ -22,13 +22,55 @@
   justify-content: center;
   gap: var(--space-6);
 }
-
+.project-showcase {
+  /* Increased padding to make it stand out */
+  padding-block: var(--space-9); 
+  
+  /* Optional: A very subtle background highlight to separate it */
+  background-color: hsl(190 95% 55% / 0.03);
+}
+.showcase-intro {
+  text-align: center;
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: var(--space-7);
+}
+.showcase-intro h2 {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+.showcase-intro p {
+  font-size: var(--font-size-body);
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+.project-links.centered {
+  justify-content: center;
+}
 /* --- Hero Section --- */
 .project-hero {
   padding-top: var(--space-9);
   padding-bottom: var(--space-7);
 }
-
+.button-primary svg, .button-secondary svg {
+  margin-right: var(--space-2);
+}
+.project-full-image {
+  width: 100%;
+  height: auto; 
+  display: block;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
 .project-hero .glass-badge {
   display: block;
   width: fit-content; /* Makes it shrink-to-fit */
