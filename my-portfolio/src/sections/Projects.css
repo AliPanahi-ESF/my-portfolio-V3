@@ -35,8 +35,9 @@
 
 .projects-title {
   font-family: var(--font-display);
-  font-size: var(--font-size-h1);
+  font-size: var( --font-size-h2-desktop);
   margin: 0;
+  font-weight: 700;
 }
 
 .projects-subtitle {
@@ -72,7 +73,7 @@
   }
 
   .projects-title {
-    font-size: var(--font-size-h1);
+    font-size: var(--font-size-h2-desktop);
   }
 
   /* --- THE STAGE (Centered & Fixed Height) --- */
