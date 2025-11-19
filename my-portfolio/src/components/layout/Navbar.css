@@ -1,143 +1,158 @@
-/* 1. The main <nav> container */
+/* --- Navbar.css --- */
+
+/* 1. Main Container */
 .navbar {
-position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 9000; /* Put it on top of everything */
-  
-  /* This is the default TRANSPARENT state */
+  z-index: 9000;
   background-color: transparent;
-  border-bottom: 1px solid transparent; /* Prevents "jumping" */
-  
-  /* THIS IS THE SMOOTH TRANSITION */
-  transition: background-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-              backdrop-filter 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-              border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.navbar.is-scrolled {
-  /* Use our dark background with 85% opacity */
-  background-color: hsl(220 20% 8% / 0.85); 
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-}
-/* 2. The always-visible top bar */
-.navbar-top-bar {
-display: flex;
-  align-items: baseline; 
-  padding: var(--space-4);
-  background-color: transparent; /* The bar itself is transparent */
-  position: relative;
-  z-index: 1001;
+  transition: background-color 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
 }
 
-/* 3. The logo text */
+.navbar.is-scrolled {
+  background-color: hsla(220, 20%, 8%, 0.85); 
+  backdrop-filter: blur(12px); 
+  border-bottom: 1px solid var(--border);
+}
+
+/* 2. Top Bar */
+.navbar-top-bar {
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  position: relative;
+  /* FIX: Ensure Top Bar is above the mobile menu overlay */
+  z-index: 1002; 
+}
+
+/* Logo */
 .navbar-logo a {
   color: var(--primary);
   text-decoration: none;
-  font-family: 'Playfair Display', serif; /* Use our display font */
+  font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-/* 4. The hamburger button */
+/* Toggle Button (Hamburger) */
 .navbar-toggle-button {
-background: none;
+  background: none;
   border: none;
   color: var(--foreground); 
   cursor: pointer;
-  margin-left: auto;
+  padding: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* FIX: Ensure it's visible on mobile */
+  display: flex; 
+  opacity: 1 !important; /* Override any stuck GSAP styles */
+  visibility: visible !important;
 }
 
-/* 5. Hide the desktop menu on mobile (MOBILE-FIRST) */
+/* 3. Desktop Menu */
 .desktop-menu {
-  display: none;
+  display: none; 
+}
+.desktop-menu ul {
+  display: flex;
+  align-items: center;
+  gap: var(--space-7);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.desktop-menu a {
+  color: var(--muted-foreground);
+  text-decoration: none;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.desktop-menu a:hover {
+  color: var(--primary);
 }
 
-/* 6. The mobile slide-down menu */
+/* 4. Mobile Menu (Fullscreen Overlay) */
 .mobile-menu {
-position: absolute;
-  width: 100%;
+  /* FIX: Use fixed to cover entire viewport */
+  position: fixed; 
   top: 0; 
   left: 0;
-  z-index: 1000; 
-  background: var(--gradient-subtle);
-  transform: translateY(-100%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  height: 100vh; 
+  
+  /* FIX: Below Top Bar (1002), but above page content */
+  z-index: 1001; 
+  
+  background-color: var(--background); 
+  /* Start Hidden (Up) */
+  transform: translateY(-100%); 
+  
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 6rem 1rem 2rem;
+  justify-content: center;
+  gap: var(--space-8);
 }
 
-/* 7. The "Open" State */
-/* WHEN the .navbar has the .nav-open class,
-   THEN find the .mobile-menu inside it and change its transform */
-.navbar.nav-open .mobile-menu {
-  /* This moves the menu to its "open" position */
-  transform: translateY(0);
-}
-
-/* 8. Basic styling for the links inside the mobile menu */
+/* Mobile Links */
 .mobile-menu-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem; /* Space between links */
+  gap: var(--space-6);
 }
 
-.mobile-menu-links a {
+.mobile-menu-link {
   color: var(--foreground);
   text-decoration: none;
-  font-size: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 2.5rem; 
+  font-weight: 700;
+  transition: color 0.3s ease;
 }
 
-/* 9. The resume button */
+.mobile-menu-link:hover {
+  color: var(--primary);
+}
+
+/* 5. Resume Button */
 .button-resume {
-color: var(--primary);
+  display: inline-block;
+  color: var(--primary);
   text-decoration: none;
   border: 1px solid var(--primary);
   border-radius: var(--radius);
-  padding: 0.5rem 1rem;
-  margin-top: 2rem; 
-  transition: var(--transition-smooth);
+  padding: 0.6rem 1.2rem;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .button-resume:hover {
   background-color: var(--primary);
-  color: var(--primary-foreground);
+  color: var(--background); 
+  box-shadow: var(--shadow-glow);
 }
 
-/* * --------------------------------
- * PHASE 3: Desktop Layout (Mobile-First)
- * --------------------------------
-*/
-
-/* This rule means: "Apply these styles ONLY if the 
-   screen width is 768px OR WIDER" */
+/* --- Desktop Media Query --- */
 @media (min-width: 768px) {
+  /* Hide mobile stuff */
   .navbar-toggle-button,
   .mobile-menu {
-    display: none;
+    display: none !important;
   }
+  /* Show desktop stuff */
   .desktop-menu {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    gap: var(--space-7);
-  }
-  .desktop-menu-links {
-    display: flex;
-    gap: var(--space-6);
-    align-items: center; 
-  }
-  .desktop-menu-links a {
-    color: var(--foreground);
-    text-decoration: none;
-    font-size: 1rem;
-    transition: var(--transition-smooth);
-  }
-  .desktop-menu-links a:not(.button-resume):hover {
-    color: var(--primary);
+    display: block;
   }
 }

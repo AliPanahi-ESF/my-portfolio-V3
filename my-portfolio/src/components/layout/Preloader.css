@@ -1,0 +1,82 @@
+/* src/components/layout/Preloader.css */
+
+.preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  z-index: 99999;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.preloader-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The SVG Container */
+.fibo-loader-svg {
+  width: 320px; 
+  height: 220px;
+  overflow: visible;
+  margin-bottom: var(--space-5);
+  transform: translateX(-20px); /* Visual centering */
+}
+
+/* 1. The Squares (Construction Lines) */
+.loader-rect {
+  fill: transparent;
+  stroke: var(--primary);
+  stroke-width: 1px;
+  stroke-opacity: 0.3; /* Faint construction lines */
+  
+  /* These will be set by GSAP */
+  stroke-dasharray: 1000; 
+  stroke-dashoffset: 1000; 
+}
+
+/* 2. The Spiral Curve (The Hero Line) */
+.loader-curve {
+  fill: transparent;
+  stroke: var(--primary);
+  stroke-width: 3px; /* Thicker than boxes */
+  stroke-linecap: round;
+  
+  /* Glowing Effect */
+  filter: drop-shadow(0 0 8px var(--primary));
+  
+  /* These will be set by GSAP */
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.preloader-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+.preloader-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background-color: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+}
