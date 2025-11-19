@@ -17,52 +17,100 @@ function Traits() {
   useEffect(() => {
     const cards = gsap.utils.toArray(cardsRef.current.children);
     
-    // Distance: 250px per card.
-    const scrollDistance = (cards.length) * 250; 
-
     const ctx = gsap.context(() => {
-      
-      // Header Reveal
+      const mm = gsap.matchMedia();
+
+      // 1. HEADER (Runs everywhere)
       gsap.from('.traits-header', {
         opacity: 0, y: 30, duration: 0.8, ease: "power3.out",
         scrollTrigger: { trigger: '.traits-header', start: 'top 85%', once: true }
       });
 
-      // Initial Setup
+      // --- SHARED SETUP ---
+      // We set initial styles here to ensure consistency
       gsap.set(cards.slice(1), { 
-        z: -100, scale: 0.85, yPercent: 15, opacity: 0,
-        filter: "blur(10px)", transformOrigin: "50% 100%" 
+        z: -100, scale: 0.85, yPercent: 15, opacity: 0, 
+        transformOrigin: "50% 100%" 
       });
 
-      // --- THE TIMELINE ---
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          pin: true,
-          scrub: 0.5,
-          start: 'top top', 
-          end: `+=${scrollDistance}`, 
-          
-          // FIX 2: Add anticipatePin to prevent the jump on pin/unpin
-          anticipatePin: 1,
-          invalidateOnRefresh: true 
-        }
+      // 2. DESKTOP ANIMATION (High Fidelity)
+      // Min-width 800px: We keep the lag (scrub: 0.5) and the Blur effect
+      mm.add("(min-width: 800px)", () => {
+        
+        // Reset blur for desktop
+        gsap.set(cards.slice(1), { filter: "blur(10px)" });
+
+        const scrollDistance = (cards.length) * 300; // Long scroll
+        
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            pin: true,
+            scrub: 0.5, // Adds that "heavy/premium" feel
+            start: 'center center', 
+            end: `+=${scrollDistance}`, 
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+          }
+        });
+
+        // Desktop Loop (With Blur & Tilt)
+        cards.forEach((card, index) => {
+          if (index === cards.length - 1) return;
+          const nextCard = cards[index + 1];
+
+          tl.to(card, {
+            yPercent: -120, rotationX: 10, scale: 0.95, opacity: 0, autoAlpha: 0,
+            duration: 1, ease: "power2.in",
+          })
+          .to(nextCard, {
+            z: 0, yPercent: 0, scale: 1, opacity: 1, autoAlpha: 1, 
+            filter: "blur(0px)", // Animate blur
+            duration: 1, ease: "power2.out"
+          }, "<+=0.15");
+        });
       });
 
-      // Loop
-      cards.forEach((card, index) => {
-        if (index === cards.length - 1) return;
-        const nextCard = cards[index + 1];
+      // 3. MOBILE ANIMATION (High Performance)
+      // Max-width 799px: We remove lag (scrub: true) and remove Blur
+      mm.add("(max-width: 799px)", () => {
+        
+        // Ensure NO blur on mobile (Performance killer)
+        gsap.set(cards, { filter: "blur(0px)" });
 
-        tl
-        .to(card, {
-          yPercent: -120, rotationX: 10, scale: 0.95, opacity: 0, autoAlpha: 0,
-          duration: 1, ease: "power2.in",
-        })
-        .to(nextCard, {
-          z: 0, yPercent: 0, scale: 1, opacity: 1, autoAlpha: 1, filter: "blur(0px)",
-          duration: 1, ease: "power2.out"
-        }, "<+=0.15");
+        const scrollDistance = (cards.length) * 228; // Shorter scroll for thumbs
+        
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            pin: true,
+            scrub: true, // Instant response (1:1 with finger)
+            start: 'center center', 
+            end: `+=${scrollDistance}`, 
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+          }
+        });
+
+        // Mobile Loop (Simplified Physics)
+        cards.forEach((card, index) => {
+          if (index === cards.length - 1) return;
+          const nextCard = cards[index + 1];
+
+          tl.to(card, {
+            yPercent: -120, 
+            // Less 3D rotation on mobile to avoid rendering glitches
+            rotationX: 0, 
+            scale: 0.9, 
+            opacity: 0, autoAlpha: 0,
+            duration: 1, ease: "none", // Linear feel works better for touch
+          })
+          .to(nextCard, {
+            z: 0, yPercent: 0, scale: 1, opacity: 1, autoAlpha: 1,
+            // No blur animation here
+            duration: 1, ease: "none"
+          }, "<"); // No overlap, snappy transition
+        });
       });
 
     }, sectionRef);
@@ -70,7 +118,7 @@ function Traits() {
     return () => ctx.revert();
   }, []);
 
-  // Hover Animation
+  // Hover Animation (Kept the same)
   useEffect(() => {
     if (hoveredIndex === null) return;
     gsap.to(`.trait-icon-wrapper[data-index="${hoveredIndex}"]`, { scale: 1.15, y: -5, duration: 0.4, ease: 'back.out(2)' });
@@ -102,6 +150,8 @@ function Traits() {
                   className="trait-slide" 
                   onMouseEnter={() => setHoveredIndex(index)} 
                   onMouseLeave={() => setHoveredIndex(null)}
+                  // Add click handler for Mobile "Tap" interaction
+                  onClick={() => setHoveredIndex(index === hoveredIndex ? null : index)}
                 >
                   <div className="trait-card">
                     <div className="trait-icon-wrapper" data-index={index}>
