@@ -1,7 +1,4 @@
-/* --- 
-  Footer.css
-  (Combined "CTA Box" + "Minimal" Design)
---- */
+/* --- Footer.css --- */
 
 .footer-section {
   background: linear-gradient(
@@ -32,15 +29,14 @@
   align-items: center;
   gap: var(--space-5);
   
-  /* --- THIS IS THE "30% SMALLER" FIX --- */
-  /* We set a max-width of 70% and center it */
+  /* Sizing */
   max-width: 70%;
-  margin-inline: auto; /* This centers the box */
-  /* ------------------------------------- */
+  margin-inline: auto; 
 
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
               background 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
 .footer-cta-box:hover {
   transform: translateY(-8px); 
   background: linear-gradient(to top left, 
@@ -66,9 +62,8 @@
   width: 100%;
 }
 
-/* 2. The Minimal Footer Area (New) */
+/* 2. The Minimal Footer Area */
 .footer-minimal {
-  /* This is the divider line */
   border-top: 1px solid var(--border);
   margin-top: var(--space-8);
   padding-top: var(--space-8);
@@ -87,31 +82,74 @@
   flex-wrap: wrap; 
   justify-content: center;
   gap: var(--space-5);
+  list-style: none; /* Remove default bullets */
+  padding: 0;
+  margin: 0;
 }
 
-.footer-links a {
-  font-size: var(--font-size-small);
-  color: var(--muted-foreground);
+/* --- NEW: SWEEP UNDERLINE EFFECT --- */
+.hover-underline {
+  position: relative;
+  display: inline-block;
   text-decoration: none;
-  transition: var(--transition-smooth);
-}
-.footer-links a:hover {
-  color: var(--primary);
+  color: var(--muted-foreground);
+  font-size: var(--font-size-small);
+  padding-bottom: 2px;
+  overflow: hidden;
+  transition: color 0.3s ease;
 }
 
+/* The Line */
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--primary);
+  
+  /* Start hidden to the left */
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-underline:hover {
+  color: var(--foreground);
+}
+
+/* On Hover: Scale to 1 from the Left */
+.hover-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* --- NEW: SOCIAL BUTTONS --- */
 .footer-socials {
   display: flex;
-  gap: var(--space-6);
+  gap: var(--space-5);
 }
 
 .footer-socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Circle shape */
   color: var(--muted-foreground);
-  transition: var(--transition-smooth);
+  border: 1px solid transparent; /* Invisible border for layout stability */
+  transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
 }
+
 .footer-socials a:hover {
+  background: hsl(190 95% 55% / 0.1); /* Low opacity primary bg */
+  border-color: var(--primary);
   color: var(--primary);
-  transform: translateY(-2px);
+  /* Note: No translateY here, Magnetic wrapper handles movement */
 }
+
 .footer-socials svg {
   width: 20px;
   height: 20px;
@@ -126,18 +164,12 @@
   font-size: var(--font-size-small);
 }
 
-
-/* * --------------------------------
- * Desktop Layout
- * --------------------------------
-*/
+/* --- Desktop Layout --- */
 @media (min-width: 768px) {
-  /* CTA box button */
   .footer-cta-box .button-primary {
     width: auto;
   }
 
-  /* Make minimal footer top row horizontal */
   .footer-top {
     flex-direction: row;
     justify-content: space-between;

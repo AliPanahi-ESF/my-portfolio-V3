@@ -5,12 +5,12 @@
 
 /* --- Layout Containers --- */
 .project-container {
-  max-width: 1024px; /* <-- This is the old value */
+  max-width: 1024px; 
   margin-inline: auto;
   padding-inline: var(--space-6);
 }
 .project-container-narrow {
-  max-width: 800px; /* <-- This is the old value */
+  max-width: 800px; 
   margin-inline: auto;
   padding-inline: var(--space-6);
 }
@@ -23,10 +23,7 @@
   gap: var(--space-6);
 }
 .project-showcase {
-  /* Increased padding to make it stand out */
   padding-block: var(--space-9); 
-  
-  /* Optional: A very subtle background highlight to separate it */
   background-color: hsl(190 95% 55% / 0.03);
 }
 .showcase-intro {
@@ -55,6 +52,7 @@
 .project-links.centered {
   justify-content: center;
 }
+
 /* --- Hero Section --- */
 .project-hero {
   padding-top: var(--space-9);
@@ -73,28 +71,38 @@
 }
 .project-hero .glass-badge {
   display: block;
-  width: fit-content; /* Makes it shrink-to-fit */
-  margin-top: var(--space-6); /* Space from button */
-  margin-bottom: var(--space-4); /* Space to title */
+  width: fit-content; 
+  margin-top: var(--space-6); 
+  margin-bottom: var(--space-4); 
 }
 .project-title {
-font-family: var(--font-display);
-  font-size: var(--font-size-h1); /* <-- FIX (was h1-desktop) */
+  font-family: var(--font-display);
+  font-size: var(--font-size-h1); 
   font-weight: 700;
-  margin-top: 0; /* No margin-top needed now */
+  margin-top: 0; 
   margin-bottom: var(--space-6);
 }
-.project-hero-image {
+
+/* FIX: Added the dot here */
+.hero-image-wrapper {
   width: 100%;
-  height: 400px;
-  object-fit: cover;
+  height: 400px; 
   border-radius: var(--radius);
+  overflow: hidden; /* Crucial for the scrolling effect */
+  margin-top: var(--space-6);
+}
+
+/* Target the image inside to ensure it has room to move */
+.hero-image-wrapper .project-hero-image {
+  height: 120%; /* Taller than container so it can scroll */
+  width: 100%;
+  object-fit: cover;
+  margin-top: -10%; /* Center it initially */
 }
 
 /* --- Executive Summary --- */
 .project-summary {
   padding-block: var(--space-8);
-  /* Re-skin: bg-primary/5 */
   background-color: hsl(190 95% 55% / 0.05);
 }
 .project-summary-card {
@@ -138,7 +146,6 @@ font-family: var(--font-display);
   flex-wrap: wrap;
   gap: var(--space-2);
 }
-/* Re-skin: Badge variant="secondary" */
 .skill-badge {
   display: inline-block;
   background-color: var(--secondary);
@@ -298,10 +305,49 @@ font-family: var(--font-display);
   color: var(--muted-foreground);
 }
 
+/* 2. Next Project Section */
+.next-project-area {
+  margin-top: var(--space-10);
+  padding-block: var(--space-10);
+  border-top: 1px solid var(--border);
+  background: linear-gradient(to bottom, var(--background), var(--card));
+}
+
+.next-project-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+  opacity: 0.6;
+}
+
+.next-project-header h3 {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h3);
+  white-space: nowrap;
+  margin: 0;
+}
+
+.divider-line {
+  height: 1px;
+  width: 100%;
+  background: var(--border);
+}
+
+.next-project-card-wrapper {
+  max-width: 600px;
+  margin-inline: auto;
+}
+
 /* --- Desktop Layout --- */
 @media (min-width: 768px) {
   .project-title {
-    font-size: var(--font-size-h2-desktop); /* Use the smaller desktop size */
+    font-size: var(--font-size-h2-desktop);
+  }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
   }
   .features-grid {
     grid-template-columns: 1fr 1fr;
@@ -311,5 +357,8 @@ font-family: var(--font-display);
   }
   .metrics-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .hero-image-wrapper {
+    height: 600px;
   }
 }

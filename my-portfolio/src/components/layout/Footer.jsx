@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import './Footer.css';
 import { Linkedin, Github, Figma } from 'lucide-react';
+import Magnetic from '../Magnetic'; // <-- Import new component
 
-// Import GSAP + ScrollTrigger
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -11,47 +11,44 @@ gsap.registerPlugin(ScrollTrigger);
 function Footer() {
   const footerRef = useRef(null);
 
-  // NEW: 3-step animation timeline
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Create a timeline
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: footerRef.current,
-          start: 'top 80%', // Start when the top of the footer is 80% in view
+          start: 'top 85%', 
           once: true,
         },
       });
 
-      // Step 1: Animate the CTA Box
+      // 1. Box Fade & Scale Up
       tl.from('.footer-cta-box', {
         opacity: 0,
-        y: 50,
-        duration: 0.8,
+        scale: 0.95,
+        y: 30,
+        duration: 1,
         ease: 'power3.out',
       });
 
-      // Step 2: Animate the new footer links/socials
-      tl.from('.footer-top', {
+      // 2. Links Stagger
+      tl.from('.footer-links a', {
         opacity: 0,
-        y: 30,
+        y: 20,
         duration: 0.6,
-        ease: 'power3.out',
-      }, 
-      "-=0.5" // Overlap with the box animation
-      );
+        stagger: 0.05,
+        ease: 'back.out(1.7)',
+      }, "-=0.5");
 
-      // Step 3: Animate the copyright
-      tl.from('.footer-bottom', {
+      // 3. Socials Pop
+      tl.from('.footer-socials a', {
+        scale: 0,
         opacity: 0,
-        y: 30,
         duration: 0.6,
-        ease: 'power3.out',
-      }, 
-      "-=0.4" // Overlap with the links animation
-      );
+        stagger: 0.1,
+        ease: 'elastic.out(1, 0.5)'
+      }, "-=0.4");
 
-    }, footerRef); // Scope to the footer section
+    }, footerRef);
 
     return () => ctx.revert();
   }, []);
@@ -59,50 +56,56 @@ function Footer() {
   return (
     <footer id="contact" className="footer-section" ref={footerRef}>
       <div className="footer-container">
-        {/* The CTA Box (from our previous version) */}
+        
+        {/* CTA BOX */}
         <div className="footer-cta-box">
           <h2 className="footer-title">
             Let's build something together
           </h2>
           <p className="footer-body">
-            I'm currently open to new opportunities and collaborations. Whether
-            you have a project in mind or just want to chat, feel free to reach
-            out.
+            I'm currently open to new opportunities. Whether you have a project 
+            in mind or just want to chat, feel free to reach out.
           </p>
-          <a href="mailto:alipanahi090@gmail.com" className="button-primary">
-            Get in Touch
-          </a>
+          
+          {/* MAGNETIC BUTTON */}
+          <Magnetic>
+            <a href="mailto:alipanahi090@gmail.com" className="button-primary">
+              Get in Touch
+            </a>
+          </Magnetic>
         </div>
 
-        {/* The new minimal footer (from your screenshot) */}
+        {/* MINIMAL FOOTER */}
         <div className="footer-minimal">
           <div className="footer-top">
-            {/* Page Links */}
+            
             <ul className="footer-links">
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#work">Work</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+              <li><a href="#hero" className="hover-underline">Home</a></li>
+              <li><a href="#work" className="hover-underline">Work</a></li>
+              <li><a href="#about" className="hover-underline">About</a></li>
+              <li><a href="#contact" className="hover-underline">Contact</a></li>
+              <li><a href="/resume.pdf" target="_blank" className="hover-underline">Resume</a></li>
             </ul>
-            {/* Social Icons */}
+            
             <div className="footer-socials">
-              <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                <Linkedin />
-              </a>
-              <a href="#" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-                <Github />
-              </a>
-              <a href="#" aria-label="Figma" target="_blank" rel="noopener noreferrer">
-                <Figma />
-              </a>
+              <Magnetic>
+                <a href="#" aria-label="LinkedIn" target="_blank"><Linkedin /></a>
+              </Magnetic>
+              <Magnetic>
+                <a href="#" aria-label="GitHub" target="_blank"><Github /></a>
+              </Magnetic>
+              <Magnetic>
+                <a href="#" aria-label="Figma" target="_blank"><Figma /></a>
+              </Magnetic>
             </div>
+
           </div>
-          {/* Copyright */}
+          
           <div className="footer-bottom">
-            <p>© 2025 All rights reserved.</p>
+            <p>© 2025 Ali Panahi. All rights reserved.</p>
           </div>
         </div>
+
       </div>
     </footer>
   );
