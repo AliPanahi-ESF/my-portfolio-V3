@@ -26,7 +26,7 @@ id: 'asml-design-system', // <-- This ID MUST match your new case study key
     // --- PROJECT 2: EDORADO ---
     id: 'edorado', // Matches caseStudies.js key
     badge: 'Marine Tech',
-    title: 'Electric Boat User Interface',
+    title: 'Improving  the UI of Edorado8s',
     image: edoradoImage,
     description: 'A high-contrast, touch-friendly interface designed for safety and clarity on the open water.',
     stats: [

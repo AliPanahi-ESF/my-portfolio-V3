@@ -136,7 +136,7 @@ function Navbar() {
           <li><a href="#about" className="mobile-menu-link" onClick={toggleMenu}>About</a></li>
           <li><a href="#contact" className="mobile-menu-link" onClick={toggleMenu}>Contact</a></li>
         </ul>
-        <a href="/resume.pdf" className="button-resume mobile-menu-link" target="_blank">View Resume</a>
+        <a href="https://drive.google.com/file/d/1ruXN034hbuH3677BZAuj8ReMevv27pgh/view?usp=sharing" className="button-resume mobile-menu-link" target="_blank">View Resume</a>
       </div>
 
     </nav>
