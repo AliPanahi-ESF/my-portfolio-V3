@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Traits.css';
 import { traits } from '../data/traits.js';
-import { Sparkles, Code, Dumbbell, Heart, Rocket } from 'lucide-react';
+import { Sparkles, Code, Dumbbell, Heart, Rocket, ChevronDown } from 'lucide-react'; // <-- Added ChevronDown
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -27,89 +27,91 @@ function Traits() {
       });
 
       // --- SHARED SETUP ---
-      // We set initial styles here to ensure consistency
       gsap.set(cards.slice(1), { 
         z: -100, scale: 0.85, yPercent: 15, opacity: 0, 
         transformOrigin: "50% 100%" 
       });
 
-      // 2. DESKTOP ANIMATION (High Fidelity)
-      // Min-width 800px: We keep the lag (scrub: 0.5) and the Blur effect
+      // 2. DESKTOP ANIMATION
       mm.add("(min-width: 800px)", () => {
         
-        // Reset blur for desktop
         gsap.set(cards.slice(1), { filter: "blur(10px)" });
-
-        const scrollDistance = (cards.length) * 300; // Long scroll
+        const scrollDistance = (cards.length) * 300; 
         
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             pin: true,
-            scrub: 0.5, // Adds that "heavy/premium" feel
+            scrub: 0.5,
             start: 'center center', 
             end: `+=${scrollDistance}`, 
             anticipatePin: 1,
-            invalidateOnRefresh: true
+            invalidateOnRefresh: true,
+            
+            // Update Hint Visibility
+            onUpdate: (self) => {
+              if (self.progress > 0.02) {
+                gsap.to('.scroll-hint-overlay', { opacity: 0, duration: 0.3, overwrite: true });
+              } else {
+                gsap.to('.scroll-hint-overlay', { opacity: 1, duration: 0.3, overwrite: true });
+              }
+            }
           }
         });
 
-        // Desktop Loop (With Blur & Tilt)
         cards.forEach((card, index) => {
           if (index === cards.length - 1) return;
           const nextCard = cards[index + 1];
-
           tl.to(card, {
             yPercent: -120, rotationX: 10, scale: 0.95, opacity: 0, autoAlpha: 0,
             duration: 1, ease: "power2.in",
           })
           .to(nextCard, {
             z: 0, yPercent: 0, scale: 1, opacity: 1, autoAlpha: 1, 
-            filter: "blur(0px)", // Animate blur
+            filter: "blur(0px)",
             duration: 1, ease: "power2.out"
           }, "<+=0.15");
         });
       });
 
-      // 3. MOBILE ANIMATION (High Performance)
-      // Max-width 799px: We remove lag (scrub: true) and remove Blur
+      // 3. MOBILE ANIMATION
       mm.add("(max-width: 799px)", () => {
         
-        // Ensure NO blur on mobile (Performance killer)
         gsap.set(cards, { filter: "blur(0px)" });
-
-        const scrollDistance = (cards.length) * 228; // Shorter scroll for thumbs
+        const scrollDistance = (cards.length) * 228;
         
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             pin: true,
-            scrub: true, // Instant response (1:1 with finger)
+            scrub: true,
             start: 'center center', 
             end: `+=${scrollDistance}`, 
             anticipatePin: 1,
-            invalidateOnRefresh: true
+            invalidateOnRefresh: true,
+
+            // Added Hint Logic for Mobile too
+            onUpdate: (self) => {
+              if (self.progress > 0.02) {
+                gsap.to('.scroll-hint-overlay', { opacity: 0, duration: 0.3, overwrite: true });
+              } else {
+                gsap.to('.scroll-hint-overlay', { opacity: 1, duration: 0.3, overwrite: true });
+              }
+            }
           }
         });
 
-        // Mobile Loop (Simplified Physics)
         cards.forEach((card, index) => {
           if (index === cards.length - 1) return;
           const nextCard = cards[index + 1];
-
           tl.to(card, {
-            yPercent: -120, 
-            // Less 3D rotation on mobile to avoid rendering glitches
-            rotationX: 0, 
-            scale: 0.9, 
-            opacity: 0, autoAlpha: 0,
-            duration: 1, ease: "none", // Linear feel works better for touch
+            yPercent: -120, rotationX: 0, scale: 0.9, opacity: 0, autoAlpha: 0,
+            duration: 1, ease: "none",
           })
           .to(nextCard, {
             z: 0, yPercent: 0, scale: 1, opacity: 1, autoAlpha: 1,
-            // No blur animation here
             duration: 1, ease: "none"
-          }, "<"); // No overlap, snappy transition
+          }, "<");
         });
       });
 
@@ -118,7 +120,7 @@ function Traits() {
     return () => ctx.revert();
   }, []);
 
-  // Hover Animation (Kept the same)
+  // Hover Animation
   useEffect(() => {
     if (hoveredIndex === null) return;
     gsap.to(`.trait-icon-wrapper[data-index="${hoveredIndex}"]`, { scale: 1.15, y: -5, duration: 0.4, ease: 'back.out(2)' });
@@ -141,6 +143,14 @@ function Traits() {
         </div>
 
         <div className="traits-stack-wrapper">
+          
+          {/* --- FIX: ADDED THE SCROLL HINT HERE --- */}
+          <div className="scroll-hint-overlay">
+             <span className="scroll-hint-text">Scroll to Deal</span>
+             <ChevronDown className="scroll-hint-icon" />
+          </div>
+          {/* --------------------------------------- */}
+
           <div className="traits-carousel" ref={cardsRef}>
             {traits.map((trait, index) => {
               const IconComponent = iconMap[trait.icon];
@@ -150,7 +160,6 @@ function Traits() {
                   className="trait-slide" 
                   onMouseEnter={() => setHoveredIndex(index)} 
                   onMouseLeave={() => setHoveredIndex(null)}
-                  // Add click handler for Mobile "Tap" interaction
                   onClick={() => setHoveredIndex(index === hoveredIndex ? null : index)}
                 >
                   <div className="trait-card">

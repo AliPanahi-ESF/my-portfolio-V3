@@ -124,7 +124,7 @@ function Navbar() {
             <li><a href="#work">Work</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="/resume.pdf" className="button-resume" target="_blank">Resume</a></li>
+            <li><a href="https://drive.google.com/file/d/1ruXN034hbuH3677BZAuj8ReMevv27pgh/view?usp=sharing" className="button-resume" target="_blank">Resume</a></li>
           </ul>
         </div>
       </div>

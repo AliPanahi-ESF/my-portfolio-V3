@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react'; // Added useState
 import './Projects.css';
 import { projects } from '../data/projects.js'; 
 import ProjectCard from '../components/shared/ProjectCard.jsx';
@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 function Projects() {
   const sectionRef = useRef(null);
   const stackRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0); // Track active card
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -33,23 +34,32 @@ function Projects() {
           });
         });
 
-        // 2. TIMELINE WITH SNAPPING
+        // 2. TIMELINE WITH SNAPPING & PROGRESS TRACKING
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             pin: true,
             start: 'top top', 
             end: `+=${wrappers.length * 900}`, 
-            scrub: 0.5, // Lower scrub makes it feel more responsive
+            scrub: 0.5, 
             anticipatePin: 1,
             
-            // --- THE FIX: MAGNETIC SNAPPING ---
-            // This forces the scroll to settle on a card, 
-            // ensuring the previous one is fully gone.
+            // --- NEW: Update Progress Bar & Number ---
+            onUpdate: (self) => {
+              // A. Animate the bar height directly via GSAP (Performant)
+              gsap.set('.progress-fill', { scaleY: self.progress });
+              
+              // B. Update the number state (React)
+              // self.progress is 0 to 1. We map that to 0 to (length - 1)
+              const index = Math.round(self.progress * (wrappers.length - 1));
+              setActiveIndex(index);
+            },
+
+            // Magnetic Snapping
             snap: {
-              snapTo: 1 / (wrappers.length - 1), // Snap to each card index
-              duration: { min: 0.1, max: 0.3 },  // Quick snap
-              delay: 0.1, // Wait slightly before snapping
+              snapTo: 1 / (wrappers.length - 1), 
+              duration: { min: 0.1, max: 0.3 },  
+              delay: 0.1, 
               ease: "power1.inOut"
             }
           }
@@ -76,7 +86,6 @@ function Projects() {
             autoAlpha: 1, 
             duration: 0.5,
             ease: "power1.out",
-            // Fix: Ensure pointer events are active immediately when fully visible
             onComplete: () => gsap.set(nextWrapper, { pointerEvents: 'all' })
           }, "<"); 
         });
@@ -121,6 +130,21 @@ function Projects() {
         </div>
         
         <div className="project-card-stack" ref={stackRef}>
+          
+          {/* --- NEW: VISUAL FEEDBACK LOOP --- */}
+          <div className="projects-progress-indicator">
+            <span className="progress-number active">
+              0{activeIndex + 1}
+            </span>
+            <div className="progress-track">
+              <div className="progress-fill"></div>
+            </div>
+            <span className="progress-number">
+              0{projects.length}
+            </span>
+          </div>
+          {/* ------------------------------- */}
+
           {projects.map((project) => (
             <div key={project.id} className="card-animation-wrapper">
               <ProjectCard project={project} />
