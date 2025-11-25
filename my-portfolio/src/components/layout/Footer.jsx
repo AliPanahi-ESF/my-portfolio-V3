@@ -84,18 +84,18 @@ function Footer() {
               <li><a href="#work" className="hover-underline">Work</a></li>
               <li><a href="#about" className="hover-underline">About</a></li>
               <li><a href="#contact" className="hover-underline">Contact</a></li>
-              <li><a href="/resume.pdf" target="_blank" className="hover-underline">Resume</a></li>
+              <li><a href="https://drive.google.com/file/d/1ruXN034hbuH3677BZAuj8ReMevv27pgh/view?usp=sharing" target="_blank" className="hover-underline">Resume</a></li>
             </ul>
             
             <div className="footer-socials">
               <Magnetic>
-                <a href="#" aria-label="LinkedIn" target="_blank"><Linkedin /></a>
+                <a href="https://www.linkedin.com/in/alipanahi090/" aria-label="LinkedIn" target="_blank"><Linkedin /></a>
               </Magnetic>
               <Magnetic>
-                <a href="#" aria-label="GitHub" target="_blank"><Github /></a>
+                <a href="https://github.com/AliPanahi-ESF" aria-label="GitHub" target="_blank"><Github /></a>
               </Magnetic>
               <Magnetic>
-                <a href="#" aria-label="Figma" target="_blank"><Figma /></a>
+                <a href="https://www.figma.com/design/aoytWMO1rO2tnA5SfIpUMG/Edorado-Dashboard-UI?node-id=13-11&t=2lJMVZGBaUmrTgtD-1" aria-label="Figma" target="_blank"><Figma /></a>
               </Magnetic>
             </div>
 
