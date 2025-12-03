@@ -15,7 +15,7 @@ export const useAnalytics = () => {
       if (!window.ga4Initialized) {
         ReactGA.initialize(MEASUREMENT_ID);
         window.ga4Initialized = true;
-        console.log('GA4 Initialized with ID:', MEASUREMENT_ID);
+        // console.log('GA4 Initialized with ID:', MEASUREMENT_ID);
       }
     } else {
       console.warn('GA4 Measurement ID not found in environment variables (VITE_GA_MEASUREMENT_ID). Analytics disabled.');
