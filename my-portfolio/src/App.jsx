@@ -1,12 +1,13 @@
 import React, { Suspense, useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useMediaQuery } from './hooks/useMediaQuery';
-import gsap from 'gsap'; 
+import { useAnalytics } from './hooks/useAnalytics';
+import gsap from 'gsap';
 
 // Components
 import Preloader from './components/layout/Preloader'; // <-- Import this
 import CustomCursor from './components/shared/CustomCursor';
-import FibonacciHud from './components/shared/FibonacciHud'; 
+import FibonacciHud from './components/shared/FibonacciHud';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home.jsx';
@@ -16,14 +17,14 @@ import EdoradoPage from './pages/EdoradoPage.jsx';
 // Helper: Scroll To Top
 function ScrollToTop() {
   const { pathname } = useLocation();
-  
+
   useLayoutEffect(() => {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
   }, [pathname]);
-  
+
   return null;
 }
 
@@ -35,6 +36,10 @@ function App() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const appRef = useRef(null);
+
+  // --- ANALYTICS INTEGRATION ---
+  useAnalytics();
+  // -----------------------------
 
   // Particles Animation (Unchanged)
   useEffect(() => {
@@ -49,7 +54,7 @@ function App() {
           opacity: gsap.utils.random(0.3, 0.8)
         });
         gsap.to(p, {
-          y: "+=random(-100, 100)", x: "+=random(-50, 50)",   
+          y: "+=random(-100, 100)", x: "+=random(-50, 50)",
           opacity: "random(0.2, 0.8)", duration: "random(10, 20)",
           repeat: -1, yoyo: true, ease: "sine.inOut"
         });
@@ -73,20 +78,20 @@ function App() {
       {/* 2. Main Content */}
       {/* We render it immediately so GSAP can calculate heights, 
           but the Preloader covers it visually. */}
-      
+
       <div className="content-wrapper">
         {isHomePage && (
           <div className="background-container">
             <div className="background-grid"></div>
             <div className="geometric-shape">
-               <div className="octahedron-face face-1"></div>
-               <div className="octahedron-face face-2"></div>
-               <div className="octahedron-face face-3"></div>
-               <div className="octahedron-face face-4"></div>
-               <div className="octahedron-face face-5"></div>
-               <div className="octahedron-face face-6"></div>
-               <div className="octahedron-face face-7"></div>
-               <div className="octahedron-face face-8"></div>
+              <div className="octahedron-face face-1"></div>
+              <div className="octahedron-face face-2"></div>
+              <div className="octahedron-face face-3"></div>
+              <div className="octahedron-face face-4"></div>
+              <div className="octahedron-face face-5"></div>
+              <div className="octahedron-face face-6"></div>
+              <div className="octahedron-face face-7"></div>
+              <div className="octahedron-face face-8"></div>
             </div>
             <FibonacciHud />
             {particleArray.map((_, i) => (
@@ -97,9 +102,9 @@ function App() {
 
         {isDesktop && <CustomCursor />}
         <Navbar />
-        
+
         <main>
-          <Suspense fallback={<div className="loading-screen"></div>}> 
+          <Suspense fallback={<div className="loading-screen"></div>}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/project/edorado" element={<EdoradoPage />} />
@@ -107,7 +112,7 @@ function App() {
             </Routes>
           </Suspense>
         </main>
-        
+
         <Footer />
       </div>
     </div>

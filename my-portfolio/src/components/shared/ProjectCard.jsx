@@ -1,16 +1,26 @@
 // 1. Import 'Link' from react-router-dom
 import { Link } from 'react-router-dom';
+import { useAnalytics } from '../../hooks/useAnalytics';
 import { ArrowUpRight, ArrowDownRight } from 'lucide-react';
 import './ProjectCard.css';
 
 function ProjectCard({ project }) {
+  const { trackEvent } = useAnalytics();
+
+  const handleProjectClick = () => {
+    trackEvent('Project', 'Click', project.title);
+  };
   return (
     // 2. Wrap your ENTIRE card in a <Link> component.
     // We're using the 'project.id' from your data file
     // to build the correct URL (e.g., "/project/healthtech-redesign")
-    <Link to={`/project/${project.id}`} className="project-card-link">
+    <Link
+      to={`/project/${project.id}`}
+      className="project-card-link"
+      onClick={handleProjectClick}
+    >
       <article className="project-card">
-        
+
         {/* All your existing card content goes inside the link */}
         <div className="project-card-content">
           <div className="glass-badge">{project.badge}</div>
