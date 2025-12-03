@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { X, Send, Sparkles, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import Button from './shared/Button';
 import gsap from 'gsap';
 import './ContactModal.css';
@@ -75,18 +76,48 @@ const ContactModal = ({ isOpen, onClose }) => {
             setFormData(prev => ({ ...prev, message: data.message }));
         } catch (error) {
             console.error('AI Generation Error:', error);
-            alert('Failed to generate message. Please check your API key configuration.');
+            alert(`AI Error: ${error.message}`);
         } finally {
             setIsGenerating(false);
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Sending Email:', formData);
-        // TODO: Integrate EmailJS here
-        alert('Message sent! (Simulated)');
-        onClose();
+
+        // Basic validation
+        if (!formData.email || !formData.message) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        if (!serviceId || !templateId || !publicKey) {
+            console.error('EmailJS keys are missing.');
+            alert('Configuration Error: Email service is not set up correctly (Missing Keys).');
+            return;
+        }
+
+        try {
+            const templateParams = {
+                name: formData.name,
+                email: formData.email,
+                subject: formData.subject,
+                message: formData.message,
+            };
+
+            await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+            alert('Message sent successfully!');
+            onClose();
+            setFormData({ name: '', email: '', subject: '', summary: '', message: '' }); // Reset form
+        } catch (error) {
+            console.error('EmailJS Error:', error);
+            alert('Failed to send message. Please try again later.');
+        }
     };
 
     if (!isOpen) return null;
