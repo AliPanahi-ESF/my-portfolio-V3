@@ -43,7 +43,7 @@ exports.handler = async (event, context) => {
 
         // 5. Initialize Gemini
         const genAI = new GoogleGenerativeAI(API_KEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-001" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
 
         // 6. Construct Prompt
         const prompt = `
