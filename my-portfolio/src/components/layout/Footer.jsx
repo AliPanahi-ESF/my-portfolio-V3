@@ -16,7 +16,7 @@ function Footer() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: footerRef.current,
-          start: 'top 85%', 
+          start: 'top 85%',
           once: true,
         },
       });
@@ -56,17 +56,17 @@ function Footer() {
   return (
     <footer id="contact" className="footer-section" ref={footerRef}>
       <div className="footer-container">
-        
+
         {/* CTA BOX */}
         <div className="footer-cta-box">
           <h2 className="footer-title">
             Let's build something together
           </h2>
           <p className="footer-body">
-            I'm currently open to new opportunities. Whether you have a project 
+            I'm currently open to new opportunities. Whether you have a project
             in mind or just want to chat, feel free to reach out.
           </p>
-          
+
           {/* MAGNETIC BUTTON */}
           <Magnetic>
             <a href="mailto:alipanahi090@gmail.com" className="button-primary">
@@ -78,7 +78,7 @@ function Footer() {
         {/* MINIMAL FOOTER */}
         <div className="footer-minimal">
           <div className="footer-top">
-            
+
             <ul className="footer-links">
               <li><a href="#hero" className="hover-underline">Home</a></li>
               <li><a href="#work" className="hover-underline">Work</a></li>
@@ -86,7 +86,7 @@ function Footer() {
               <li><a href="#contact" className="hover-underline">Contact</a></li>
               <li><a href="https://drive.google.com/file/d/1ruXN034hbuH3677BZAuj8ReMevv27pgh/view?usp=sharing" target="_blank" className="hover-underline">Resume</a></li>
             </ul>
-            
+
             <div className="footer-socials">
               <Magnetic>
                 <a href="https://www.linkedin.com/in/alipanahi090/" aria-label="LinkedIn" target="_blank"><Linkedin /></a>
@@ -100,7 +100,7 @@ function Footer() {
             </div>
 
           </div>
-          
+
           <div className="footer-bottom">
             <p>© 2025 Ali Panahi. All rights reserved.</p>
           </div>
