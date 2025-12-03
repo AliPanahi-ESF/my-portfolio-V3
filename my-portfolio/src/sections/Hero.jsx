@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { Linkedin, Github, Figma, Sparkles, ArrowRight } from 'lucide-react'; 
+import { Linkedin, Github, Figma, Sparkles, ArrowRight } from 'lucide-react';
+import Button from '../components/shared/Button';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import './Hero.css';
@@ -10,11 +11,11 @@ function Hero() {
   const heroRef = useRef(null);
   const contentRef = useRef(null); // Added ref for parallax effect
 
-useEffect(() => {
+  useEffect(() => {
     const ctx = gsap.context(() => {
-      
+
       document.fonts.ready.then(() => {
-        
+
         const heroTitle = new SplitText('.hero-title', { type: 'chars' });
         const heroTitleChars = heroTitle.chars;
 
@@ -31,29 +32,29 @@ useEffect(() => {
 
         // ... (rest of your timeline code remains exactly the same)
         tl.to('.glass-badge', {
-           autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out'
+          autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out'
         });
-        
+
         tl.to(heroTitleChars, {
-           autoAlpha: 1, y: 0, duration: 1, ease: 'back.out(1.7)', stagger: 0.03
+          autoAlpha: 1, y: 0, duration: 1, ease: 'back.out(1.7)', stagger: 0.03
         }, "-=0.6");
 
         tl.to(['.hero-subtitle', '.hero-cta-group', '.hero-socials'], {
-           autoAlpha: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.1
+          autoAlpha: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.1
         }, "-=0.8");
       });
 
       // --- OPTIONAL: Mouse Parallax Effect ---
       // Moves the content slightly opposite to mouse movement
-      const moveX = gsap.quickTo(contentRef.current, "x", {duration: 0.5, ease: "power3"});
-      const moveY = gsap.quickTo(contentRef.current, "y", {duration: 0.5, ease: "power3"});
+      const moveX = gsap.quickTo(contentRef.current, "x", { duration: 0.5, ease: "power3" });
+      const moveY = gsap.quickTo(contentRef.current, "y", { duration: 0.5, ease: "power3" });
 
       window.addEventListener("mousemove", (e) => {
         const { clientX, clientY, innerWidth, innerHeight } = e;
         // Calculate distance from center
         const x = (clientX - innerWidth / 2) / 30; // Divide by 30 to dampen
         const y = (clientY - innerHeight / 2) / 30;
-        
+
         moveX(x);
         moveY(y);
       });
@@ -67,7 +68,7 @@ useEffect(() => {
     <section id="hero" className="hero-section" ref={heroRef}>
       {/* Wrapped content in a ref for parallax */}
       <div className="hero-content" ref={contentRef}>
-        
+
         {/* Added class 'hero-element' to things we want to hide initially */}
         <div className="glass-badge hero-element">
           <Sparkles className="glass-badge-icon" />
@@ -87,14 +88,13 @@ useEffect(() => {
         </p>
 
         <div className="hero-cta-group hero-element">
-          <a href="#work" className="button-primary">
-            <span>Explore My Work</span>
-            <ArrowRight className="button-icon" />
-          </a>
-          <a href="https://www.linkedin.com/in/alipanahi090/" className="button-secondary" target="_blank" rel="noreferrer">
-            <span>Let's Connect</span>
+          <Button href="#work" variant="primary" icon={ArrowRight}>
+            Explore My Work
+          </Button>
+          <Button href="https://www.linkedin.com/in/alipanahi090/" variant="secondary" target="_blank" rel="noreferrer">
+            Let's Connect
             <div className="connect-dot"></div>
-          </a>
+          </Button>
         </div>
 
         <div className="hero-socials hero-element">
@@ -110,7 +110,7 @@ useEffect(() => {
         </div>
 
       </div>
-      
+
       {/* Add a subtle background glow */}
       <div className="hero-glow"></div>
     </section>

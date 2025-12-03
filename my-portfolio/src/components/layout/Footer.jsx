@@ -1,7 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Footer.css';
 import { Linkedin, Github, Figma } from 'lucide-react';
-import Magnetic from '../Magnetic'; // <-- Import new component
+import Button from '../shared/Button';
+import Magnetic from '../Magnetic';
+import ContactModal from '../ContactModal';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Footer() {
   const footerRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -55,6 +58,8 @@ function Footer() {
 
   return (
     <footer id="contact" className="footer-section" ref={footerRef}>
+      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
       <div className="footer-container">
 
         {/* CTA BOX */}
@@ -68,11 +73,9 @@ function Footer() {
           </p>
 
           {/* MAGNETIC BUTTON */}
-          <Magnetic>
-            <a href="mailto:alipanahi090@gmail.com" className="button-primary">
-              Get in Touch
-            </a>
-          </Magnetic>
+          <Button onClick={() => setIsModalOpen(true)} variant="primary">
+            Get in Touch
+          </Button>
         </div>
 
         {/* MINIMAL FOOTER */}

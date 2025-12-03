@@ -1,0 +1,209 @@
+/* Modal Root */
+.contact-modal-root {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    /* Let clicks pass through when closed (handled by React conditional render, but good safety) */
+}
+
+/* Overlay */
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    /* GSAP handles this */
+    pointer-events: auto;
+}
+
+/* Content */
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    background: var(--background);
+    /* Fallback */
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+    opacity: 0;
+    /* GSAP handles this */
+
+    /* Glass Effect */
+    backdrop-filter: blur(16px);
+}
+
+/* Close Button */
+.close-button {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    background: transparent;
+    border: none;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-button:hover {
+    color: var(--foreground);
+}
+
+/* Header */
+.modal-header {
+    margin-bottom: var(--space-6);
+    text-align: center;
+}
+
+.modal-header h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-2);
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.modal-header p {
+    color: var(--muted-foreground);
+    font-size: var(--font-size-small);
+}
+
+/* Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.form-row {
+    display: flex;
+    gap: var(--space-4);
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.form-group label {
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    color: var(--foreground);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: var(--space-3);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--foreground);
+    font-family: inherit;
+    font-size: var(--font-size-body);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* AI Section */
+.ai-section {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(0, 150, 255, 0.05));
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin: var(--space-2) 0;
+}
+
+.ai-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--primary) !important;
+}
+
+.ai-input-wrapper {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.ai-generate-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.ai-generate-btn:hover:not(:disabled) {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+.ai-generate-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.ai-hint {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    margin-top: var(--space-1);
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .modal-content {
+        width: 95%;
+        padding: var(--space-4);
+        max-height: 90vh;
+        overflow-y: auto;
+        /* Allow scrolling if content is tall */
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .modal-header h2 {
+        font-size: var(--font-size-xl);
+    }
+}

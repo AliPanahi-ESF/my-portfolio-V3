@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 
 // Data Imports
@@ -9,6 +9,7 @@ import { projects } from '../data/projects.js'; // Need this to find the "Next" 
 // Styles & Components
 import './ProjectPage.css';
 import ProjectCard from '../components/shared/ProjectCard'; // <-- Your Existing Card
+import Button from '../components/shared/Button';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -20,7 +21,7 @@ function ProjectPage() {
 
   // 1. Get Data
   const study = caseStudies[slug];
-  
+
   // 2. "Next Project" Logic
   // Find current index in the projects array to determine what comes next
   const currentIndex = projects.findIndex(p => p.id === slug);
@@ -35,7 +36,7 @@ function ProjectPage() {
   // 4. Animations
   useEffect(() => {
     const ctx = gsap.context(() => {
-      
+
       // Hero Parallax (Subtle movement)
       gsap.to('.project-hero-image', {
         yPercent: 20,
@@ -53,13 +54,13 @@ function ProjectPage() {
         y: 100, opacity: 0, duration: 1, ease: 'power3.out',
         scrollTrigger: { trigger: '.project-summary', start: 'top 85%' }
       });
-      
+
       // Narrative Sections (Fade Up)
       gsap.utils.toArray('.narrative-section').forEach(section => {
         gsap.from(section, {
           y: 50, opacity: 0, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { 
-            trigger: section, 
+          scrollTrigger: {
+            trigger: section,
             start: 'top 85%',
             toggleActions: 'play none none reverse' // Reverses when scrolling back up
           }
@@ -81,13 +82,13 @@ function ProjectPage() {
 
   return (
     <main className="project-page" ref={mainRef}>
-      
+
       {/* --- HERO --- */}
       <section className="project-hero">
         <div className="project-container">
-          <Link to="/" className="button-secondary" style={{ marginBottom: '2rem' }}>
-            <ArrowLeft size={16} /> Back to projects
-          </Link>
+          <Button to="/" variant="secondary" icon={ArrowLeft} style={{ marginBottom: '2rem', flexDirection: 'row-reverse' }}>
+            Back to projects
+          </Button>
 
           <div className="glass-badge">{study.category}</div>
           <h1 className="project-title">{study.title}</h1>
@@ -132,7 +133,7 @@ function ProjectPage() {
       {/* --- MAIN NARRATIVE --- */}
       <section className="project-narrative">
         <div className="project-container-narrow">
-          
+
           {/* Problem */}
           <div className="narrative-section">
             <h2 className="narrative-title">{study.problem.title}</h2>
@@ -203,7 +204,7 @@ function ProjectPage() {
               <h3>Next Case Study</h3>
               <div className="divider-line"></div>
             </div>
-            
+
             <div className="next-project-card-wrapper">
               {/* REUSING YOUR EXISTING COMPONENT */}
               <ProjectCard project={nextProject} />

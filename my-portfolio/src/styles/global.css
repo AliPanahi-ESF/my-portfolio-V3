@@ -44,6 +44,8 @@ h1, h2, h3, h4, h5, h6 {
 .button-secondary:hover {
   background: var(--secondary);
   border-color: var(--primary);
+  color: var(--primary);
+  border-color: var(--primary);
 }
 .button-primary,
 .button-secondary {
