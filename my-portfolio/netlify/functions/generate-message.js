@@ -78,7 +78,10 @@ exports.handler = async (event, context) => {
         return {
             statusCode: 500,
             headers,
-            body: JSON.stringify({ error: "Failed to generate message" }),
+            body: JSON.stringify({
+                error: "Failed to generate message",
+                details: error.message || error.toString()
+            }),
         };
     }
 };
