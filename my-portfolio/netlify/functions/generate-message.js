@@ -1,6 +1,6 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
     // 1. Handle CORS Preflight and Headers
     const headers = {
         "Access-Control-Allow-Origin": "*", // Allow all origins (or restrict to your domain)

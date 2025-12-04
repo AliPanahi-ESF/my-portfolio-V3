@@ -84,14 +84,17 @@ function App() {
           <div className="background-container">
             <div className="background-grid"></div>
             <div className="geometric-shape">
-              <div className="octahedron-face face-1"></div>
-              <div className="octahedron-face face-2"></div>
-              <div className="octahedron-face face-3"></div>
-              <div className="octahedron-face face-4"></div>
-              <div className="octahedron-face face-5"></div>
-              <div className="octahedron-face face-6"></div>
-              <div className="octahedron-face face-7"></div>
-              <div className="octahedron-face face-8"></div>
+              {/* Top Pyramid */}
+              <div className="shape-face face-1"><svg viewBox="0 0 200 174" className="face-svg"><path className="face-path" d="M0 173 L100 0 L200 173 Z" /></svg></div>
+              <div className="shape-face face-2"><svg viewBox="0 0 200 174" className="face-svg"><path className="face-path" d="M0 173 L100 0 L200 173 Z" /></svg></div>
+              <div className="shape-face face-3"><svg viewBox="0 0 200 174" className="face-svg"><path className="face-path" d="M0 173 L100 0 L200 173 Z" /></svg></div>
+              <div className="shape-face face-4"><svg viewBox="0 0 200 174" className="face-svg"><path className="face-path" d="M0 173 L100 0 L200 173 Z" /></svg></div>
+
+              {/* Bottom Pyramid */}
+              <div className="shape-face face-5"><svg viewBox="0 0 200 174" className="face-svg"><path className="face-path" d="M0 173 L100 0 L200 173 Z" /></svg></div>
+              <div className="shape-face face-6"><svg viewBox="0 0 200 174" className="face-svg"><path className="face-path" d="M0 173 L100 0 L200 173 Z" /></svg></div>
+              <div className="shape-face face-7"><svg viewBox="0 0 200 174" className="face-svg"><path className="face-path" d="M0 173 L100 0 L200 173 Z" /></svg></div>
+              <div className="shape-face face-8"><svg viewBox="0 0 200 174" className="face-svg"><path className="face-path" d="M0 173 L100 0 L200 173 Z" /></svg></div>
             </div>
             <FibonacciHud />
             {particleArray.map((_, i) => (
