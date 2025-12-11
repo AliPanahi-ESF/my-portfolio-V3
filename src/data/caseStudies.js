@@ -202,7 +202,14 @@ export const caseStudies = {
     subtitle: "A complete brand journey from strategy to Webflow implementation",
     category: "Branding & Web Design",
     darkTheme: true,
+    darkTheme: true,
     layout: 'branding', // Custom layout flag
+
+    intro: {
+      text: "Soul Wave is the debut fashion line by Sahel. The project translates her curated online aesthetic into a tangible brand. We created a digital flagship that feels less like a typical store and more like an immersive extension of her social media world.",
+      socialMock: "Social Touchpoint",
+      socialLink: "https://www.instagram.com/sahel_musiic/"
+    },
 
     executiveSummary: {
       goal: "Create a cohesive digital brand identity that captures SoulWave's essence—a wellness platform that harmonizes technology with mindfulness.",

@@ -110,6 +110,14 @@ const BrandingPage = () => {
                 <p className="hero-subtitle">
                     {study.subtitle}
                 </p>
+
+                {study.intro && (
+                    <div className="hero-description">
+                        <p>
+                            {study.intro.text} <span className="text-highlight">{study.intro.socialMock}: <a href={study.intro.socialLink} target="_blank" rel="noopener noreferrer" className="highlight-link">Instagram Profile</a></span>
+                        </p>
+                    </div>
+                )}
             </section>
 
             {/* Executive Summary (Dark Card) */}
