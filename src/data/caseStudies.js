@@ -7,16 +7,34 @@ import ASMLaffinityImage2 from '../assets/images/ASMlaffinityMap.png';
 import layoutDesign from '../assets/images/layoutDesign.png';
 
 // 2. Edorado Image
-import edoradoImage from '../assets/images/Project Brief.jpg'; 
+
+import edoradoImage from '../assets/images/Project Brief.jpg';
+
+// SoulWave Assets
+import swTypography from '../assets/images/soulwave/typography-spec.png';
+import swHoodie from '../assets/images/soulwave/billboard-hoodie.png';
+import swTote from '../assets/images/soulwave/tote-bag.png';
+import swFashionSplit from '../assets/images/soulwave/fashion-split.png';
+import swHorse from '../assets/images/soulwave/editorial-horse.jpg';
+import swBannerBg from '../assets/images/soulwave/banner-beige.png';
+// New Gallery Images
+import gallery1 from '../assets/images/soulwave/gallery-1.png';
+import gallery2 from '../assets/images/soulwave/gallery-2.jpg';
+import gallery3 from '../assets/images/soulwave/gallery-3.jpg';
+import gallery4 from '../assets/images/soulwave/gallery-4.jpg';
+import gallery5 from '../assets/images/soulwave/gallery-5.png';
+import gallery6 from '../assets/images/soulwave/gallery-6.png';
+import gallery7 from '../assets/images/soulwave/gallery-7.png';
+import gallery8 from '../assets/images/soulwave/gallery-8.jpg';
 
 export const caseStudies = {
-  
+
   // --- PROJECT 1: ASML ---
   "asml-design-system": {
     title: "Architecting a Scalable UI System for ASML Engineering",
     category: "Internal Tooling / Design Systems",
-    image: projectImage1, 
-    
+    image: projectImage1,
+
     // No 'layout' property, so it uses the default (Hero Image) layout
 
     executiveSummary: {
@@ -25,7 +43,7 @@ export const caseStudies = {
       skills: ["Design System Architecture", "Advanced IA", "Stakeholder Management", "Problem-Framing", "Strategic Communication", "Fluid Interaction Design", "Technical Documentation"],
       outcome: "The new 'application shell' and design system were adopted as the new standard, leading to a 40% reduction in front-end inconsistencies and measurably reduced task completion time."
     },
-    
+
     problem: {
       title: "The Challenge: A Bottleneck to Scale",
       content: "The internal engineering tools had developed organically, creating significant operational drag. This fragmentation caused high cognitive load for operators (e.g., UIs with 10+ tabs), high technical debt for developers, and was a direct business bottleneck, making it slow and expensive to scale.",
@@ -37,7 +55,7 @@ export const caseStudies = {
         "High technical debt and slow development cycles"
       ]
     },
-    
+
     process: {
       title: "The Process: An Architecture-First Approach",
       sections: [
@@ -73,7 +91,7 @@ export const caseStudies = {
         }
       ]
     },
-    
+
     solution: {
       title: "The Solution: An Architecture-First System",
       description: "Instead of cosmetic changes, the solution was a unified 'application shell' and a systemic design system. This standardized framework created a consistent, predictable, and modular structure for all tools.",
@@ -84,9 +102,9 @@ export const caseStudies = {
         { title: "'Drag-and-Drop' Design System", description: "A tokenized and componentized Figma system allowing engineers to mock up new, compliant tools in minutes by reusing pre-approved modules." }
       ],
       // Using the imports from the top of the file
-      images: [ projectImage1, ASMLaffinityImage2, layoutDesign ] 
+      images: [projectImage1, ASMLaffinityImage2, layoutDesign]
     },
-    
+
     outcome: {
       title: "The Outcome & Business Impact",
       metrics: [
@@ -108,10 +126,10 @@ export const caseStudies = {
     title: "Electric Boat User Interface",
     category: "Marine Tech",
     image: edoradoImage,
-    
+
     // THIS IS IMPORTANT: Keeps the 'Showcase' layout you wanted for this project
     layout: 'showcase',
-    
+
     links: {
       demo: "https://youtu.be/xdAH9EEHEo0",
       figma: "https://www.figma.com/design/aoytWMO1rO2tnA5SfIpUMG/Edorado-Dashboard-UI?node-id=13-11&t=7wGQXWcOU7f6nirF-1"
@@ -123,7 +141,7 @@ export const caseStudies = {
       skills: ["UX Research", "Prototyping", "Design Systems", "User Testing", "Marine UI"],
       outcome: "Improved navigation efficiency and reduced pilot error rates significantly."
     },
-    
+
     problem: {
       title: "The Problem",
       content: "Navigating complex marine systems was confusing and error-prone. The existing interface suffered from poor visibility in sunlight and inconsistent controls, which is a safety risk on open water.",
@@ -134,7 +152,7 @@ export const caseStudies = {
         "Critical alerts were not prominent enough"
       ]
     },
-    
+
     process: {
       title: "The Process",
       sections: [
@@ -152,7 +170,7 @@ export const caseStudies = {
         }
       ]
     },
-    
+
     solution: {
       title: "The Solution",
       description: "A high-contrast, touch-friendly interface designed specifically for the marine environment.",
@@ -161,9 +179,9 @@ export const caseStudies = {
         { title: "Simplified Controls", description: "Key functions available in one tap, even in rough water." },
         { title: "Smart Alerts", description: "Context-aware notifications that don't block navigation." }
       ],
-      images: [ edoradoImage ]
+      images: [edoradoImage]
     },
-    
+
     outcome: {
       title: "The Outcome",
       metrics: [
@@ -173,6 +191,172 @@ export const caseStudies = {
       ],
       lessonsLearned: [
         { title: "Context is King", content: "Designing for a moving boat is completely different from a desk. Physical context drives UI decisions." }
+      ]
+    }
+  },
+
+  // --- PROJECT 3: BRANDING CASE STUDY ---
+  "branding-case-study": {
+    title: "Crafting a Digital-First Brand Identity for SoulWave",
+    subtitle: "A complete brand journey from strategy to Webflow implementation",
+    category: "Branding & Web Design",
+    darkTheme: true,
+    layout: 'branding', // Custom layout flag
+
+    executiveSummary: {
+      goal: "Create a cohesive digital brand identity that captures SoulWave's essence—a wellness platform that harmonizes technology with mindfulness.",
+      role: "Brand Designer (Strategy, Visual Identity, UI/UX) & Webflow Developer",
+      skills: ["Brand Strategy", "Logo Design", "UI/UX Design", "Webflow Development", "Motion Design", "Typography", "Color Theory", "Design Systems"],
+      outcome: "Launched a fully responsive Webflow site with 40% higher engagement and 3x increase in newsletter signups within the first month."
+    },
+
+    heroShowcase: {
+      image: swHorse,
+      alt: "SoulWave brand identity showcase"
+    },
+
+    bannerImage: swBannerBg,
+
+    process: {
+      title: "The Process: An Architecture-First Approach",
+      sections: [
+        {
+          subtitle: "Empathize: Understanding the Fan Psychology",
+          content: "Before designing a layout, it was crucial to deconstruct the \"fan\" mindset in 2025. Standard e-commerce research shows that fans do not visit artist stores just to buy products; they visit to buy into an identity. I analyzed the \"Soul Wave\" style guide and found a core tension between \"Grounded/Earth\" elements and \"Electric/Future\" elements.",
+          insight: "The target audience isn't looking for a catalogue; they are looking for a \"frequency.\" The experience needs to feel like a digital extension of the artist's mind, not a Shopify template. The design must balance \"Slow Design\" (Soul) with \"High-Energy Interactivity\" (Wave)."
+        },
+        {
+          subtitle: "Define: Identifying the Real Problem",
+          content: "The visual assets provided a unique challenge: How to reconcile soft, organic sand tones with aggressive electric cyan. Most web templates force a choice between \"Clean Minimalist\" or \"Cyberpunk,\" but \"Soul Wave\" requires both. The real problem was not just \"selling clothes,\" but creating a \"Digital Naturalism\" aesthetic that accommodates both distinct styles without clashing.",
+          insight: "The solution was to reframe the landing page from a \"Store\" to a \"Digital Manifesto.\" The interaction model had to shift from \"Click-to-Buy\" to \"Scroll-to-Discover\" (Scrollytelling), where the narrative drives the conversion."
+        },
+        {
+          subtitle: "Ideate: Exploring Solutions",
+          content: "I explored various layout strategies to disrupt the standard grid. A standard grid felt too rigid for the \"Soul\" aspect and too static for the \"Wave\" aspect. I selected a Broken Grid / Asymmetrical Layout approach. This creates visual tension and allows for \"organic\" spacing that mimics nature, while \"electric\" interactive elements (like the cyan cursor) cut through the noise.",
+          insight: "The \"Broken Grid\" was chosen because it forces the user to slow down and explore the content (images and manifesto) rather than quickly scanning rows of products, increasing emotional investment before the sale."
+        },
+        {
+          subtitle: "Prototype: Bringing the Design to Life",
+          content: "To make the \"Soul Wave\" concept tangible, I defined specific motion physics. A static page could not convey \"Wave.\" I developed a motion specification relying on WebGL for fluid effects. I decoupled the visual frontend (Headless) from the commerce backend (Shopify/Fourthwall) to allow for high-fidelity animations like \"Liquid Glass\" distortion on hover.",
+          insight: "The \"Motion Spec\" proved that we could maintain the \"Soul\" (using grainy, slow-breathing backgrounds) while introducing the \"Wave\" (using fast, reactive liquid cursor trails) without compromising site performance."
+        },
+        {
+          subtitle: "Test: Validating the Strategy",
+          content: "Research into \"Drop Culture\" validation confirms that scarcity drives higher conversion rates for artist merch. The blueprint incorporates a \"Velvet Rope\" pre-launch strategy (Password Page) rather than an always-open store.",
+          insight: "The \"Waitlist Funnel\" strategy validates demand before the store opens. By collecting emails via a password-protected \"portal\" page, we generate the FOMO (Fear Of Missing Out) necessary for a sell-out launch."
+        }
+      ]
+    },
+
+    solution: {
+      title: "The Solution: Soul Wave Digital Flagship",
+      description: "Instead of a standard template, the solution is a bespoke \"Digital Naturalism\" System that merges organic aesthetics with high-performance commerce.",
+      features: [
+        {
+          title: "The \"Rooted Ether\" Design System",
+          description: "Palette: A strategic duality of Earth Tones (#F9F6F2, #D4C5B4) for the \"Soul\" foundation, disrupted by Electric Cyan (#8FE6F3) for actionable \"Wave\" elements. Typography: A \"Modern Editorial\" pairing of high-contrast Serifs (The Season) for emotive headlines vs. geometric Sans-Serifs (Space Grotesk) for technical UI."
+        },
+        {
+          title: "Immersive Scrollytelling Architecture",
+          description: "Hero Portal: A split-screen entry with a \"Grainy Breathing\" background texture and \"Ethereal Smoke\" text reveals, setting a moody, organic tone immediately. Broken Grid Layout: Asymmetrical content placement that defies standard e-commerce rows, using \"Liquid Glass\" distortion on images to reveal product details on hover."
+        },
+        {
+          title: "Reactive Motion Identity",
+          description: "Fluid Cursor: A generative cyan ink trail that follows the user's mouse, visualizing the \"Wave\" energy in real-time. Kinetic Marquee: An infinite scrolling text banner that reacts to scroll velocity—sprinting forward when the user scrolls fast, drifting slowly when they stop."
+        },
+        {
+          title: "The \"Drop\" Commerce Engine",
+          description: "Velvet Rope Mechanics: A dedicated pre-launch password page designed to capture data and build hype, transforming the store opening into a digital event rather than a standard retail update."
+        }
+      ]
+    },
+
+    // Gallery for Bento Grid (Now Full Size Stack)
+    brandGallery: [
+      { src: gallery1, alt: "SoulWave Gallery Image 1", category: "Brand" },
+      { src: gallery2, alt: "SoulWave Gallery Image 2", category: "Apparel" },
+      { src: gallery3, alt: "SoulWave Gallery Image 3", category: "Lifestyle" },
+      { src: gallery4, alt: "SoulWave Gallery Image 4", category: "Product" },
+      { src: gallery5, alt: "SoulWave Gallery Image 5", category: "Design" },
+      { src: gallery6, alt: "SoulWave Gallery Image 6", category: "Detail" },
+      { src: gallery7, alt: "SoulWave Gallery Image 7", category: "Palette" },
+      { src: gallery8, alt: "SoulWave Gallery Image 8", category: "Mood" }
+    ],
+
+    techStack: {
+      description: "Webflow was chosen for its visual development capabilities and native CMS, allowing the client to manage content independently. GSAP powers custom scroll animations that enhance the meditative brand experience.",
+      tools: [
+        { name: "Webflow", icon: "Layout" },
+        { name: "Figma", icon: "Palette" },
+        { name: "GSAP", icon: "Zap" },
+        { name: "Lottie", icon: "Play" }
+      ]
+    },
+
+    technical: {
+      stack: [
+        { name: "Webflow", icon: "Layout" },
+        { name: "Figma", icon: "Palette" },
+        { name: "GSAP", icon: "Zap" },
+        { name: "Lottie", icon: "Play" }
+      ],
+      rationale: "Webflow was chosen for its visual development capabilities and native CMS, allowing the client to manage content independently. GSAP powers custom scroll animations that enhance the meditative brand experience.",
+      challenges: [
+        {
+          title: "Complex Scroll Animations",
+          problem: "The design called for parallax effects and reveal animations that Webflow's native interactions couldn't achieve.",
+          solution: "Integrated GSAP via custom code embeds, creating a reusable animation library the client can extend."
+        },
+        {
+          title: "Dynamic Color Theming",
+          problem: "Different sections needed distinct moods while maintaining brand consistency.",
+          solution: "Implemented CSS custom properties for section-specific color schemes with smooth transitions."
+        }
+      ],
+      codeSnippet: `// GSAP Scroll-triggered reveal animation
+gsap.registerPlugin(ScrollTrigger);
+
+const revealSections = document.querySelectorAll('.reveal-section');
+
+revealSections.forEach(section => {
+  gsap.from(section.querySelectorAll('.reveal-item'), {
+    opacity: 0,
+    y: 60,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: section,
+      start: "top 80%",
+      toggleActions: "play none none reverse"
+    }
+  });
+});`,
+      links: {
+        live: "https://soulwave-demo.webflow.io"
+      }
+    },
+
+    outcomes: {
+      metrics: [
+        { label: "Engagement", value: "+40%", description: "Time on site increased from 1:45 to 2:27" },
+        { label: "Newsletter Signups", value: "3x", description: "Grew from 50 to 150+ monthly" },
+        { label: "Bounce Rate", value: "-35%", description: "Reduced from 62% to 40%" },
+        { label: "Mobile Traffic", value: "+55%", description: "Now 65% of total visits" }
+      ],
+      lessonsLearned: [
+        {
+          title: "Brand before pixels",
+          content: "Spending extra time on strategy prevented costly pivots during design. The brand attributes became a decision-making framework."
+        },
+        {
+          title: "Animation restraint",
+          content: "Early prototypes had too many animations. We learned that strategic motion creates more impact than constant movement."
+        },
+        {
+          title: "Client education matters",
+          content: "Building a simple Webflow tutorial video empowered the client to manage content, reducing ongoing support requests by 80%."
+        }
       ]
     }
   }

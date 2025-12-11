@@ -13,6 +13,7 @@ import Footer from './components/layout/Footer';
 import Home from './pages/Home.jsx';
 import ProjectPage from './pages/ProjectPage.jsx';
 import EdoradoPage from './pages/EdoradoPage.jsx';
+import BrandingPage from './pages/BrandingPage.jsx';
 
 // Helper: Scroll To Top
 function ScrollToTop() {
@@ -110,6 +111,7 @@ function App() {
           <Suspense fallback={<div className="loading-screen"></div>}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/project/branding-case-study" element={<BrandingPage />} />
               <Route path="/project/edorado" element={<EdoradoPage />} />
               <Route path="/project/:slug" element={<ProjectPage />} />
             </Routes>
