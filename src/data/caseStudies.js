@@ -34,6 +34,7 @@ export const caseStudies = {
     title: "Architecting a Scalable UI System for ASML Engineering",
     category: "Internal Tooling / Design Systems",
     image: projectImage1,
+    isConfidential: true,
 
     // No 'layout' property, so it uses the default (Hero Image) layout
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Lock } from 'lucide-react';
 
 // Data Imports
 import { caseStudies } from '../data/caseStudies.js';
@@ -89,6 +89,13 @@ function ProjectPage() {
           <Button to="/" variant="secondary" icon={ArrowLeft} style={{ marginBottom: '2rem', flexDirection: 'row-reverse' }}>
             Back to projects
           </Button>
+
+          {study.isConfidential && (
+            <div className="confidential-banner">
+              <Lock size={16} />
+              <span>This project is confidential. For more info or a demo, please <a href="#contact">contact me</a> below.</span>
+            </div>
+          )}
 
           <div className="glass-badge">{study.category}</div>
           <h1 className="project-title">{study.title}</h1>
