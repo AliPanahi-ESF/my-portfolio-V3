@@ -1,6 +1,7 @@
 import projectImage1 from '../assets/images/asml.jpg';
 import edoradoImage from '../assets/images/Project Brief.jpg';
 import soulWaveImage from '../assets/images/soulwave/gallery-5.png';
+import bierensImage from '../assets/images/bierens-heroes.png';
 
 export const projects = [
   {
@@ -30,6 +31,17 @@ export const projects = [
         value: '5+',
         direction: 'up'
       },
+    ],
+  },
+  {
+    id: 'bierens-heroes',
+    badge: 'UX / UI / React / AI',
+    title: 'Gamifying Loyalty with AI-Generated Heroes',
+    image: bierensImage,
+    description: 'A React-based loyalty platform for Bierens Law Firm featuring AI-generated avatars.',
+    stats: [
+      { label: 'User Engagement', value: '+25%', direction: 'up' },
+      { label: 'Community', value: 'Growing', direction: 'up' },
     ],
   },
   {

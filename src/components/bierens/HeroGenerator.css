@@ -1,0 +1,141 @@
+/* src/components/bierens/HeroGenerator.css */
+.hero-generator-container {
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.hg-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hg-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #ef4444, #f87171);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hg-subtitle {
+    color: #a1a1aa;
+    font-size: 0.95rem;
+}
+
+.hg-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hg-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.hg-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #d4d4d8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.hg-input {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.hg-input:focus {
+    outline: none;
+    border-color: #ef4444;
+}
+
+.hg-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.hg-button {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: transform 0.1s, background 0.2s;
+}
+
+.hg-button:hover:not(:disabled) {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+.hg-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.hg-result-area {
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+}
+
+.hg-image {
+    max-width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+    animation: fade-in 0.5s ease-out;
+}
+
+.hg-error {
+    color: #fca5a5;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

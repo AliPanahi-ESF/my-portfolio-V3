@@ -25,7 +25,9 @@ import gallery4 from '../assets/images/soulwave/gallery-4.jpg';
 import gallery5 from '../assets/images/soulwave/gallery-5.png';
 import gallery6 from '../assets/images/soulwave/gallery-6.png';
 import gallery7 from '../assets/images/soulwave/gallery-7.png';
+
 import gallery8 from '../assets/images/soulwave/gallery-8.jpg';
+import bierensImage from '../assets/images/bierens-heroes.png';
 
 export const caseStudies = {
 
@@ -120,6 +122,86 @@ export const caseStudies = {
         { title: "A Design System is a Product, Not Just a Kit", content: "A system is useless without clear rules. I learned to deliver comprehensive documentation and a 'drag-and-drop' framework that taught others how to use and extend the system." }
       ]
     },
+  },
+
+  // --- PROJECT: BIERENS HEROES ---
+  "bierens-heroes": {
+    title: "Gamifying Legal Loyalty with AI-Generated Heroes",
+    category: "Full Stack / AI Integration",
+    image: bierensImage,
+
+    heroImageStyle: {
+      width: "100%",
+      height: "auto",
+      marginTop: 0,
+      objectFit: "cover", // Ensure it fills width
+      display: "block" // Remove inline gap
+    },
+    heroWrapperStyle: {
+      height: "auto", // Let content dictate height
+      minHeight: "unset", // Override CSS constraints
+      backgroundColor: "transparent"
+    },
+
+    showHeroGenerator: false,
+
+    media: {
+      youtube: "https://www.youtube.com/embed/dBR4YNoygCA",
+    },
+
+    executiveSummary: {
+      goal: "Increase client engagement and community loyalty for Bierens Law Firm through a gamified platform.",
+      role: "Product Designer & Frontend Developer (Group Project)",
+      skills: ["React", "OpenAI API", "UX Research", "Prototyping"],
+      outcome: "Delivered a functional React landing page with integrated AI avatar generation tailored to the 'Bierens Hero' brand identity."
+    },
+
+    problem: {
+      title: "The Challenge: Making Law Engaging",
+      content: "Legal services are often perceived as distant and purely transactional. Bierens wanted to build a stronger community connection ('Bierens Heroes') but lacked a digital mechanism to make clients feel like part of the team.",
+      painPoints: [
+        "Low ongoing engagement with clients",
+        "Lack of visual identity for the community program",
+        "No interactive way to onboard new 'Heroes'"
+      ]
+    },
+
+    process: {
+      title: "The Process: AI-Powered Engagement",
+      sections: [
+        {
+          subtitle: "Concept & User Flow",
+          content: "I focused on designing a user flow that felt rewarding. The core concept was to turn the onboarding process into a 'Hero Origin Story', where users don't just sign up—they get 'suited up' via AI.",
+          insight: "Gamification increases completion rates for sign-up forms."
+        },
+        {
+          subtitle: "AI Integration (ChatGPT API)",
+          content: "I integrated the OpenAI API to generate custom hero avatars. The prompts were carefully tuned to ensure the output style matched the Bieren brand guidelines (dark, bold, heroic).",
+          insight: "Prompt engineering was critical to maintain visual consistency."
+        }
+      ]
+    },
+
+    solution: {
+      title: "The Solution: A Bieren Hero Generator",
+      description: "A React-based landing page where users upload their photo and receive a stylized 'Hero' version of themselves to share within the community.",
+      features: [
+        { title: "AI Avatar Generation", description: "Seamless integration with OpenAI to transform user photos." },
+        { title: "Community Dashboard", description: "A space to view other heroes and connect." }
+      ],
+      // Removed duplicate images array
+    },
+
+    outcome: {
+      title: "The Outcome",
+      metrics: [
+        { label: "Engagement", value: "High", description: "Positive feedback on the gamified experience." },
+        { label: "Tech Stack", value: "React+AI", description: "Successful integration of GenAI." }
+      ],
+      lessonsLearned: [
+        { title: "AI Latency", content: "Managing user expectations during the image generation wait time was a key UX challenge." }
+      ]
+    }
   },
 
   // --- PROJECT 2: EDORADO ---

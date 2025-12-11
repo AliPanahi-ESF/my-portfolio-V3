@@ -10,6 +10,7 @@ import { projects } from '../data/projects.js'; // Need this to find the "Next" 
 import './ProjectPage.css';
 import ProjectCard from '../components/shared/ProjectCard'; // <-- Your Existing Card
 import Button from '../components/shared/Button';
+import HeroGenerator from '../components/bierens/HeroGenerator';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -101,7 +102,12 @@ function ProjectPage() {
           <h1 className="project-title">{study.title}</h1>
 
           <div className="hero-image-wrapper">
-            <img src={study.image} alt={study.title} className="project-hero-image" />
+            <img
+              src={study.image}
+              alt={study.title}
+              className="project-hero-image"
+              style={study.heroImageStyle}
+            />
           </div>
         </div>
       </section>
@@ -180,12 +186,54 @@ function ProjectPage() {
                 </div>
               ))}
             </div>
-            <div className="image-grid">
-              {study.solution.images.map((img, i) => (
-                <img key={i} src={img} alt="Solution" className="solution-image" />
-              ))}
-            </div>
+            {study.solution.images && (
+              <div className="image-grid">
+                {study.solution.images.map((img, i) => (
+                  <img key={i} src={img} alt="Solution" className="solution-image" />
+                ))}
+              </div>
+            )}
+
+            {/* MEDIA EMBEDS (YouTube / Figma) */}
+            {study.media && (
+              <div className="media-embeds" style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+
+                {/* YouTube */}
+                {study.media.youtube && (
+                  <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: '1rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+                    <iframe
+                      src={study.media.youtube}
+                      title="Project Demo"
+                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                )}
+
+                {/* Figma */}
+                {study.media.figma && (
+                  <div style={{ position: 'relative', paddingBottom: '70%', height: 0, overflow: 'hidden', borderRadius: '1rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+                    <iframe
+                      src={study.media.figma}
+                      title="Figma Prototype"
+                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                      allowFullScreen
+                    />
+                  </div>
+                )}
+              </div>
+            )}
           </div>
+
+
+
+          {/* Live Hero Generator Demo */}
+          {study.showHeroGenerator && (
+            <div className="narrative-section">
+              <HeroGenerator />
+            </div>
+          )}
 
           {/* Outcome */}
           <div className="narrative-section">
@@ -204,23 +252,25 @@ function ProjectPage() {
       </section>
 
       {/* --- NEXT PROJECT FOOTER --- */}
-      {nextProject && (
-        <section className="next-project-area">
-          <div className="project-container-narrow">
-            <div className="next-project-header">
-              <h3>Next Case Study</h3>
-              <div className="divider-line"></div>
-            </div>
+      {
+        nextProject && (
+          <section className="next-project-area">
+            <div className="project-container-narrow">
+              <div className="next-project-header">
+                <h3>Next Case Study</h3>
+                <div className="divider-line"></div>
+              </div>
 
-            <div className="next-project-card-wrapper">
-              {/* REUSING YOUR EXISTING COMPONENT */}
-              <ProjectCard project={nextProject} />
+              <div className="next-project-card-wrapper">
+                {/* REUSING YOUR EXISTING COMPONENT */}
+                <ProjectCard project={nextProject} />
+              </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )
+      }
 
-    </main>
+    </main >
   );
 }
 
