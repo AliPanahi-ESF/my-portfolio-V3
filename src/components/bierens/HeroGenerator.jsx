@@ -3,8 +3,7 @@ import { Sparkles, Loader2, AlertTriangle, ShieldCheck, Upload, Image as ImageIc
 import './HeroGenerator.css';
 
 export default function HeroGenerator() {
-    // Hardcoded demo key as requested
-    const [apiKey] = useState('AIzaSyA20k0yPO8Q3jw7LiRCIaDfqRXrVOYK5e0');
+    const [apiKey] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
     const [loading, setLoading] = useState(false);
