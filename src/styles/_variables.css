@@ -1,6 +1,6 @@
 :root {
   /* Colors */
-  /* HSL format (hue, saturation, lightness) is excellent */
+  /* HSL format (hue, saturation, lightness)  */
   --background: hsl(220, 20%, 8%);
   --foreground: hsl(210, 40%, 98%);
   --card: hsl(220, 18%, 12%);

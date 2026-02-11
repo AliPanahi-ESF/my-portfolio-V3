@@ -65,9 +65,9 @@ h6 {
 
 .button-icon {
   width: var(--space-4);
-  /* 1rem or 16px */
+
   height: var(--space-4);
-  /* This is the magic! */
+
   transition: var(--transition-smooth);
 }
 
@@ -202,10 +202,10 @@ h6 {
 
 .face-path {
   fill: hsla(190, 95%, 55%, 0.02);
-  /* Restore subtle fill */
+
   stroke: var(--primary);
   stroke-width: 1;
-  /* Restore thickness */
+
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 600;
