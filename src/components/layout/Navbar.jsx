@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 // FIX: Use standard imports for your local project
@@ -45,16 +45,16 @@ function Navbar() {
   // 2. Desktop Animations
   useEffect(() => {
     const ctx = gsap.context(() => {
-      
+
       // Intro Animation (Logo + Desktop Links ONLY)
       // We deliberately DO NOT animate the hamburger button to prevent glitches
       const tl = gsap.timeline({ delay: 0.5 });
-      
+
       tl.fromTo('.navbar-logo', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 });
       tl.fromTo('.desktop-menu li', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.1 }, "-=0.3");
 
       // Smart Hide/Show on Scroll
-      const showAnim = gsap.from(navRef.current, { 
+      const showAnim = gsap.from(navRef.current, {
         yPercent: -100,
         paused: true,
         duration: 0.4,
@@ -88,7 +88,7 @@ function Navbar() {
         // Open: Slide Down
         gsap.to(menuRef.current, { y: '0%', duration: 0.5, ease: 'power3.out' });
         // Stagger Links In
-        gsap.fromTo('.mobile-menu-link', 
+        gsap.fromTo('.mobile-menu-link',
           { y: 40, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.4, stagger: 0.1, delay: 0.2 }
         );
@@ -102,29 +102,29 @@ function Navbar() {
 
   return (
     <nav className="navbar" ref={navRef}>
-      
+
       {/* Top Bar (Always Visible) */}
       <div className="navbar-top-bar">
         <div className="navbar-logo">
           <Link to="/" onClick={() => setIsMenuOpen(false)}>Ali Panahi</Link>
         </div>
-        
+
         {/* Hamburger Button - Visible only on Mobile */}
-        <button 
-          className="navbar-toggle-button" 
-          onClick={toggleMenu} 
+        <button
+          className="navbar-toggle-button"
+          onClick={toggleMenu}
           aria-label="Toggle menu"
         >
           {isMenuOpen ? <IconX /> : <IconHamburger />}
         </button>
-        
+
         {/* Desktop Links - Hidden on Mobile */}
         <div className="desktop-menu">
           <ul>
             <li><a href="#work">Work</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="https://drive.google.com/file/d/1NodNHKvpjYFp-7Eibc7wki0wUK4h-fJh/view?usp=sharing" className="button-resume" target="_blank">Resume</a></li>
+            <li><a href="https://www.canva.com/design/DAHAkF1XhhY/XY4zsGx0emMxoXUKj-Q30Q/edit?utm_content=DAHAkF1XhhY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" className="button-resume" target="_blank">Resume</a></li>
           </ul>
         </div>
       </div>
@@ -136,7 +136,7 @@ function Navbar() {
           <li><a href="#about" className="mobile-menu-link" onClick={toggleMenu}>About</a></li>
           <li><a href="#contact" className="mobile-menu-link" onClick={toggleMenu}>Contact</a></li>
         </ul>
-        <a href="https://drive.google.com/file/d/1NodNHKvpjYFp-7Eibc7wki0wUK4h-fJh/view?usp=sharing" className="button-resume mobile-menu-link" target="_blank">View Resume</a>
+        <a href="https://www.canva.com/design/DAHAkF1XhhY/XY4zsGx0emMxoXUKj-Q30Q/edit?utm_content=DAHAkF1XhhY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" className="button-resume mobile-menu-link" target="_blank">View Resume</a>
       </div>
 
     </nav>
