@@ -74,17 +74,17 @@ function Hero() {
           <Sparkles className="glass-badge-icon" />
           <span>Available for new projects</span>
         </div>
-
+       
         <h1 className="hero-title">
-          <span className="text-primary">Creative</span>
-          <span className="text-secondary">Designer</span>
-          <span className="text-primary">& Developer</span>
+          <span className="text-primary"> UX/UI </span>
+          <span className="text-secondary">Designer with</span>
+          <span className="text-primary">Coding Skills</span>
         </h1>
 
         <p className="hero-subtitle hero-element">
-          Crafting digital experiences that bridge the gap between{" "}
-          <span className="text-primary">imagination</span> and{" "}
-          <span className="text-primary">implementation</span>.
+          I design <span className="text-primary">human-centered</span> digital products  and use my <span className="text-primary">front-end skills</span> to ensure they are {" "}
+          <span className="text-primary">scalable</span> and{" "}
+          <span className="text-primary">feasible</span> to build.
         </p>
 
         <div className="hero-cta-group hero-element">

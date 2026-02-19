@@ -10,25 +10,37 @@
   border: 1px solid var(--border);
   box-shadow: var(--shadow-card);
   padding: var(--space-5);
-  
-  /* --- ADDED THIS --- */
-  /* This makes the new hover effects smooth and slow */
-  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
-              background 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
-              border-color 0.4s ease, 
-              box-shadow 0.4s ease;
+  overflow: hidden;
+  /* Ensure zoom doesn't overflow if needed, though image has it too */
+
+  /* --- HOVER TRANSITIONS --- */
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.6s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
-/* 2. "same hover effect as service cards" */
+/* 2. Hover State */
 .project-card:hover {
-  transform: translateY(-8px); /* Lifts the card */
-  box-shadow: var(--shadow-glow);
-  
-  /* This is the gradient from your service cards */
-  background: linear-gradient(to top left, 
-    var(--card), 
-    hsl(190, 95%, 20%)
-  );
+  transform: translateY(-8px);
+
+  /* Intensify Border & Glow */
+  border-color: var(--primary);
+  /* Cyan/Primary border */
+  box-shadow: 0 10px 40px -10px var(--primary-muted, rgba(64, 224, 208, 0.2));
+  /* Custom glow if --primary-muted exists, else fallback */
+
+  /* Lighten Background slightly */
+  background-color: var(--card-hover, hsl(222, 47%, 15%));
+  /* Fallback to a slightly lighter dark */
+}
+
+/* 3. The Badges Container */
+.project-card-badges {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2);
 }
 
 /* 4. The Title */
@@ -37,109 +49,199 @@
   font-size: var(--font-size-h3);
   font-weight: 200;
   color: var(--foreground);
-  margin-top: var(--space-4); 
-}
-
-/* 5. All .project-view-button and .project-card-header
-   rules have been DELETED. */
-
-/* 6. The Description */
-.project-card-description {
-  font-size: var(--font-size-body);
-  color: var(--muted-foreground);
   margin-top: var(--space-4);
-  line-height: 1.6;
 }
 
-/* 7. The Stats Grid */
+/* 4. The Highlights Section (Replaces Description) */
+.project-card-highlights {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.highlight-title {
+  font-family: var(--font-mono);
+  /* or display, depending on preference */
+  font-size: 0.75rem;
+  /* text-xs */
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  /* wide tracking */
+  color: var(--muted-foreground);
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.highlight-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+  /* Remove default bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.highlight-item {
+  font-size: 0.875rem;
+  /* text-sm */
+  color: var(--muted-foreground);
+  /* muted text */
+  display: flex;
+  align-items: flex-start;
+  /* Align with top of text if multiline */
+  gap: 0.5rem;
+  line-height: 1.5;
+}
+
+.highlight-bullet {
+  color: var(--primary);
+  /* Cyan bullet */
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.4;
+  /* Match text line height roughly */
+}
+
+/* Mobile: Limit to 2 items */
+@media (max-width: 768px) {
+  .highlight-item:nth-child(n+3) {
+    display: none;
+  }
+}
+
+/* 4. [REMOVED] The Description */
+/* .project-card-description { ... } */
+
+/* 5. The Stats Grid */
 .project-card-stats {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-5);
   margin-top: var(--space-5);
 }
+
 .stat-item {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
+
 .stat-label {
   font-size: var(--font-size-small);
   color: var(--muted-foreground);
 }
+
 .stat-value {
   font-size: var(--font-size-h3);
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  
-  /* --- ADDED THIS --- */
-  /* This makes the "grow" animation smooth */
   transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
-.stat-value.positive { color: var(--primary); }
-.stat-value.negative { color: var(--destructive); }
 
-/* --- ADDED THIS --- */
-/* 2. "numbers it gets a bit bigger and glower" */
+.stat-value.positive {
+  color: var(--primary);
+}
+
+.stat-value.negative {
+  color: var(--destructive);
+}
+
+/* Stats hover effect */
 .stat-value:hover {
   transform: scale(1.1);
-  /* We use the --primary color for the glow */
   text-shadow: 0 0 12px var(--primary);
 }
 
-/* 8. The Image Container */
+/* 6. The Image Container */
 .project-card-image {
   aspect-ratio: 12 / 9;
   overflow: hidden;
+  /* VISUAL BUG FIX: Needed for image zoom */
   border-radius: var(--radius);
 }
 
-/* 9. The Image Itself */
+/* 7. The Image Itself - Zoom Effect */
 .project-card-image img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* Smooth zoom */
+}
+
+.project-card:hover .project-card-image img {
+  transform: scale(1.05);
+  /* Slight zoom in */
 }
 
 .project-card-link {
-  display: block; 
+  display: block;
   width: 100%;
   height: 100%;
   text-decoration: none;
 }
-/* * --------------------------------
- * PHASE 5: Desktop Layout
- * --------------------------------
-*/
+
+/* 8. Desktop Layout */
 @media (min-width: 992px) {
-  
+
   .project-card {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
-    align-items: center;
+    align-items: stretch;
+    /* MAKE BOTH COLS SAME HEIGHT */
     padding: var(--space-7);
     gap: var(--space-7);
   }
 
   .project-card-image {
     aspect-ratio: 3 / 2;
-    height: auto; 
+    height: 100%;
+    /* Fill the grid cell height */
     border-radius: var(--radius);
   }
-  
+
   .project-card-image img {
     border-radius: var(--radius);
     height: 100%;
+    object-fit: cover;
   }
 
   .project-card-content {
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Stack content at top */
+    align-items: flex-start;
+    /* Fix Token Width: prevents stretching */
+    height: 100%;
+    gap: var(--space-2);
+    /* Consistent gap */
   }
-  
+
   .project-card-title {
-    margin-top: 0; /* Reset margin on desktop */
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  /* Ensure highlights and top content stack together at the start */
+  .project-card-highlights {
+    margin-top: auto;
+    /* Push down from title */
+    margin-bottom: auto;
+    /* Push up from stats -> Centered! */
+    width: 100%;
+  }
+
+  .project-card-stats {
+    margin-top: 0;
+    /* Let highlights centering handle the push */
+    align-self: flex-start;
+    width: 100%;
   }
 }

@@ -1,161 +1,59 @@
-/* --- Projects.css --- */
-
+/* Projects.css */
 .projects-section {
   position: relative;
-  /* Give space for the scroll to finish */
-  padding-bottom: var(--space-9);
-  z-index: 10;
-}
-
-/* --- 1. SHARED / MOBILE LAYOUT --- */
-.projects-container {
   width: 100%;
-  max-width: 1200px; /* Cap width */
-  margin: 0 auto;
-  padding: var(--space-5);
-  
-  /* Vertical Layout by default */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center everything horizontally */
-  gap: var(--space-8);
+  padding: 8rem 0;
+  background-color: var(--bg-dark);
+  overflow: hidden;
+  /* Prevent horizontal scroll from animations if any */
 }
 
-/* Header Styling (Centered) */
-.projects-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--space-4);
-  max-width: 600px;
+.projects-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
   position: relative;
-  z-index: 20; /* Keep title above cards if they float up */
+  z-index: 1;
+}
+
+.projects-header {
+  margin-bottom: 6rem;
+  max-width: 800px;
 }
 
 .projects-title {
-  font-family: var(--font-display);
-  font-size: var( --font-size-h2-desktop);
-  margin: 0;
+  font-size: var(--font-size-h2);
   font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #ffffff, #888888);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .projects-subtitle {
-  color: var(--muted-foreground);
   font-size: var(--font-size-body);
+  color: var(--text-secondary);
+  max-width: 500px;
 }
 
-/* Mobile Stack: Natural Flow */
-.project-card-stack {
-  width: 100%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
+.project-card-wrapper {
+  margin-bottom: 15rem;
+  /* Generous whitespace as requested */
 }
 
-/* Wrapper exists but does nothing on mobile */
-.card-animation-wrapper {
-  position: relative;
-  width: 100%;
-}
-/* Container for the indicator */
-.projects-progress-indicator {
-  position: absolute;
-  left: -80px; /* Position to the left of the stack */
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-3);
-  height: 300px; /* Height of the track */
-  z-index: 20;
+.project-card-wrapper:last-child {
+  margin-bottom: 0;
 }
 
-/* The vertical line track */
-.progress-track {
-  width: 2px;
-  height: 100%;
-  background-color: var(--border);
-  position: relative;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-/* The filling bar */
-.progress-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--primary);
-  transform: scaleY(0); /* Start empty */
-  transform-origin: top;
-}
-
-/* The numbers */
-.progress-number {
-  font-family: var(--font-display);
-  font-size: var(--font-size-small);
-  color: var(--muted-foreground);
-  font-variant-numeric: tabular-nums; /* Keeps numbers same width */
-}
-
-.progress-number.active {
-  color: var(--primary);
-  font-weight: 700;
-}
-/* --- 2. DESKTOP LAYOUT (min-width: 992px) --- */
-@media (min-width: 992px) {
-  
-  .projects-section {
-    height: auto; /* Allow ScrollTrigger to manage height */
+/* Mobile Adjustments */
+@media (max-width: 991px) {
+  .projects-header {
+    margin-bottom: 4rem;
   }
 
-  .projects-container {
-    padding-top: var(--space-9);
-    gap: var(--space-9); /* More space between Title and Cards */
-  }
-
-  .projects-title {
-    font-size: var(--font-size-h2-desktop);
-  }
-
-  /* --- THE STAGE (Centered & Fixed Height) --- */
-  .project-card-stack {
-    position: relative;
-    display: block; /* Break flex flow */
-    height: 600px;  /* FIXED HEIGHT IS MANDATORY FOR STACKING */
-    max-width: 850px;
-    margin: 0 auto; /* Center the stack */
-  }
-
-  /* --- THE CARDS (Absolute Deck) --- */
-  .card-animation-wrapper {
-    position: absolute; /* Remove from flow to stack on top of each other */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-    /* Hidden by default to prevent glitching */
-    opacity: 0;
-    visibility: hidden;
-    
-    /* Center the card inside the wrapper if needed */
-    display: flex;
-    justify-content: center;
-  }
-
-  /* Force first card to show */
-  .card-animation-wrapper:first-child {
-    opacity: 1;
-    visibility: visible;
-    z-index: 10;
-  }
-  .projects-progress-indicator {
-    display: none;
+  .project-card-wrapper {
+    margin-bottom: 4rem;
+    /* Standard mobile spacing */
   }
 }

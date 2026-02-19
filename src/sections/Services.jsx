@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import './Services.css';
-import { services } from '../data/services.js'; 
-import { 
-  Palette, Code, Sparkles, Layout, Smartphone, Bot, Eye, Layers 
+import { services } from '../data/services.js';
+import {
+  Palette, Code, Sparkles, Layout, Smartphone, Bot, Eye, Layers,
+  PenTool, Search, Cpu, Zap, Grid, Box, GitMerge
 } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,7 +11,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const iconMap = {
-  Palette, Code, Sparkles, Layout, Smartphone, Bot, Eye, Layers
+  Palette, Code, Sparkles, Layout, Smartphone, Bot, Eye, Layers,
+  PenTool, Search, Cpu, Zap, Grid, Box, GitMerge
 };
 
 function Services() {
@@ -20,7 +22,7 @@ function Services() {
   // This useEffect handles all the "load-in" animations
   useEffect(() => {
     const ctx = gsap.context(() => {
-      
+
       // Animate the Header
       gsap.from('.services-header', {
         opacity: 0, y: 20, duration: 0.6,
@@ -30,15 +32,15 @@ function Services() {
       // Animate the 3 Cards
       gsap.from('.service-card', {
         opacity: 0, y: 30, duration: 0.5, stagger: 0.1,
-        
+
         // THIS IS THE FIX:
         // This tells GSAP to remove its inline transform style
         // after the animation is done, so your CSS :hover can work.
-        clearProps: "transform", 
-        
+        clearProps: "transform",
+
         scrollTrigger: { trigger: '.services-grid', start: 'top 80%', once: true }
       });
-      
+
       // Animate the Bottom CTA
       gsap.from('.services-footer', {
         opacity: 0, duration: 0.6, delay: 0.4,
@@ -50,7 +52,7 @@ function Services() {
         x: 4, duration: 0.75, repeat: -1,
         yoyo: true, ease: 'easeInOut'
       });
-      
+
     }, sectionRef);
 
     return () => ctx.revert();
@@ -90,9 +92,9 @@ function Services() {
 
   return (
     <section id="services" className="services-section" ref={sectionRef}>
-      
+
       <div className="services-container">
-        
+
         {/* 1. THE HEADER */}
         <div className="services-header">
           <div className="glass-badge">
@@ -114,7 +116,7 @@ function Services() {
         <div className="services-grid">
           {services.map((service, categoryIndex) => {
             const CategoryIcon = iconMap[service.icon];
-            
+
             return (
               <div key={service.category} className="service-card">
 
@@ -130,23 +132,23 @@ function Services() {
                     {service.items.map((item, itemIndex) => {
                       const ItemIcon = iconMap[item.icon];
                       const globalIndex = `${categoryIndex}-${itemIndex}`;
-                      
+
                       return (
-                        <div 
-                          key={item.name} 
+                        <div
+                          key={item.name}
                           className="service-item"
                           onMouseEnter={() => setHoveredIndex(globalIndex)}
                           onMouseLeave={() => setHoveredIndex(null)}
                         >
-                          <ItemIcon 
-                            className="service-item-icon" 
+                          <ItemIcon
+                            className="service-item-icon"
                             data-index={globalIndex}
                           />
                           <div className="service-item-info">
                             <h4 className="service-item-name">{item.name}</h4>
                             <p className="service-item-description">{item.description}</p>
                           </div>
-                          <div 
+                          <div
                             className="service-item-underline"
                             data-index={globalIndex}
                           ></div>
@@ -165,7 +167,7 @@ function Services() {
           <p>
             Ready to bring your vision to life?{" "}
             <a href="#contact" className="services-contact-link">
-              Let's talk 
+              Let's talk
               <span className="services-contact-link-arrow">→</span>
             </a>
           </p>

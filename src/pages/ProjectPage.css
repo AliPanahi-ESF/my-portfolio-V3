@@ -5,15 +5,17 @@
 
 /* --- Layout Containers --- */
 .project-container {
-  max-width: 1024px; 
+  max-width: 1400px;
   margin-inline: auto;
-  padding-inline: var(--space-6);
+  padding-inline: var(--space-4);
 }
+
 .project-container-narrow {
-  max-width: 800px; 
+  max-width: 1600px;
   margin-inline: auto;
-  padding-inline: var(--space-6);
+  padding-inline: var(--space-4);
 }
+
 .project-not-found {
   min-height: 80vh;
   display: flex;
@@ -22,33 +24,39 @@
   justify-content: center;
   gap: var(--space-6);
 }
+
 .project-showcase {
-  padding-block: var(--space-9); 
+  padding-block: var(--space-9);
   background-color: hsl(190 95% 55% / 0.03);
 }
+
 .showcase-intro {
   text-align: center;
-  max-width: 600px;
+  max-width: 800px;
   margin-inline: auto;
   margin-bottom: var(--space-7);
 }
+
 .showcase-intro h2 {
   font-family: var(--font-display);
   font-size: var(--font-size-h2);
   font-weight: 700;
   margin-bottom: var(--space-3);
 }
+
 .showcase-intro p {
   font-size: var(--font-size-body);
   color: var(--muted-foreground);
   line-height: 1.6;
 }
+
 .project-links {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-4);
   margin-bottom: var(--space-7);
 }
+
 .project-links.centered {
   justify-content: center;
 }
@@ -86,46 +94,54 @@
   padding-top: var(--space-9);
   padding-bottom: var(--space-7);
 }
-.button-primary svg, .button-secondary svg {
+
+.button-primary svg,
+.button-secondary svg {
   margin-right: var(--space-2);
 }
+
 .project-full-image {
   width: 100%;
-  height: auto; 
+  height: auto;
   display: block;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-card);
 }
+
 .project-hero .glass-badge {
   display: block;
-  width: fit-content; 
-  margin-top: var(--space-6); 
-  margin-bottom: var(--space-4); 
+  width: fit-content;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-4);
 }
+
 .project-title {
   font-family: var(--font-display);
-  font-size: var(--font-size-h1); 
+  font-size: var(--font-size-h1);
   font-weight: 700;
-  margin-top: 0; 
+  margin-top: 0;
   margin-bottom: var(--space-6);
 }
 
 /* FIX: Added the dot here */
 .hero-image-wrapper {
   width: 100%;
-  height: 400px; 
+  height: 400px;
   border-radius: var(--radius);
-  overflow: hidden; /* Crucial for the scrolling effect */
+  overflow: hidden;
+  /* Crucial for the scrolling effect */
   margin-top: var(--space-6);
 }
 
 /* Target the image inside to ensure it has room to move */
 .hero-image-wrapper .project-hero-image {
-  height: 120%; /* Taller than container so it can scroll */
+  height: 120%;
+  /* Taller than container so it can scroll */
   width: 100%;
   object-fit: cover;
-  margin-top: -10%; /* Center it initially */
+  margin-top: -10%;
+  /* Center it initially */
 }
 
 /* --- Executive Summary --- */
@@ -133,6 +149,7 @@
   padding-block: var(--space-8);
   background-color: hsl(190 95% 55% / 0.05);
 }
+
 .project-summary-card {
   background-color: var(--background);
   border-radius: var(--radius);
@@ -140,16 +157,19 @@
   box-shadow: var(--shadow-card);
   padding: var(--space-7);
 }
-.project-summary-card > h2 {
+
+.project-summary-card>h2 {
   font-family: var(--font-display);
   font-size: var(--font-size-h2);
   font-weight: 700;
   margin-bottom: var(--space-6);
 }
+
 .summary-item {
   margin-bottom: var(--space-6);
 }
-.summary-item > h3 {
+
+.summary-item>h3 {
   font-size: var(--font-size-small);
   font-weight: 500;
   color: var(--muted-foreground);
@@ -157,23 +177,28 @@
   letter-spacing: 0.05em;
   margin-bottom: var(--space-2);
 }
-.summary-item > p {
+
+.summary-item>p {
   font-size: var(--font-size-body-desktop);
   line-height: 1.6;
 }
+
 .summary-item.outcome {
   padding-top: var(--space-5);
   border-top: 1px solid var(--border);
 }
+
 .summary-item.outcome p {
   font-size: var(--font-size-h3);
   font-weight: 700;
 }
+
 .skills-list {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
 }
+
 .skill-badge {
   display: inline-block;
   background-color: var(--secondary);
@@ -187,26 +212,31 @@
 .project-narrative {
   padding-block: var(--space-9);
 }
+
 .narrative-section {
   margin-bottom: var(--space-9);
 }
+
 .narrative-title {
   font-family: var(--font-display);
   font-size: var(--font-size-h2);
   font-weight: 700;
   margin-bottom: var(--space-6);
 }
+
 .narrative-body {
   font-size: var(--font-size-body-desktop);
   color: var(--muted-foreground);
   line-height: 1.7;
 }
+
 .narrative-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   margin-top: var(--space-5);
 }
+
 .narrative-list li {
   display: flex;
   align-items: flex-start;
@@ -214,6 +244,7 @@
   color: var(--muted-foreground);
   line-height: 1.6;
 }
+
 .narrative-list li span {
   color: var(--primary);
   margin-top: 4px;
@@ -225,15 +256,76 @@
   flex-direction: column;
   gap: var(--space-7);
 }
+
 .process-step {
   border-left: 2px solid var(--primary);
   padding-left: var(--space-5);
 }
-.process-step > h3 {
+
+.process-step>h3 {
   font-size: var(--font-size-h3);
   font-weight: 700;
   margin-bottom: var(--space-3);
 }
+
+/* [NEW] Process Step Image */
+.process-step-image-wrapper {
+  margin-block: var(--space-5);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+/* [NEW] Grid for Multiple Images */
+.process-step-images-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* Stack images to full width */
+  gap: var(--space-4);
+  margin-block: var(--space-5);
+}
+
+.process-step-single-image-container {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  position: relative;
+  background-color: var(--card);
+  /* Match card bg */
+}
+
+.process-step-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* Ensure images inside containers fill them */
+}
+
+.zoom-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background-color: var(--card);
+  /* Or a light background */
+  color: var(--muted-foreground);
+  font-size: var(--font-size-small);
+  border-top: 1px solid var(--border);
+}
+
+.image-caption {
+  text-align: center;
+  font-style: italic;
+  font-size: var(--font-size-small);
+  color: var(--muted-foreground);
+  padding: var(--space-3);
+  background-color: var(--background);
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
 .insight-box {
   background-color: hsl(190 95% 55% / 0.05);
   border-left: 4px solid var(--primary);
@@ -241,9 +333,11 @@
   border-radius: var(--radius);
   margin-block: var(--space-4);
 }
+
 .insight-box p:first-child {
   font-weight: 700;
 }
+
 .insight-box p:last-child {
   color: var(--muted-foreground);
 }
@@ -255,26 +349,31 @@
   gap: var(--space-5);
   margin-block: var(--space-6);
 }
+
 .feature-card {
   background-color: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: var(--space-5);
 }
+
 .feature-card h3 {
   font-size: var(--font-size-body-desktop);
   font-weight: 700;
   margin-bottom: var(--space-2);
 }
+
 .feature-card p {
   color: var(--muted-foreground);
 }
+
 .image-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-5);
   margin-top: var(--space-6);
 }
+
 .solution-image {
   width: 100%;
   height: 300px;
@@ -289,46 +388,55 @@
   gap: var(--space-5);
   margin-bottom: var(--space-7);
 }
+
 .metric-card {
   background-color: hsl(190 95% 55% / 0.05);
   border-radius: var(--radius);
   padding: var(--space-5);
   text-align: center;
 }
+
 .metric-value {
   font-size: var(--font-size-h2);
   font-weight: 700;
   color: var(--primary);
   margin-bottom: var(--space-2);
 }
+
 .metric-label {
   font-weight: 700;
   margin-bottom: var(--space-1);
 }
+
 .metric-desc {
   font-size: var(--font-size-small);
   color: var(--muted-foreground);
 }
+
 .lessons-box {
   background-color: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: var(--space-7);
 }
-.lessons-box > h3 {
+
+.lessons-box>h3 {
   font-size: var(--font-size-h3);
   font-weight: 700;
   margin-bottom: var(--space-6);
 }
+
 .lessons-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
+
 .lesson-item h4 {
   font-weight: 700;
   margin-bottom: var(--space-2);
 }
+
 .lesson-item p {
   color: var(--muted-foreground);
 }
@@ -363,8 +471,14 @@
 }
 
 .next-project-card-wrapper {
-  max-width: 600px;
+  max-width: 900px;
   margin-inline: auto;
+  /* Ensure the desktop grid layout (triggered at 992px viewport) fits. 
+     If viewport is <992px, card is stacked anyway. 
+     If viewport >992px, 900px width might be slightly narrow for the specific grid cols?
+     Wait, media query is on viewport. If container is 900px, card is 900px.
+     Grid 1.1fr 1fr is fine at 900px.
+  */
 }
 
 /* --- Desktop Layout --- */
@@ -372,20 +486,25 @@
   .project-title {
     font-size: var(--font-size-h2-desktop);
   }
+
   .summary-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-6);
   }
+
   .features-grid {
     grid-template-columns: 1fr 1fr;
   }
+
   .image-grid {
     grid-template-columns: 1fr 1fr;
   }
+
   .metrics-grid {
     grid-template-columns: repeat(4, 1fr);
   }
+
   .hero-image-wrapper {
     height: 600px;
   }

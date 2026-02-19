@@ -1,0 +1,22 @@
+.image-magnifier-container {
+    display: inline-block;
+    /* Or block depending on layout */
+    overflow: visible;
+    /* Need overflow visible so lens can go outside if needed, though strictly it overlays */
+    cursor: crosshair;
+    /* Indicate zoom functionality */
+}
+
+.image-magnifier-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.magnifier-lens {
+    z-index: 100;
+    border-radius: 50%;
+    /* Make it circular like a magnifying glass */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    /* Drop shadow for depth */
+}

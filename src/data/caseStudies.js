@@ -1,10 +1,11 @@
 // src/data/caseStudies.js
 
 // 1. ASML Images
-import projectImage1 from '../assets/images/asml.jpg';
+import mockUpASML from '../assets/images/MockupASML.webp';
 // NOTE: Ensure these files exist in your assets/images folder!
 import ASMLaffinityImage2 from '../assets/images/ASMlaffinityMap.png';
 import layoutDesign from '../assets/images/layoutDesign.png';
+import UserFlowASMl from '../assets/images/UserFlowASMl.png';
 
 // 2. Edorado Image
 
@@ -33,93 +34,105 @@ export const caseStudies = {
 
   // --- PROJECT 1: ASML ---
   "asml-design-system": {
-    title: "Architecting a Scalable UI System for ASML Engineering",
+    title: "Modular UI Design & React POC for High-Tech Tooling",
     category: "Internal Tooling / Design Systems",
-    image: projectImage1,
+    image: mockUpASML,
     isConfidential: true,
 
-    // No 'layout' property, so it uses the default (Hero Image) layout
-
     executiveSummary: {
-      goal: "Architect a holistic, scalable, and high-performance solution that would serve as the foundation for all future internal engineering tooling.",
-      role: "UX/UI Designer & Systems Architect (Graduation Internship)",
-      skills: ["Design System Architecture", "Advanced IA", "Stakeholder Management", "Problem-Framing", "Strategic Communication", "Fluid Interaction Design", "Technical Documentation"],
-      outcome: "The new 'application shell' and design system were adopted as the new standard, leading to a 40% reduction in front-end inconsistencies and measurably reduced task completion time."
+      goal: "Redesign fragmented internal engineering tools into a scalable, modular UI system and validate it with a React Proof-of-Concept.",
+      role: "UX/UI Designer & Front-End Developer",
+      skills: [
+        "Atomic Design Systems",
+        "Jobs to Be Done (JTBD)",
+        "Information Architecture",
+        "React Prototyping"
+      ],
+      outcome: "The new framework was adopted as the standard for future tooling, reducing front-end inconsistencies by 40% across 5+ internal applications."
     },
 
     problem: {
-      title: "The Challenge: A Bottleneck to Scale",
-      content: "The internal engineering tools had developed organically, creating significant operational drag. This fragmentation caused high cognitive load for operators (e.g., UIs with 10+ tabs), high technical debt for developers, and was a direct business bottleneck, making it slow and expensive to scale.",
+      title: "The Challenge: The '10-Tab Monster'",
+      content: "The existing internal tools were causing a significant operational bottleneck. Because they were developed in silos over time, operators were forced to navigate complex, inconsistent interfaces with massive cognitive load.",
       painPoints: [
-        "UIs with 10+ navigational tabs",
-        "High cognitive load due to inconsistent UIs",
-        "Inefficient workflows with too many steps for simple tasks",
-        "Poor error handling with no user guidance",
-        "High technical debt and slow development cycles"
+        "High cognitive load for machine operators",
+        "Environmental constraints: Operators wear thick gloves, making touchscreens inefficient and requiring optimized keyboard/mouse workflows",
+        "Hidden errors and too many clicks for simple tasks",
+        "High technical debt for developers",
+        "Slow development cycles due to siloed code"
       ]
     },
 
     process: {
-      title: "The Process: An Architecture-First Approach",
+      title: "The Process: From Assumptions to Architecture",
       sections: [
         {
-          subtitle: "Empathize: Understanding the Users",
-          content: "Before making any design decisions, it was crucial to understand the real challenges. Many existing UIs were designed without direct user input. I conducted 15+ interviews, observed real-world usage on-site, and analyzed interaction videos to uncover hidden inefficiencies.",
-          insight: "These findings formed the foundation for all design decisions. By understanding how users interact with the tools, I was able to address real issues rather than assumptions.",
-          artifacts: ["15+ user interviews", "On-site observation notes", "Affinity mapping", "Interaction video analysis", "Competitor analysis"]
+          subtitle: "1. Discovery & Problem Framing",
+          content: "The initial brief was to 'make the UI consistent.' However, after conducting 15+ on-site interviews and analyzing interaction videos of operators, I realized the issue wasn't visual—it was structural.",
+          insight: "My most significant shift was moving from 'problem-solving' to 'problem-framing.' The real issue was broken Information Architecture, not just outdated aesthetics.",
+          artifacts: ["15+ Stakeholder Interviews", "On-site Observations", "Interaction Analysis"],
+          image: ASMLaffinityImage2,
+          zoom: true,
+          imageCaption: "Affinity Map: Categorizing operator pain points from 15+ interviews"
         },
         {
-          subtitle: "Define: Identifying the Real Problem",
-          content: "Without clearly defining the core challenges, design efforts could lose focus. Analysis revealed core UX challenges like UI inconsistency, poor error handling, and inefficient workflows, which manifested as the '10-Tab Monster' UI.",
-          insight: "My most significant shift was from 'problem-solving' to 'problem-framing.' The initial request was for 'UI consistency,' but my analysis revealed the real problem was a broken Information Architecture.",
-          artifacts: ["User Personas", "Problem statements", "Analysis of current UI"]
+          subtitle: "2. Architecting the Workflows",
+          content: "Before touching pixels, I mapped out the complex workflows for both machine operators (sequence-based tasks) and engineers (troubleshooting). I moved away from a 'one-size-fits-all' screen and designed a modular framework.",
+          insight: "Mapping the flows revealed that operators needed contextual error handling built directly into the UI, eliminating their reliance on external 'fishbone diagram' PDFs.",
+          artifacts: ["User Journey Mapping", "Information Architecture", "Workflow Diagrams"],
+          image: UserFlowASMl,
+          zoom: true,
+          imageCaption: "New User Journeys"
         },
         {
-          subtitle: "Ideate: Exploring Solutions",
-          content: "A single solution might not work for every use case. I explored multiple approaches, including a modular UI design, improved navigation hierarchy, and a new error feedback system. The modular design was chosen for its consistency, reusability, and scalability.",
-          insight: "The modular design approach was selected because it ensures consistency, allows engineers to reuse components, and scales efficiently.",
-          artifacts: ["Modular UI concepts", "Navigation flowcharts", "Error feedback patterns", "Paper prototypes"]
+          subtitle: "3. Iterative Prototyping & Testing",
+          content: "I developed three iterations of high-fidelity prototypes, running continuous feedback sessions with operators and engineers. We tested everything from the new 4-tier error system to how the UI accommodated dual-monitor setups.",
+          insight: "Continuous testing ensured the UI actually worked in the physical environment, proving that collapsible panels and keyboard-first navigation were essential for operators wearing thick gloves.",
+          artifacts: ["Wireframing", "High-Fidelity Prototyping", "Usability Testing"],
+          images: [layoutDesign, UserFlowASMl],
+          zoom: true,
+          imageCaption: "New User Journeys" 
         },
         {
-          subtitle: "Prototype: Bringing the Design to Life",
-          content: "A prototype allows users to interact with the design and provide feedback before full implementation. I delivered a final UI for a specific tool (ULS), a complete design system, and a Proof of Concept (PoC) using React and gRPC to decouple the UI from LabVIEW.",
-          insight: "The PoC proved that decoupling the UI from LabVIEW was feasible, enabling a more flexible and modern front-end stack for the future.",
-          artifacts: ["Figma mockups (Iteration 1 & 2)", "Clickable prototypes", "React Proof of Concept (PoC)"]
+          subtitle: "4. Systematizing the UI (Atomic Design)",
+          content: "To ensure my designs could scale across the entire company, I built a comprehensive, tokenized design system in Figma based on Atomic Design principles.",
+          insight: "A design system is useless without rules. By creating a 'drag-and-drop' component library with clear guidelines, I empowered engineers to mock up compliant tools in minutes.",
+          artifacts: ["Atomic Design System", "Figma Tokens", "Developer Documentation"]
         },
         {
-          subtitle: "Test: Validating the Design",
-          content: "Operators and Engineers tested the prototype. Feedback confirmed the UI was easier to navigate, error messages were clearer, and the elements were more consistent. Developers appreciated the structured design system for handoff.",
-          insight: "The testing phase confirmed that the design system improves usability, and operators completed tasks faster with fewer errors.",
-          artifacts: ["Usability test feedback", "User feedback synthesis", "Validation reports"]
+          subtitle: "5. Validating with Code (The POC)",
+          content: "To prove this new architecture was technically feasible, I used the ULS Tool as a pilot. I built a functional Proof of Concept (PoC) using React and gRPC to decouple the UI from legacy systems.",
+          insight: "Building the React POC successfully proved we could decouple the UI from LabVIEW, paving the way for a much faster, modern front-end stack.",
+          artifacts: ["React Proof-of-Concept", "Component Feasibility Testing", "LabVIEW Decoupling"]
         }
       ]
     },
 
     solution: {
-      title: "The Solution: An Architecture-First System",
-      description: "Instead of cosmetic changes, the solution was a unified 'application shell' and a systemic design system. This standardized framework created a consistent, predictable, and modular structure for all tools.",
+      title: "The Solution: An Architecture-First Framework",
+      description: "Instead of cosmetic patches, I delivered a systemic design system that fundamentally changed how internal tools are built.",
       features: [
-        { title: "Modular Application Shell", description: "A standardized framework with a static header, persistent left navigation, and a global footer, liberating the main content panel." },
-        { title: "Widget-Based Dashboard", description: "Replaced the '10-Tab Monster' by redesigning core functions as independent widgets (Instructions, Logs) on a single, customizable screen." },
-        { title: "Fluid Layout Management", description: "A 'Flip Phone' concept using Material Design principles where modules intelligently reflow when one is expanded, scaling to large monitors." },
-        { title: "'Drag-and-Drop' Design System", description: "A tokenized and componentized Figma system allowing engineers to mock up new, compliant tools in minutes by reusing pre-approved modules." }
+        { title: "Contextual Error Handling", description: "Replaced vague error codes with a 4-tier categorized alert system, eliminating the need for operators to consult external manuals or fishbone diagrams." },
+        { title: "Modular Application Shell", description: "A standardized layout with persistent navigation, liberating the main workspace for complex tasks." },
+        { title: "Widget-Based Dashboards", description: "Dismantled the '10-Tab Monster' by converting core functions into independent, customizable widgets on a single screen." },
+        { title: "Fluid Layout Management", description: "Utilizing Material Design principles, modules intelligently reflow and scale to large factory monitors when expanded." },
+        { title: "'Drag-and-Drop' Component Library", description: "A tokenized Figma system that allows engineers to prototype compliant, pre-approved tools in minutes." }
       ],
-      // Using the imports from the top of the file
-      images: [projectImage1, ASMLaffinityImage2, layoutDesign]
+      
     },
 
     outcome: {
       title: "The Outcome & Business Impact",
       metrics: [
-        { label: "Inconsistencies", value: "↓ 40%", description: "Measured across all tools adopting the new system." },
-        { label: "Adoption", value: "5+", description: "The shell and system were adopted as the new standard for five major internal tools." },
-        { label: "Cognitive Load", value: "Reduced", description: "Measurably reduced task completion time by eliminating the '10-Tab Monster'." },
-        { label: "Developer Velocity", value: "↑", description: "'Drag-and-drop' system drastically reduced design and development overhead." }
+        { label: "UI Inconsistencies", value: "↓ 40%", description: "Measured across the platform after adopting the new system." },
+        { label: "Tools Unified", value: "5+", description: "The framework was adopted as the new standard for five major internal tools." },
+        { label: "Cognitive Load", value: "Reduced", description: "Measurably reduced task completion times for machine operators." },
+        { label: "Developer Velocity", value: "↑", description: "Developers can now build new tools faster using the standardized React library." }
       ],
       lessonsLearned: [
-        { title: "Problem-Framing > Problem-Solving", content: "The initial request was for 'UI consistency,' but the real problem was a broken Information Architecture. I learned to look past the surface-level request to diagnose the root systemic issue." },
-        { title: "Sell the 'Why' to a Technical Audience", content: "Instead of 'prettier designs,' I presented a new architecture that solved their specific problems (like the '10-Tab Monster'), framing decisions in terms of business and developer value." },
-        { title: "A Design System is a Product, Not Just a Kit", content: "A system is useless without clear rules. I learned to deliver comprehensive documentation and a 'drag-and-drop' framework that taught others how to use and extend the system." }
+        { title: "Problem-Framing > Problem-Solving", content: "The initial request was for 'UI consistency,' but the real problem was broken Information Architecture. I learned to diagnose root systemic issues first." },
+        { title: "Sell the 'Why' to Engineers", content: "I presented a new architecture that solved their specific problems, framing design decisions in terms of developer velocity and technical limitations." },
+        { title: "A System is a Product", content: "A system is useless without clear rules. I delivered comprehensive documentation and a framework that taught others how to use and extend the system." }
       ]
     },
   },

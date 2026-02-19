@@ -10,6 +10,7 @@ import { projects } from '../data/projects.js'; // Need this to find the "Next" 
 import './ProjectPage.css';
 import ProjectCard from '../components/shared/ProjectCard'; // <-- Your Existing Card
 import Button from '../components/shared/Button';
+import ImageMagnifier from '../components/shared/ImageMagnifier';
 import HeroGenerator from '../components/bierens/HeroGenerator';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -166,6 +167,48 @@ function ProjectPage() {
                 <div key={i} className="process-step">
                   <h3>{section.subtitle}</h3>
                   <p className="narrative-body">{section.content}</p>
+
+                  {/* [NEW] Optional Image(s) for Process Step */}
+                  {(section.image || section.images) && (
+                    <div className={section.images ? "process-step-images-grid" : "process-step-image-wrapper"}>
+                      {section.images ? (
+                        section.images.map((imgSrc, imgIndex) => (
+                          <div key={imgIndex} className="process-step-single-image-container">
+                            {section.zoom ? (
+                              <>
+                                <ImageMagnifier src={imgSrc} width="100%" />
+                                <div className="zoom-hint">
+                                  <span style={{ fontSize: '1.2em' }}>🔍</span> Hover
+                                </div>
+                              </>
+                            ) : (
+                              <img src={imgSrc} alt={`Process step image ${imgIndex + 1}`} className="process-step-image" />
+                            )}
+                          </div>
+                        ))
+                      ) : (
+                        /* Single Image Logic */
+                        <>
+                          {section.zoom ? (
+                            <>
+                              <ImageMagnifier src={section.image} width="100%" />
+                              <div className="zoom-hint">
+                                <span style={{ fontSize: '1.2em' }}>🔍</span> Hover over image to explore details
+                              </div>
+                            </>
+                          ) : (
+                            <img src={section.image} alt="" className="process-step-image" />
+                          )}
+                        </>
+                      )}
+
+                      {/* [NEW] Image Caption */}
+                      {section.imageCaption && (
+                        <p className="image-caption" style={section.images ? { gridColumn: '1 / -1' } : {}}>{section.imageCaption}</p>
+                      )}
+                    </div>
+                  )}
+
                   <div className="insight-box">
                     <p>💡 Key Insight:</p> <p>{section.insight}</p>
                   </div>
