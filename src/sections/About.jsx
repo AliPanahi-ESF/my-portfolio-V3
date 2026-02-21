@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react'; 
+import { useEffect, useRef, useState } from 'react';
 import './About.css';
-import { 
-  MapPin, Coffee, Dumbbell, Sparkles, 
-  Globe, Lightbulb, Heart // New icons for paragraphs
+import {
+  MapPin, Coffee, Dumbbell, Sparkles,
+  Globe, Lightbulb
 } from 'lucide-react';
-import ProfilePhoto from '../assets/images/profile-photo.png'; 
+import ProfilePhoto from '../assets/images/profile-photo.png';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -18,7 +18,7 @@ function About() {
   // 1. MAIN ENTRANCE ANIMATION
   useEffect(() => {
     const ctx = gsap.context(() => {
-      
+
       // Floating Orbs
       gsap.to('.about-orb-1', { y: -30, duration: 3, repeat: -1, yoyo: true, ease: 'easeInOut' });
       gsap.to('.about-orb-2', { y: 30, duration: 4, repeat: -1, yoyo: true, ease: 'easeInOut', delay: 1 });
@@ -29,11 +29,11 @@ function About() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 75%', 
+          start: 'top 75%',
           once: true
         }
       });
-      
+
       // Left Card
       tl.from('.about-visual-card', {
         opacity: 0, x: -50, duration: 0.8, ease: 'power3.out'
@@ -60,7 +60,7 @@ function About() {
         gsap.to('.about-visual-content', { opacity: 1, duration: 0.4, ease: 'power2.out', delay: 0.1 });
       }
     }, sectionRef);
-    
+
     return () => ctx.revert();
   }, [isHovered]);
 
@@ -71,9 +71,9 @@ function About() {
 
       <div className="about-container">
         <div className="about-grid">
-          
+
           {/* LEFT SIDE (Unchanged) */}
-          <div 
+          <div
             className="about-visual-card"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -87,7 +87,7 @@ function About() {
               <Sparkles className="w-4 h-4" />
               <span>Self-taught</span>
             </div>
-            
+
             <div className="about-visual-card-inner">
               <img src={ProfilePhoto} alt="Ali Panahi" className="about-profile-photo" />
               <div className="about-visual-content">
@@ -128,7 +128,7 @@ function About() {
 
             {/* NEW BIO STRUCTURE WITH ICONS */}
             <div className="about-bio">
-              
+
               {/* Paragraph 1: Location / Background */}
               <div className="bio-item">
                 <div className="bio-icon-wrapper">
@@ -137,8 +137,8 @@ function About() {
                 <p>
                   Based in the <span className="text-highlight">Netherlands</span>. A Product Designer + Front-End Developer graduate.
                   I work at the intersection of UX thinking and clean front-end execution,
-                  building products that feel thoughtful, intentional, and actually usable. 
-                  Most of what I know comes from teaching myself (and of course university), breaking things, fixing them again, 
+                  building products that feel thoughtful, intentional, and actually usable.
+                  Most of what I know comes from teaching myself (and of course university), breaking things, fixing them again,
                   and staying endlessly curious about how systems behave. <span className="text-primary italic">Self-taught, self-doubted, and self-corrected</span> — still here. Still building.
                 </p>
               </div>
@@ -152,18 +152,6 @@ function About() {
                   My design philosophy is simple: <span className="text-highlight">clarity</span> first. Good design isn’t just beautiful pixels; it’s when the user’s mind relaxes because everything makes sense.
                   Whether I’m redesigning a flow, building a component system, or polishing the small interactions, my goal is always the same:
                   reduce cognitive load, <span className="text-primary font-medium">make the user breathe easier</span>, and let the product speak for itself.
-                </p>
-              </div>
-
-              {/* Paragraph 3: Personal */}
-              <div className="bio-item">
-                <div className="bio-icon-wrapper">
-                  <Heart className="bio-icon" />
-                </div>
-                <p>
-                  Outside my desk work, I keep my <span className="text-highlight italic">creativity</span> and
-                  <span className="text-highlight italic"> discipline</span> sharp through the things I enjoy like playing football and reading books.
-                  I build with intention. I design with clarity. And I like creating things that feel good to use.
                 </p>
               </div>
 

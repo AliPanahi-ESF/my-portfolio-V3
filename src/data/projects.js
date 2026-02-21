@@ -1,8 +1,7 @@
 import projectImage1 from '../assets/images/asml.jpg';
 import edoradoImage from '../assets/images/Project Brief.jpg';
 import soulWaveImage from '../assets/images/soulwave/gallery-5.png';
-import bierensImage from '../assets/images/bierens-heroes.png';
-
+import bierensImage from '../assets/images/bierens/bierens-heroes.png';
 export const projects = [
   {
     id: 'asml-design-system',

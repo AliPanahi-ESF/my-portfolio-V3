@@ -67,7 +67,7 @@ function Projects() {
           </div>
           <h2 className="projects-title">Selected Work</h2>
           <p className="projects-subtitle">
-            A few of the projects I've enjoyed working on.
+            A few of the projects I've created the most impact.
           </p>
         </div>
 

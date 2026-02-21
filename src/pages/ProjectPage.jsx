@@ -8,7 +8,7 @@ import { projects } from '../data/projects.js'; // Need this to find the "Next" 
 
 // Styles & Components
 import './ProjectPage.css';
-import ProjectCard from '../components/shared/ProjectCard'; // <-- Your Existing Card
+import ProjectCard from '../components/shared/ProjectCard';
 import Button from '../components/shared/Button';
 import ImageMagnifier from '../components/shared/ImageMagnifier';
 import HeroGenerator from '../components/bierens/HeroGenerator';
@@ -25,9 +25,8 @@ function ProjectPage() {
   const study = caseStudies[slug];
 
   // 2. "Next Project" Logic
-  // Find current index in the projects array to determine what comes next
   const currentIndex = projects.findIndex(p => p.id === slug);
-  const nextIndex = (currentIndex + 1) % projects.length; // Loop back to start if at end
+  const nextIndex = (currentIndex + 1) % projects.length;
   const nextProject = projects[nextIndex];
 
   // 3. Scroll Reset
@@ -39,7 +38,7 @@ function ProjectPage() {
   useEffect(() => {
     const ctx = gsap.context(() => {
 
-      // Hero Parallax (Subtle movement)
+      // Hero Parallax
       gsap.to('.project-hero-image', {
         yPercent: 20,
         ease: 'none',
@@ -64,7 +63,7 @@ function ProjectPage() {
           scrollTrigger: {
             trigger: section,
             start: 'top 85%',
-            toggleActions: 'play none none reverse' // Reverses when scrolling back up
+            toggleActions: 'play none none reverse'
           }
         });
       });
@@ -118,7 +117,7 @@ function ProjectPage() {
         <div className="project-container">
           <div className="project-summary-card">
             <h2>Executive Summary</h2>
-            <div className="summary-grid"> {/* Added grid class for layout */}
+            <div className="summary-grid">
               <div className="summary-item">
                 <h3>Project Goal</h3>
                 <p>{study.executiveSummary.goal}</p>
@@ -168,7 +167,7 @@ function ProjectPage() {
                   <h3>{section.subtitle}</h3>
                   <p className="narrative-body">{section.content}</p>
 
-                  {/* [NEW] Optional Image(s) for Process Step */}
+                  {/* Optional Image(s) */}
                   {(section.image || section.images) && (
                     <div className={section.images ? "process-step-images-grid" : "process-step-image-wrapper"}>
                       {section.images ? (
@@ -187,7 +186,6 @@ function ProjectPage() {
                           </div>
                         ))
                       ) : (
-                        /* Single Image Logic */
                         <>
                           {section.zoom ? (
                             <>
@@ -202,9 +200,34 @@ function ProjectPage() {
                         </>
                       )}
 
-                      {/* [NEW] Image Caption */}
+                      {/* Image Caption */}
                       {section.imageCaption && (
                         <p className="image-caption" style={section.images ? { gridColumn: '1 / -1' } : {}}>{section.imageCaption}</p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* ── Standalone Media (GIF or Video) ─────────────────────
+                      Add  video: myFile  to any section in caseStudies.js.
+                      GIFs render as <img>, mp4/webm render as <video>.
+                  ─────────────────────────────────────────────────────────── */}
+                  {section.video && (
+                    <div className="process-step-video-wrapper">
+                      {/\.gif(\?.*)?$/i.test(section.video) ? (
+                        <img
+                          src={section.video}
+                          alt="Demo"
+                          className="process-step-video"
+                        />
+                      ) : (
+                        <video
+                          src={section.video}
+                          className="process-step-video"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                        />
                       )}
                     </div>
                   )}
@@ -269,8 +292,6 @@ function ProjectPage() {
             )}
           </div>
 
-
-
           {/* Live Hero Generator Demo */}
           {study.showHeroGenerator && (
             <div className="narrative-section">
@@ -295,25 +316,22 @@ function ProjectPage() {
       </section>
 
       {/* --- NEXT PROJECT FOOTER --- */}
-      {
-        nextProject && (
-          <section className="next-project-area">
-            <div className="project-container-narrow">
-              <div className="next-project-header">
-                <h3>Next Case Study</h3>
-                <div className="divider-line"></div>
-              </div>
-
-              <div className="next-project-card-wrapper">
-                {/* REUSING YOUR EXISTING COMPONENT */}
-                <ProjectCard project={nextProject} />
-              </div>
+      {nextProject && (
+        <section className="next-project-area">
+          <div className="project-container-narrow">
+            <div className="next-project-header">
+              <h3>Next Case Study</h3>
+              <div className="divider-line"></div>
             </div>
-          </section>
-        )
-      }
 
-    </main >
+            <div className="next-project-card-wrapper">
+              <ProjectCard project={nextProject} />
+            </div>
+          </div>
+        </section>
+      )}
+
+    </main>
   );
 }
 

@@ -6,7 +6,9 @@ import mockUpASML from '../assets/images/MockupASML.webp';
 import ASMLaffinityImage2 from '../assets/images/ASMlaffinityMap.png';
 import layoutDesign from '../assets/images/layoutDesign.png';
 import UserFlowASMl from '../assets/images/UserFlowASMl.png';
-
+import ASMLmockup from '../assets/images/prototype.png';
+import UIDemo from '../assets/videos/UIDemo.gif';
+import DesignSystemDemo from '../assets/videos/DesignSystem.gif';
 // 2. Edorado Image
 
 import edoradoImage from '../assets/images/Project Brief.jpg';
@@ -28,7 +30,7 @@ import gallery6 from '../assets/images/soulwave/gallery-6.png';
 import gallery7 from '../assets/images/soulwave/gallery-7.png';
 
 import gallery8 from '../assets/images/soulwave/gallery-8.jpg';
-import bierensImage from '../assets/images/bierens-heroes.png';
+import bierensImage from '../assets/images/bierens/bierens-heroes.png';
 
 export const caseStudies = {
 
@@ -89,15 +91,19 @@ export const caseStudies = {
           content: "I developed three iterations of high-fidelity prototypes, running continuous feedback sessions with operators and engineers. We tested everything from the new 4-tier error system to how the UI accommodated dual-monitor setups.",
           insight: "Continuous testing ensured the UI actually worked in the physical environment, proving that collapsible panels and keyboard-first navigation were essential for operators wearing thick gloves.",
           artifacts: ["Wireframing", "High-Fidelity Prototyping", "Usability Testing"],
-          images: [layoutDesign, UserFlowASMl],
+          images: [layoutDesign, ASMLmockup],
+          video: UIDemo,
           zoom: true,
-          imageCaption: "New User Journeys" 
+          imageCaption: "New User Journeys"
         },
         {
           subtitle: "4. Systematizing the UI (Atomic Design)",
           content: "To ensure my designs could scale across the entire company, I built a comprehensive, tokenized design system in Figma based on Atomic Design principles.",
           insight: "A design system is useless without rules. By creating a 'drag-and-drop' component library with clear guidelines, I empowered engineers to mock up compliant tools in minutes.",
-          artifacts: ["Atomic Design System", "Figma Tokens", "Developer Documentation"]
+          artifacts: ["Atomic Design System", "Figma Tokens", "Developer Documentation"],
+          video: DesignSystemDemo,
+          zoom: true,
+          imageCaption: "Design System Demo"
         },
         {
           subtitle: "5. Validating with Code (The POC)",
@@ -109,16 +115,19 @@ export const caseStudies = {
     },
 
     solution: {
-      title: "The Solution: An Architecture-First Framework",
-      description: "Instead of cosmetic patches, I delivered a systemic design system that fundamentally changed how internal tools are built.",
+      title: "Lessons Learned & Reflections",
+      description: "Designing for a highly technical, corporate environment taught me that enterprise UX is just as much about stakeholder communication and systems thinking as it is about pixels.",
       features: [
-        { title: "Contextual Error Handling", description: "Replaced vague error codes with a 4-tier categorized alert system, eliminating the need for operators to consult external manuals or fishbone diagrams." },
-        { title: "Modular Application Shell", description: "A standardized layout with persistent navigation, liberating the main workspace for complex tasks." },
-        { title: "Widget-Based Dashboards", description: "Dismantled the '10-Tab Monster' by converting core functions into independent, customizable widgets on a single screen." },
-        { title: "Fluid Layout Management", description: "Utilizing Material Design principles, modules intelligently reflow and scale to large factory monitors when expanded." },
-        { title: "'Drag-and-Drop' Component Library", description: "A tokenized Figma system that allows engineers to prototype compliant, pre-approved tools in minutes." }
-      ],
-      
+        { title: "Problem-Framing > Problem-Solving", 
+          description: "The initial brief was for 'UI consistency,' but the root problem was broken Information Architecture. I learned to diagnose systemic issues before ever touching a canvas." },
+        { title: "Selling the 'Why' to Engineers",
+          description: "To gain technical buy-in, I learned to frame my design decisions in terms of developer velocity, technical constraints, and business value rather than just aesthetics."},
+        { title: "A Design System is a Product",
+         description: "A component library is useless without rules. I learned that delivering clear, technical documentation is just as important as the UI itself to ensure actual adoption." },
+        { title: "Navigating Enterprise Complexity",
+          description: "Engaging with 15+ operators and engineers taught me how to ask the right questions and translate highly technical constraints into clear, actionable design solutions." },
+        ],
+
     },
 
     outcome: {
@@ -137,7 +146,82 @@ export const caseStudies = {
     },
   },
 
-  // --- PROJECT: BIERENS HEROES ---
+ 
+
+  // --- PROJECT 2: EDORADO ---
+  "edorado": {
+    title: "Electric Boat User Interface",
+    category: "Marine Tech",
+    image: edoradoImage,
+
+    // THIS IS IMPORTANT: Keeps the 'Showcase' layout you wanted for this project
+    layout: 'showcase',
+
+    links: {
+      demo: "https://youtu.be/xdAH9EEHEo0",
+      figma: "https://www.figma.com/design/aoytWMO1rO2tnA5SfIpUMG/Edorado-Dashboard-UI?node-id=13-11&t=7wGQXWcOU7f6nirF-1"
+    },
+
+    executiveSummary: {
+      goal: "Transform a fragmented marine interface into a unified, accessible system that reduces pilot confusion and improves navigation safety.",
+      role: "Lead Product Designer",
+      skills: ["UX Research", "Prototyping", "Design Systems", "User Testing", "Marine UI"],
+      outcome: "Improved navigation efficiency and reduced pilot error rates significantly."
+    },
+
+    problem: {
+      title: "The Problem",
+      content: "Navigating complex marine systems was confusing and error-prone. The existing interface suffered from poor visibility in sunlight and inconsistent controls, which is a safety risk on open water.",
+      painPoints: [
+        "Complex navigation menus difficult to use in motion",
+        "Poor screen visibility in direct sunlight",
+        "Inconsistent controls across different modes",
+        "Critical alerts were not prominent enough"
+      ]
+    },
+
+    process: {
+      title: "The Process",
+      sections: [
+        {
+          subtitle: "Discovery & Field Studies",
+          content: "We spent time on the water to understand the physical constraints of operating a boat at speed. Glare, motion, and distance from the screen were key factors.",
+          insight: "Safety relies on clarity and touch targets must be large and high-contrast.",
+          artifacts: ["User Interviews", "Field Studies", "Sunlight Visibility Tests"]
+        },
+        {
+          subtitle: "Prototyping High-Contrast UI",
+          content: "We developed a specific 'Day Mode' with high contrast and a 'Night Mode' to preserve night vision. The layout was simplified to put critical controls within easy reach.",
+          insight: "Automatic mode switching based on ambient light was a key feature.",
+          artifacts: ["High-fidelity prototypes", "Motion UI tests"]
+        }
+      ]
+    },
+
+    solution: {
+      title: "The Solution",
+      description: "A high-contrast, touch-friendly interface designed specifically for the marine environment.",
+      features: [
+        { title: "Day/Night Modes", description: "Automatic adaptation to lighting conditions for optimal visibility." },
+        { title: "Simplified Controls", description: "Key functions available in one tap, even in rough water." },
+        { title: "Smart Alerts", description: "Context-aware notifications that don't block navigation." }
+      ],
+      images: [edoradoImage]
+    },
+
+    outcome: {
+      title: "The Outcome",
+      metrics: [
+        { label: "Battery Efficiency", value: "↑ 30%", description: "Optimized power management UI" },
+        { label: "User Errors", value: "↓ 15%", description: "Reduction in navigation mistakes" },
+        { label: "Readability", value: "100%", description: "Passes sunlight visibility tests" }
+      ],
+      lessonsLearned: [
+        { title: "Context is King", content: "Designing for a moving boat is completely different from a desk. Physical context drives UI decisions." }
+      ]
+    }
+  },
+   // --- PROJECT: BIERENS HEROES ---
   "bierens-heroes": {
     title: "Gamifying Legal Loyalty with AI-Generated Heroes",
     category: "Full Stack / AI Integration",
@@ -213,80 +297,6 @@ export const caseStudies = {
       ],
       lessonsLearned: [
         { title: "AI Latency", content: "Managing user expectations during the image generation wait time was a key UX challenge." }
-      ]
-    }
-  },
-
-  // --- PROJECT 2: EDORADO ---
-  "edorado": {
-    title: "Electric Boat User Interface",
-    category: "Marine Tech",
-    image: edoradoImage,
-
-    // THIS IS IMPORTANT: Keeps the 'Showcase' layout you wanted for this project
-    layout: 'showcase',
-
-    links: {
-      demo: "https://youtu.be/xdAH9EEHEo0",
-      figma: "https://www.figma.com/design/aoytWMO1rO2tnA5SfIpUMG/Edorado-Dashboard-UI?node-id=13-11&t=7wGQXWcOU7f6nirF-1"
-    },
-
-    executiveSummary: {
-      goal: "Transform a fragmented marine interface into a unified, accessible system that reduces pilot confusion and improves navigation safety.",
-      role: "Lead Product Designer",
-      skills: ["UX Research", "Prototyping", "Design Systems", "User Testing", "Marine UI"],
-      outcome: "Improved navigation efficiency and reduced pilot error rates significantly."
-    },
-
-    problem: {
-      title: "The Problem",
-      content: "Navigating complex marine systems was confusing and error-prone. The existing interface suffered from poor visibility in sunlight and inconsistent controls, which is a safety risk on open water.",
-      painPoints: [
-        "Complex navigation menus difficult to use in motion",
-        "Poor screen visibility in direct sunlight",
-        "Inconsistent controls across different modes",
-        "Critical alerts were not prominent enough"
-      ]
-    },
-
-    process: {
-      title: "The Process",
-      sections: [
-        {
-          subtitle: "Discovery & Field Studies",
-          content: "We spent time on the water to understand the physical constraints of operating a boat at speed. Glare, motion, and distance from the screen were key factors.",
-          insight: "Safety relies on clarity and touch targets must be large and high-contrast.",
-          artifacts: ["User Interviews", "Field Studies", "Sunlight Visibility Tests"]
-        },
-        {
-          subtitle: "Prototyping High-Contrast UI",
-          content: "We developed a specific 'Day Mode' with high contrast and a 'Night Mode' to preserve night vision. The layout was simplified to put critical controls within easy reach.",
-          insight: "Automatic mode switching based on ambient light was a key feature.",
-          artifacts: ["High-fidelity prototypes", "Motion UI tests"]
-        }
-      ]
-    },
-
-    solution: {
-      title: "The Solution",
-      description: "A high-contrast, touch-friendly interface designed specifically for the marine environment.",
-      features: [
-        { title: "Day/Night Modes", description: "Automatic adaptation to lighting conditions for optimal visibility." },
-        { title: "Simplified Controls", description: "Key functions available in one tap, even in rough water." },
-        { title: "Smart Alerts", description: "Context-aware notifications that don't block navigation." }
-      ],
-      images: [edoradoImage]
-    },
-
-    outcome: {
-      title: "The Outcome",
-      metrics: [
-        { label: "Battery Efficiency", value: "↑ 30%", description: "Optimized power management UI" },
-        { label: "User Errors", value: "↓ 15%", description: "Reduction in navigation mistakes" },
-        { label: "Readability", value: "100%", description: "Passes sunlight visibility tests" }
-      ],
-      lessonsLearned: [
-        { title: "Context is King", content: "Designing for a moving boat is completely different from a desk. Physical context drives UI decisions." }
       ]
     }
   },
